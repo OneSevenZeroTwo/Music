@@ -1,9 +1,10 @@
 <template>
   <div id="app">
-    <x-header>bilibili音悦台
-    </x-header>
-    <span class="back"></span>
-    <span class="search"></span>
+      <div class="topbar">
+        <x-header>bilibili音悦台</x-header>
+      </div>
+      <span class="back"></span>
+      <span class="search"></span> 
     <tab :line-width=2 active-color='#fc378c' v-model="index" >
         <tab-item class="vux-center"><a class="tabLink" :href="'#/app/newSong'">新歌</a></tab-item>
         <tab-item class="vux-center"><a class="tabLink" :href="'#/app/range'">排行</a></tab-item>
@@ -39,6 +40,13 @@ export default {
 </script>
 
 <style lang="less">
+.topbar{
+  position: fixed;
+  top:0;
+  left:0;
+  z-index: 1;
+  width: 100%;
+}
 .back{
   display: block;
   position: fixed;
@@ -47,6 +55,7 @@ export default {
   background-color: #fff;
   top:9px;
   left:9px;
+  z-index: 2;
 }
 .search{
   display: block;
@@ -56,10 +65,13 @@ export default {
   background-color: #fff;
   top:9px;
   right:9px;
+  z-index: 2;
 }
 .tabLink{color:#fc378c;width: 100%;height: 100%;display:block;}
 @import '~vux/src/styles/reset.less';
-
+.vux-tab{
+  margin-top: 46px;
+}
 body {
   background-color: #fbf9fe;
 }
