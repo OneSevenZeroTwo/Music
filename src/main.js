@@ -31,7 +31,11 @@ const routes = [{
   	path:'singer',
   	component:singer
   }]
-}]
+},
+  {
+    path:'/',
+    redirect:'/app/newSong'
+  }]
 
 const router = new VueRouter({
   routes
