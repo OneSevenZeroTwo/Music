@@ -3,14 +3,34 @@
 import Vue from 'vue'
 import FastClick from 'fastclick'
 import VueRouter from 'vue-router'
-import App from './App'
-import Home from './components/Home'
+import App from './views/App'
+import newSong from './views/newSong'
+import range from './views/range'
+import songSheet from './views/songSheet'
+import singer from './views/singer'
+
 
 Vue.use(VueRouter)
 
 const routes = [{
-  path: '/',
-  component: Home
+  path: '/app',
+  component: App,
+  children:[{
+  	path:'newSong',
+  	component:newSong
+  },
+  {
+  	path:'range',
+  	component:range
+  },
+  {
+  	path:'songSheet',
+  	component:songSheet
+  },
+  {
+  	path:'singer',
+  	component:singer
+  }]
 }]
 
 const router = new VueRouter({
@@ -24,5 +44,7 @@ Vue.config.productionTip = false
 /* eslint-disable no-new */
 new Vue({
   router,
-  render: h => h(App)
+  template:`
+	<router-view></router-view>
+  `
 }).$mount('#app-box')
