@@ -18,7 +18,6 @@ import { XHeader } from 'vux'
 import { Tab, TabItem, Swiper, SwiperItem } from 'vux'
 const list = () => ['新歌', '排行', '歌单', '歌手']
 const tab = () => ['newSong', 'range', 'songSheet', 'singer']
-
 export default {
   name: 'app',
   components: {
