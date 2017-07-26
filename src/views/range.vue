@@ -1,14 +1,14 @@
 <template>
 	<div>
 		<p>排行</p>
+		<r_content></r_content>
 	</div>
 </template>
 <script>
+	import r_content from '../components/r_content.vue'
 	export default {
-	  data () {
-	    return {
-	    	
-	    }
+	  components: {
+	    r_content
 	  }
 	}
 </script>
