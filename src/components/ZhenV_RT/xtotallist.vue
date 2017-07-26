@@ -1,6 +1,6 @@
 <template>
 	
-		<mobile-tear-sheet>
+		<div>
 			<mu-list>
 				<mu-sub-header>&nbsp;Hot</mu-sub-header>
 				<mu-list-item :title="hotsinger.classname" @click="singerlist(hotsinger.classid)">
@@ -29,13 +29,16 @@
 			</mu-list>
 			<mu-divider/>
 
-		</mobile-tear-sheet>
+		</div>
 	
 </template>
 
 <script>
 	import axios from "axios";
+
+
 	export default {
+
 		data() {
 			return {
 				hotsinger: '',
@@ -85,13 +88,13 @@
 			},
 			singerlist(getid) {
 				console.log(getid);
-
+				window.location.href = "#/app/singer/singlist/"+getid
 			}
 		},
 		mounted() {
 			this.sort();
 		}
-
+		
 	}
 </script>
 

@@ -1,6 +1,5 @@
 <template>
 	<div>
-		<p>排行</p>
 		<r_content></r_content>
 	</div>
 </template>
