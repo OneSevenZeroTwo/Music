@@ -4,6 +4,7 @@ import Vue from 'vue'
 import FastClick from 'fastclick'
 import VueRouter from 'vue-router'
 import App from './views/App'
+import rangeDetails from './views/rangeDetails'
 import newSong from './views/newSong'
 import range from './views/range'
 import songSheet from './views/songSheet'
@@ -65,10 +66,15 @@ const routes = [{
 		]
 	},
 	{
+		path: '/rangeDetails/:id',
+  	component:rangeDetails,
+	},
+	{
 		path: '/',
 		redirect: '/app/newSong'
 	}
 ]
+>>>>>>> 57d4b5a7511566443f97ccbce779ccdf0fd71000
 
 // 创建状态管理
 var store = new Vuex.Store({
@@ -76,10 +82,15 @@ var store = new Vuex.Store({
   state:{
     newSong:null,
     newClass:null,
+    newDetails:null,
+    range_id:null
   },
   getters:{
 		getRange(state){
 			return state.newClass
+		},
+		getDetails(state){
+			return state.newDetails
 		}
   },
   mutations:{
@@ -102,6 +113,20 @@ var store = new Vuex.Store({
       .catch((error) => {
         console.log(error);
       });
+    },
+    rangeDetails(state){
+    	axios.get('http://localhost:6200/')
+      .then((response) => {
+        state.newDetails = response.data
+//      console.log(state.newDetails.rank.list)
+//				console.log(state.range_id)
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    },
+    setDetails(state, data){
+    	state.range_id = data
     }
   },
   actions:{
@@ -110,6 +135,12 @@ var store = new Vuex.Store({
     },
     getRange(context, data) {
       context.commit('getRange')
+    },
+    rangeDetails(context, data) {
+      context.commit('rangeDetails')
+    },
+    setDetails(context, data){
+      context.commit('setDetails',data)
     }
   }
 

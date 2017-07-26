@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
+<<<<<<< HEAD
+	<name>kugou</name>
+=======
 	<name>Music</name>
+>>>>>>> 57d4b5a7511566443f97ccbce779ccdf0fd71000
 	<comment></comment>
 	<projects>
 	</projects>
@@ -16,6 +20,9 @@
 	</natures>
 	<filteredResources>
 		<filter>
+<<<<<<< HEAD
+			<id>1500900103835</id>
+=======
 			<id>1500973523167</id>
 			<name></name>
 			<type>26</type>
@@ -26,6 +33,7 @@
 		</filter>
 		<filter>
 			<id>1501033531451</id>
+>>>>>>> 57d4b5a7511566443f97ccbce779ccdf0fd71000
 			<name></name>
 			<type>26</type>
 			<matcher>
