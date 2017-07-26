@@ -8,7 +8,10 @@ import newSong from './views/newSong'
 import range from './views/range'
 import songSheet from './views/songSheet'
 import singer from './views/singer'
-
+import MuseUI from 'muse-ui';
+import axios from "axios";
+Vue.prototype.$ajax = axios;
+Vue.use(MuseUI)
 
 Vue.use(VueRouter)
 
