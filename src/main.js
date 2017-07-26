@@ -8,22 +8,29 @@ import newSong from './views/newSong'
 import range from './views/range'
 import songSheet from './views/songSheet'
 import singer from './views/singer'
-
 import MuseUI from 'muse-ui';
+import VueLazyload from 'vue-lazyload'
 
-//
 Vue.use(MuseUI)
 
 import Vuex from 'vuex'
 import axios from 'axios'
 
 import VueAwesomeSwiper from 'vue-awesome-swiper'
-//吴镇宇项目需要引入的子路由
+//吴镇宇项目需要引入的子路由 
 import xtotalist from "./views/ZhenV_RT/xtotallist.vue"
 
 Vue.use(VueRouter)
 Vue.use(Vuex)
 Vue.use(VueAwesomeSwiper)
+
+// 图片懒加载
+Vue.use(VueLazyload, {
+  preLoad: 1.3,
+  error: 'static/images/404.png',
+  loading: 'static/images/404.png',
+  attempt: 1
+})
 
 // 挂在axios在Vue构造器下
 Vue.prototype.$ajax = axios;

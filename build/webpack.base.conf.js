@@ -13,6 +13,7 @@ function resolve (dir) {
 }
 
 let webpackConfig = {
+  devtool:"source-map",//设置报错源
   entry: {
     app: './src/main.js'
   },

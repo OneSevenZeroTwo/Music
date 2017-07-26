@@ -1,14 +1,15 @@
 <template>
-	<div>
-		<p>歌单</p>
-	</div>
+    <div>
+       <xsonglist></xsonglist>
+    </div>
 </template>
 <script>
-	export default {
-	  data () {
-	    return {
-	      
-	    }
-	  }
+//引入组件
+import xsonglist from "../components/xsonglist/xsonglist.vue";
+//注册组件
+export default {
+	components:{
+		xsonglist
 	}
+}
 </script>
