@@ -19,7 +19,7 @@ import axios from 'axios'
 
 import VueAwesomeSwiper from 'vue-awesome-swiper'
 //吴镇宇项目需要引入的子路由
-import xtotalist from "./views/ZhenV_RT/xtotallist.vue"
+import xtotalist from "./components/ZhenV_RT/xtotallist.vue"
 
 Vue.use(VueRouter)
 Vue.use(Vuex)
@@ -48,6 +48,9 @@ const routes = [{
 				path: 'singer',
 				component: singer,
 				children: [{
+						path: 'tolist',
+						component: xtotalist
+					},{
 						path: 'tolist',
 						component: xtotalist
 					},
