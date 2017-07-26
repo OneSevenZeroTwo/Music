@@ -1,22 +1,16 @@
 <template>
+
 	<div>
-		<xtotalist></xtotalist>
+		<router-view></router-view>
 	</div>
 </template>
 <script>
-	import VueRouter from 'vue-router';
-	var router = new VueRouter();
-	console.log(router)
-//	console.log(VueRouter);
-	import xtotalist from "./ZhenV_RT/xtotallist.vue";
+
+	
 	export default {
 		
-		components:{
-			xtotalist
-		}
 	}
 </script>
 <style scoped>
 	@import url("../css/muse-ui.css");
-	
 </style>

@@ -11,7 +11,7 @@ import songSheet from './views/songSheet'
 import singer from './views/singer'
 
 import MuseUI from 'muse-ui';
-//import axios from "axios";
+
 //
 Vue.use(MuseUI)
 
@@ -19,8 +19,8 @@ import Vuex from 'vuex'
 import axios from 'axios'
 
 import VueAwesomeSwiper from 'vue-awesome-swiper'
-
-
+//吴镇宇项目需要引入的子路由
+import xtotalist from "./components/ZhenV_RT/xtotallist.vue"
 
 Vue.use(VueRouter)
 Vue.use(Vuex)
@@ -31,36 +31,52 @@ Vue.prototype.$ajax = axios;
 
 // 创建路由
 const routes = [{
-  path: '/app',
-  component: App,
-  children:[{
-  	path:'newSong',
-  	component:newSong
-  },
-  {
-  	path:'range',
-  	component:range
-  },
-  {
-  	path:'songSheet',
-  	component:songSheet
-  },
-  {
-  	path:'singer',
-  	component:singer
-  }]
-},
+		path: '/app',
+		component: App,
+		children: [{
+				path: 'newSong',
+				component: newSong
+			},
+			{
+				path: 'range',
+				component: range
+			},
+			{
+				path: 'songSheet',
+				component: songSheet
+			},
+			{
+				path: 'singer',
+				component: singer,
+				children: [{
+						path: 'tolist',
+						component: xtotalist
+					},{
+						path: 'tolist',
+						component: xtotalist
+					},
+					{
+						path: '/app/singer',
+						redirect: '/app/singer/tolist'
+					}
+				]
+			}
+		]
+	},
 	{
 		path: '/rangeDetails/:id',
   	component:rangeDetails,
 	},
-  {
-    path:'/',
-    redirect:'/app/newSong'
-  }]
+	{
+		path: '/',
+		redirect: '/app/newSong'
+	}
+]
+>>>>>>> 57d4b5a7511566443f97ccbce779ccdf0fd71000
 
 // 创建状态管理
 var store = new Vuex.Store({
+
   state:{
     newSong:null,
     newClass:null,
@@ -125,10 +141,11 @@ var store = new Vuex.Store({
       context.commit('setDetails',data)
     }
   }
+
 })
 
 const router = new VueRouter({
-  routes
+	routes
 })
 
 FastClick.attach(document.body)
@@ -137,9 +154,9 @@ Vue.config.productionTip = false
 
 /* eslint-disable no-new */
 new Vue({
-  router,
-  store,
-  template:`
+	router,
+	store,
+	template: `
 	<router-view></router-view>
   `
 }).$mount('#app-box')
