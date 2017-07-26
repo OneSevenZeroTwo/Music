@@ -9,16 +9,12 @@
     "build": "node build/build.js"
   },
   "dependencies": {
-<<<<<<< HEAD
+    "axios": "^0.16.2",
     "body-parser": "^1.17.2",
     "fastclick": "^1.0.6",
     "muse-ui": "^2.1.0",
     "vue": "^2.2.2",
-=======
-    "fastclick": "^1.0.6",
-    "vue": "^2.2.2",
     "vue-awesome-swiper": "^2.5.4",
->>>>>>> 6ec8dc42feaeb7b995dd2c27bf4ed3b6e3bb3781
     "vue-router": "^2.2.0",
     "vuex": "^2.1.1",
     "vuex-i18n": "^1.3.1",

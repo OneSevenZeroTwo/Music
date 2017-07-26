@@ -5,14 +5,14 @@ var querystring = require('querystring');
 var app = express();
 
 app.get('/list', function(req, ress) {
-	console.log(6)
+//	console.log(6)
 	http.get('http://m.kugou.com/singer/class&json=true', function(res) {
 		var data = '';
 		res.on('data', function(chunk) {
 			data += chunk;
 		});
 		res.on('end', function() {
-			console.log(data)
+			console.log(data);
 			ress.send(data)
 		})
 	})
