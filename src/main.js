@@ -8,9 +8,17 @@ import newSong from './views/newSong'
 import range from './views/range'
 import songSheet from './views/songSheet'
 import singer from './views/singer'
+
+import MuseUI from 'muse-ui';
+//import axios from "axios";
+//
+Vue.use(MuseUI)
+
 import Vuex from 'vuex'
 import axios from 'axios'
+
 import VueAwesomeSwiper from 'vue-awesome-swiper'
+
 
 
 Vue.use(VueRouter)
