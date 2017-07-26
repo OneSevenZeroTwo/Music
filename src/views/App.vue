@@ -44,7 +44,7 @@ export default {
   position: fixed;
   top:0;
   left:0;
-  z-index: 1;
+  z-index: 100;
   width: 100%;
 }
 .back{
@@ -55,7 +55,7 @@ export default {
   background-color: #fff;
   top:9px;
   left:9px;
-  z-index: 2;
+  z-index: 200;
 }
 .search{
   display: block;
@@ -65,7 +65,7 @@ export default {
   background-color: #fff;
   top:9px;
   right:9px;
-  z-index: 2;
+  z-index: 200;
 }
 .tabLink{color:#fc378c;width: 100%;height: 100%;display:block;}
 @import '~vux/src/styles/reset.less';

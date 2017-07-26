@@ -67,29 +67,47 @@ const routes = [{
 
 // 创建状态管理
 var store = new Vuex.Store({
-	state: {
-		newSong: null
-	},
-	getters: {
 
-	},
-	mutations: {
-		getMusic(state) {
-			axios.get('http://localhost:6787/')
-				.then((response) => {
-					state.newSong = response.data
-					console.log(state.newSong)
-				})
-				.catch((error) => {
-					console.log(error);
-				});
+  state:{
+    newSong:null,
+    newClass:null,
+  },
+  getters:{
+		getRange(state){
+			return state.newClass
 		}
-	},
-	actions: {
-		getMusic(context, data) {
-			context.commit('getMusic')
-		}
-	}
+  },
+  mutations:{
+    getMusic(state){
+      axios.get('http://localhost:6787/')
+      .then((response) => {
+        state.newSong = response.data
+        console.log(state.newSong)
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    },
+    getRange(state){
+    	axios.get('http://localhost:5200/')
+      .then((response) => {
+        state.newClass = response.data
+//      console.log(state.newClass.rank.list)
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    }
+  },
+  actions:{
+    getMusic(context, data) {
+      context.commit('getMusic')
+    },
+    getRange(context, data) {
+      context.commit('getRange')
+    }
+  }
+
 })
 
 const router = new VueRouter({

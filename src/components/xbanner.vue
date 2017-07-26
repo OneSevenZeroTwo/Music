@@ -22,11 +22,9 @@
 			}
 		},
 		mounted(){
-			axios.get('http://localhost:6787/')
+			axios.get('http://localhost:6565/newSong')
 		      .then((response) => {
 		        this.bannerList = response.data.banner;
-		        this.dataList = response.data.data;
-		        console.log(this.dataList)
 		      })
 		      .catch((error) => {
 		        console.log(error);
