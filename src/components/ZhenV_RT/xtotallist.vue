@@ -88,7 +88,7 @@
 			},
 			singerlist(getid) {
 				console.log(getid);
-
+				window.location.href = "#/app/singer/singlist/"+getid
 			}
 		},
 		mounted() {
