@@ -20,7 +20,7 @@ app.get('/newSong', function(req, ress) {
 })
 console.log('服务器开启')
 
-var server = app.listen(6565, function() {
+var server = app.listen(6789, function() {
 
 	var host = server.address().address
 	var port = server.address().port
