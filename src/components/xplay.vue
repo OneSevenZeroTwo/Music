@@ -2,7 +2,8 @@
     <div>
         <section>
             <div class="play">
-                <span></span>
+                <img :src="imgUrl">
+                <!-- <img src="../assets/record.png" v-setImg> 1.获取不到图片路径,2.添加自定义组件变量-->
                 <h4></h4>
                 <p></p>
                 <i :class="{'active':isClick}" @click="playStatus" class="playButton"></i>
@@ -30,21 +31,21 @@ export default {
     data() {
             return {
                 isClick: false,
-                isShowMore:false,
-                isShowMask:false
+                isShowMore: false,
+                isShowMask: false
             }
         },
         methods: {
             playStatus() {
                 this.isClick = !this.isClick;
             },
-            showMore(){
+            showMore() {
                 this.isShowMore = !this.isShowMore;
                 this.isShowMask = !this.isShowMask;
             },
-            hide(){
-                this.isShowMore=false;
-                this.isShowMask=false;
+            hide() {
+                this.isShowMore = false;
+                this.isShowMask = false;
             }
         },
         filters: {
@@ -55,17 +56,32 @@ export default {
                     return input
                 }
             }
+        },
+        computed: {
+            imgUrl() {
+                return this.$store.getters.getImgurl
+            }
+        },
+        directives: {
+            setImg: {
+                bind: function(el, val) {
+                   console.log(el.src)
+                   console.log(val)
+                }
+            }
         }
 }
 </script>
 <style scoped>
-.weui-mask_transparent{
+.weui-mask_transparent {
     display: none;
 }
-.weui-mask_transparent.active{
+
+.weui-mask_transparent.active {
     display: block;
-    background-color:rgba(0,0,0,.4);
+    background-color: rgba(0, 0, 0, .4);
 }
+
 .play {
     width: 100%;
     position: fixed;
@@ -76,19 +92,17 @@ export default {
     box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.1);
 }
 
-span {
-    background-image: url('../assets/record.png');
-    background-size: 50px 50px;
+img{
     display: block;
-    background-position: center;
     width: 50px;
     height: 50px;
-    background-repeat: no-repeat;
     position: absolute;
     top: 5px;
     left: 8px;
     z-index: 100;
 }
+
+span.active {}
 
 .playButton {
     background-image: url('../assets/auto.png');
@@ -106,7 +120,7 @@ span {
 
 .playButton.active {
     background-position: 0 -30px;
-    top:14px;
+    top: 14px;
 }
 
 .more {
