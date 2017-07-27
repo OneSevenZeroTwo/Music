@@ -1,20 +1,20 @@
 <template>
-    <div>
+    <div class="container">
         <div class="mainTitle">
             <p class="title">热门推荐</p>
             <span class="more"></span>
         </div>
         <section>
-            <span class="erji"></span>
-            <span class="bofang"></span>
-            <i>{{hotList[0].duration}}</i>
+            <span class="firstErji"></span>
+            <span class="firstBofang"></span>
+            <i class="firstI">{{hotList[0].duration}}</i>
             <img src="http://y.gtimg.cn/music/photo_new/T002R300x300M000002sib2i06iuRx.jpg?max_age=2592000" alt="">
             <p>{{ hotList[0].filename | shortTitle }}</p>
         </section>
         <section class="middle">
-            <span class="erji"></span>
-            <span class="bofang"></span>
-            <i>{{hotList[1].duration}}</i>
+            <span class="firstErji"></span>
+            <span class="firstBofang"></span>
+            <i class="firstI">{{hotList[1].duration}}</i>
             <img src="//y.gtimg.cn/music/photo_new/T002R300x300M000000nKeGK4Fy9tu.jpg?max_age=2592000" alt="">
             <p>{{ hotList[1].filename | shortTitle }}</p>
         </section>
@@ -59,10 +59,9 @@ export default {
             }
         },
         mounted() {
-            axios.get('http://localhost:6789/newSong')
+            axios.get('/music/?json=true')
                 .then((response) => {
                     this.hotList = response.data.data.splice(0, 6);
-                    console.log(this.hotList)
                 })
                 .catch((error) => {
                     console.log(error);
@@ -80,6 +79,9 @@ export default {
 }
 </script>
 <style scoped>
+.container{
+    overflow: hidden;
+}
 .mainTitle{
     position: relative;
 }
@@ -114,12 +116,15 @@ section span{
     background-repeat: no-repeat;
     background-position: center;
 }
-.erji{
+.firstErji,.erji{
     background-image: url('../assets/erji.png');
     left:0;
     background-size: 18px 18px;
 }
-.bofang{
+.firstErji,.firstBofang{
+    top:88px;
+}
+.firstBofang,.bofang{
     background-image: url('../assets/start.png');
     right:0;
 }
@@ -129,6 +134,9 @@ section span{
     line-height: 30px;
     font-size: 16px;
     margin-bottom: 4px;
+}
+.firstI{
+    top:99px;
 }
 i{
     font-style: normal;

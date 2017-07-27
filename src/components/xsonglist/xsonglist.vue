@@ -3,46 +3,51 @@
         <div class="songlists-hot">
             <h2>热门歌单</h2>
             <div class="ul row">
-                <div class="li" @click="songs_list()" v-for = "(n , index) in info" track-by="$index" :id="index">
+                <div class="li" v-for="(n , index) in info" track-by="$index" :key="n.id">
                     <div class="info">
                         <img v-lazy="n.imgurl">
                         <div class="playNum">
-                            <i class="ear">图标</i>
-                            {{n.playcount}}
+                            <i class="iconfont icon-ear"></i> {{n.playcount}}
                         </div>
-                        <span class="playAll"></span>
+                        <span class="btn-play iconfont icon-play" @click="setImg(n.imgurl)">
+                            
+                        </span>
                     </div>
                     <div class="text">
-                        <dit class="type">
+                        <div class="type">
                             {{n.username}}
-                        </dit>
+                        </div>
                         <div class="title">
                             {{n.specialname}}
                         </div>
                     </div>
                 </div>
-             
             </div>
         </div>
     </div>
 </template>
 <script>
-import axios from 'axios'   
+import axios from 'axios'
 
 export default {
     data() {
             return {
-                info:''
+                info: ''
+            }
+        },
+        methods: {
+            setImg(imgUrl) {
+                this.$store.dispatch('setImg', imgUrl)
             }
         },
         mounted() {
             axios.get('/music/plist/index&json=true')
-                 .then((response) => {
-                   this.info = response.data.plist.list.info.map(function(item){
-                       item.imgurl =  item.imgurl.replace('{size}','400')
+                .then((response) => {
+                    this.info = response.data.plist.list.info.map(function(item) {
+                        item.imgurl = item.imgurl.replace('{size}', '400')
                         return item
-                   });
-                   console.log(this.info)
+                    });
+                    console.log(this.info)
                 })
                 .catch((error) => {
                     console.log(error);
@@ -54,7 +59,7 @@ export default {
 .songlists-hot {
     background: #fff;
     margin-top: 10px;
-    padding: 0px 15px 0;
+    padding: 0 1px 0 10px;
     display: flex;
     flex-flow: wrap;
     justify-content: space-between;
@@ -75,32 +80,71 @@ export default {
     height: 230px;
     margin-top: 10px;
 }
+
+
 /*图片里面的样式*/
-.li .info{
+
+.li .info {
     width: 166.91px;
     height: 166.91px;
-    position: relative; 
+    position: relative;
 }
-.li .info img{
+
+.li .info img {
     width: 100%;
     height: 100%;
     display: block;
 }
-.li .info .playNum{
+
+.li .info .playNum {
     font-size: 10px;
     color: #fff;
     position: absolute;
-    bottom:0;
-    left:10px;
+    bottom: 0;
+    left: 0;
 }
+
+
 /*简要描述样式*/
+
 .text {
     margin-top: 5px;
 }
-.text .type{
+
+.text .type {
     text-align: left;
     height: 18px;
     line-height: 18px;
-    color:#999;
+    color: #999;
+}
+
+.icon-ear {
+    font-size: 18px;
+}
+
+
+/*播放按钮*/
+
+.btn-play {
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    color: #fff;
+    text-align: center;
+    font-size: 1.8rem;
+    background-color: rgba(0, 0, 0, .3);
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    position: absolute;
+    bottom: 3px;
+    right: 4px;
+    z-index: 0;
+}
+
+.icon-play:before {
+    position: absolute;
+    z-index: 1;
+    left: 7px;
+    top: -1px
 }
 </style>

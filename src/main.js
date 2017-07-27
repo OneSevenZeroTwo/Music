@@ -21,7 +21,9 @@ import VueAwesomeSwiper from 'vue-awesome-swiper'
 
 //吴镇宇项目需要引入的子路由
 import xtotalist from "./components/ZhenV_RT/xtotallist.vue"
-import singlist from "./components/ZhenV_RT/xsinglist.vue";
+
+import singlist from "./components/ZhenV_RT/xsinglist.vue"
+import 'weui'
 
 import pinyin_dict_notone from "./lib/pinyin_dict_notone.js";
 
@@ -102,7 +104,8 @@ var store = new Vuex.Store({
     newSong:null,
     newClass:null,
     newDetails:null,
-    range_id:null
+    range_id:null,
+    imgUrl:'../assets/record.png'
   },
   getters:{
 		getRange(state){
@@ -110,7 +113,10 @@ var store = new Vuex.Store({
 		},
 		getDetails(state){
 			return state.newDetails
-		}
+		},
+    getImgurl(state){
+      return state.imgUrl
+    }
   },
   mutations:{
     getMusic(state){
@@ -146,6 +152,10 @@ var store = new Vuex.Store({
     },
     setDetails(state, data){
     	state.range_id = data
+    },
+    setImg(state,data){
+      state.imgUrl = data;
+      // console.log(state.imgUrl)
     }
   },
   actions:{
@@ -160,6 +170,9 @@ var store = new Vuex.Store({
     },
     setDetails(context, data){
       context.commit('setDetails',data)
+    },
+    setImg(context,data){//点击改变播放控制器的图片
+      context.commit("setImg",data)
     }
   }
 

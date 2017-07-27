@@ -33,10 +33,9 @@ export default {
             }
         },
         mounted() {
-            axios.get('http://localhost:6789/newSong')
+            axios.get('/music/?json=true')
                 .then((response) => {
                     this.column = response.data.data.splice(11, 4);
-                    console.log(this.column);
                 })
                 .catch((error) => {
                     console.log(error);

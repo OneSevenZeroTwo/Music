@@ -37,7 +37,7 @@
                 <section class="content">
                     <img src="//y.gtimg.cn/music/photo_new/T002R300x300M000002xaPnq0BXNav.jpg?max_age=2592000" alt="">
                     <h4>幽暗恢宏迷离消逝-英国才华横溢...</h4>
-                    <p>主播：Konekt Asia FM</p>
+                    <p>主播：Konekt Asia</p>
                     <i></i>
                     <span>1.3万</span>
                 </section>
@@ -53,8 +53,6 @@
     </div>
 </template>
 <script>
-import axios from 'axios'
-
 
 export default {
     data() {
