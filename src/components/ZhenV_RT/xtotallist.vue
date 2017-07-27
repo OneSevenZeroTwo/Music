@@ -1,50 +1,32 @@
 <template>
-	
-		<div>
-			<mu-list>
-				<mu-sub-header>&nbsp;Hot</mu-sub-header>
-				<mu-list-item :title="hotsinger.classname" @click="singerlist(hotsinger.classid)">
-					<mu-avatar :src="hotsinger.imgurl" slot="leftAvatar" />
-					<mu-icon value="chat_bubble" slot="right" />
-				</mu-list-item>
 
-				<mu-sub-header>&nbsp;华语乐坛</mu-sub-header>
-
-				<mu-list-item v-for="n in huasinger" :key="n.classid" :title="n.classname" @click="singerlist(n.classid)">
-					<mu-avatar :src="n.imgurl" slot="leftAvatar" />
-					<mu-icon value="chat_bubble" slot="right" />
-				</mu-list-item>
-
-				<mu-sub-header>&nbsp;日韩乐坛</mu-sub-header>
-				<mu-list-item v-for="n in risinger" :key="n.classid" :title="n.classname" @click="singerlist(n.classid)">
-					<mu-avatar :src="n.imgurl" slot="leftAvatar" />
-					<mu-icon value="chat_bubble" slot="right" />
-				</mu-list-item>
-
-				<mu-sub-header>&nbsp;欧美乐坛</mu-sub-header>
-				<mu-list-item v-for="n in ousinger" :key="n.classid" :title="n.classname" @click="singerlist(n.classid)">
-					<mu-avatar :src="n.imgurl" slot="leftAvatar" />
-					<mu-icon value="chat_bubble" slot="right" />
-				</mu-list-item>
-			</mu-list>
-			<mu-divider/>
-
+	<div>
+		
+		<div class="gridlist-demo-container">
+			<mu-grid-list class="gridlist-demo" style="margin-top:20px;">
+				
+				<mu-grid-tile v-for="tile, index in hotsinger" :key="index" titlePosition="top" titleBarClass="myclass" @click="singerlist(tile.classid)">
+					<img :src="tile.imgurl"  style="width:80%;height:80%;border-radius: 50%;"/>
+					<span slot="title">{{tile.classname}}</span>
+					<!--<span class="zhezhao">{{tile.classname}}</span>-->
+					
+				</mu-grid-tile>
+			</mu-grid-list>
 		</div>
-	
+	</div>
 </template>
 
 <script>
 	import axios from "axios";
-
 
 	export default {
 
 		data() {
 			return {
 				hotsinger: '',
-				huasinger: '',
-				risinger: '',
-				ousinger: ''
+//				huasinger: '',
+//				risinger: '',
+//				ousinger: ''
 			}
 		},
 		methods: {
@@ -54,32 +36,32 @@
 				axios.get("http://localhost:6565/list")
 					.then((response) => {
 						var sing = response.data.list;
-						var huasing = [];
-						var rising = [];
-						var ousing = [];
-
-						for(var i = 0; i < sing.length; i++) {
-							if(sing[i].classname.indexOf('热') !== -1) {
-
-								salf.hotsinger = sing[i];
-							}
-							if(sing[i].classname.indexOf('华') !== -1) {
-								huasing.push(sing[i]);
-
-							}
-							if(sing[i].classname.indexOf('日') !== -1) {
-								rising.push(sing[i]);
-
-							}
-							if(sing[i].classname.indexOf('欧') !== -1) {
-								ousing.push(sing[i]);
-
-							}
-						}
-						console.log(huasing);
-						salf.huasinger = huasing;
-						salf.risinger = rising;
-						salf.ousinger = ousing;
+//						var huasing = [];
+//						var rising = [];
+//						var ousing = [];
+						salf.hotsinger = sing;
+//						for(var i = 0; i < sing.length; i++) {
+//							if(sing[i].classname.indexOf('热') !== -1) {
+//
+//								salf.hotsinger = sing[i];
+//							}
+//							if(sing[i].classname.indexOf('华') !== -1) {
+//								huasing.push(sing[i]);
+//
+//							}
+//							if(sing[i].classname.indexOf('日') !== -1) {
+//								rising.push(sing[i]);
+//
+//							}
+//							if(sing[i].classname.indexOf('欧') !== -1) {
+//								ousing.push(sing[i]);
+//
+//							}
+//						}
+//						console.log(huasing);
+//						salf.huasinger = huasing;
+//						salf.risinger = rising;
+//						salf.ousinger = ousing;
 
 					})
 					.catch((error) => {
@@ -88,19 +70,29 @@
 			},
 			singerlist(getid) {
 				console.log(getid);
-				window.location.href = "#/app/singer/singlist/"+getid
+				window.location.href = "#/app/singer/singlist/" + getid
 			}
 		},
 		mounted() {
 			this.sort();
 		}
-		
+
 	}
 </script>
 
 <style scoped>
 	.mu-sub-header {
 		background-color: #35495e;
-		color: white
+		color: white;
+		
+	}
+	.zhezhao{
+		background-color: rgba(0,0,0,.4);
+	}
+	.titleBarClass{
+		height:200px;
+	}
+	.myclass{
+		background-color: #red;
 	}
 </style>
