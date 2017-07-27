@@ -21,8 +21,18 @@ import VueAwesomeSwiper from 'vue-awesome-swiper'
 
 //吴镇宇项目需要引入的子路由
 import xtotalist from "./components/ZhenV_RT/xtotallist.vue"
-import singlist from "./components/ZhenV_RT/xsinglist.vue"
+import singlist from "./components/ZhenV_RT/xsinglist.vue";
 
+import pinyin_dict_notone from "./lib/pinyin_dict_notone.js";
+
+window.pinyin_dict_notone = pinyin_dict_notone;
+
+import "./lib/pinyinUtil.js";
+
+
+
+
+//piny.use(first);
 
 Vue.use(VueRouter)
 Vue.use(Vuex)
@@ -61,9 +71,6 @@ const routes = [{
 				children: [{
 						path: 'tolist',
 						component: xtotalist
-					},{
-						path: 'singlist/:id',
-						component: singlist
 					},
 					{
 						path: '/app/singer',
@@ -72,6 +79,10 @@ const routes = [{
 				]
 			}
 		]
+	},
+	{
+						path: '/singlist/:id',
+						component: singlist
 	},
 	{
 		path: '/rangeDetails/:id',

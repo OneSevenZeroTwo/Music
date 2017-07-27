@@ -36,14 +36,13 @@ export default {
             }
         },
         mounted() {
-            axios.get('http://localhost:6565/songlist')
+            axios.get('/music/plist/index&json=true')
                  .then((response) => {
                    this.info = response.data.plist.list.info.map(function(item){
                        item.imgurl =  item.imgurl.replace('{size}','400')
                         return item
                    });
                    console.log(this.info)
-
                 })
                 .catch((error) => {
                     console.log(error);
