@@ -52,7 +52,7 @@ export default {
             }
         },
         mounted() {
-            axios.get('http://localhost:6789/newSong')
+            axios.get('/music/?json=true')
                 .then((response) => {
                     this.commend = response.data.data.splice(6, 5);
                 })

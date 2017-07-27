@@ -22,6 +22,7 @@ import VueAwesomeSwiper from 'vue-awesome-swiper'
 //吴镇宇项目需要引入的子路由
 import xtotalist from "./components/ZhenV_RT/xtotallist.vue"
 import singlist from "./components/ZhenV_RT/xsinglist.vue"
+import 'weui'
 
 
 Vue.use(VueRouter)

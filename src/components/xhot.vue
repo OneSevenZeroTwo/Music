@@ -59,7 +59,7 @@ export default {
             }
         },
         mounted() {
-            axios.get('http://localhost:6789/newSong')
+            axios.get('/music/?json=true')
                 .then((response) => {
                     this.hotList = response.data.data.splice(0, 6);
                     console.log(this.hotList)

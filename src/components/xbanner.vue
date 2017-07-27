@@ -22,7 +22,7 @@
 			}
 		},
 		mounted(){
-			axios.get('http://localhost:6789/newSong')
+			axios.get('/music/?json=true')
 		      .then((response) => {
 		        this.bannerList = response.data.banner;
 		      })
