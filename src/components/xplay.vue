@@ -14,10 +14,16 @@
             <div class="weui-mask_transparent actionsheet__mask" id="mask" :class="{'active':isShowMask}" @click="hide"></div>
             <div class="weui-actionsheet" :class="{'weui-actionsheet_toggle':isShowMore}" id="weui-actionsheet">
                 <div class="weui-actionsheet__menu">
+                    <!-- <div class="weui-actionsheet__cell">示例菜单</div>
+                    <div class="weui-actionsheet__cell">示例菜单</div>
+                    <div class="weui-actionsheet__cell">示例菜单</div>
+                    <div class="weui-actionsheet__cell">示例菜单</div> -->
+                    <!-- slides -->
+                    <div class="title">播放列表</div>
                     <div class="weui-actionsheet__cell">示例菜单</div>
                     <div class="weui-actionsheet__cell">示例菜单</div>
                     <div class="weui-actionsheet__cell">示例菜单</div>
-                    <div class="weui-actionsheet__cell">示例菜单</div>
+                    <!-- Optional controls -->
                 </div>
                 <div class="weui-actionsheet__action">
                     <div class="weui-actionsheet__cell" id="actionsheet_cancel" @click="hide">取消</div>
@@ -32,7 +38,14 @@ export default {
             return {
                 isClick: false,
                 isShowMore: false,
-                isShowMask: false
+                isShowMask: false,
+                swiperOption: {
+                    autoplay: 3000,
+                    setWrapperSize: true,
+                    pagination: '.swiper-pagination',
+                    paginationClickable: true,
+                    observeParents: true
+                }
             }
         },
         methods: {
@@ -117,7 +130,9 @@ span.active {}
     right: 50px;
     z-index: 100;
 }
-
+..swiper-container{
+    margin-bottom: 20px;
+}
 .playButton.active {
     background-position: 0 -30px;
     top: 14px;
@@ -135,5 +150,14 @@ span.active {}
     top: 1px;
     right: 4px;
     z-index: 100;
+}
+.title{
+    font-size: 14px;
+    margin-left: 4px;
+    line-height: 30px;
+    text-align: center;
+}
+.weui-actionsheet__cell{
+    font-size: 16px;
 }
 </style>

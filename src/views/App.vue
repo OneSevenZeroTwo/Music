@@ -44,7 +44,7 @@ export default {
 
 @import '~vux/src/styles/reset.less';
 .vux-tab {
-    margin-top: 46px;
+    margin-top: 48px;
 }
 
 body {
