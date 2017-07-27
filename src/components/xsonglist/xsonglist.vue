@@ -9,7 +9,7 @@
                         <div class="playNum">
                             <i class="iconfont icon-ear"></i> {{n.playcount}}
                         </div>
-                        <span class="btn-play iconfont icon-play" @click="setImg(n.imgurl)">
+                        <span class="btn-play iconfont icon-play" @click="setImg(n.imgurl,n.songs)">
                             
                         </span>
                     </div>
@@ -36,8 +36,9 @@ export default {
             }
         },
         methods: {
-            setImg(imgUrl) {
-                this.$store.dispatch('setImg', imgUrl)
+            setImg(imgUrl,songsPlay) {
+                this.$store.dispatch('setImg', [imgUrl,true]);
+                this.$store.dispatch('setSongs',songsPlay);
             }
         },
         mounted() {

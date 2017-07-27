@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div v-show="showPlay">
         <section>
             <div class="play">
                 <img :src="imgUrl">
@@ -14,38 +14,31 @@
             <div class="weui-mask_transparent actionsheet__mask" id="mask" :class="{'active':isShowMask}" @click="hide"></div>
             <div class="weui-actionsheet" :class="{'weui-actionsheet_toggle':isShowMore}" id="weui-actionsheet">
                 <div class="weui-actionsheet__menu">
-                    <!-- <div class="weui-actionsheet__cell">示例菜单</div>
-                    <div class="weui-actionsheet__cell">示例菜单</div>
-                    <div class="weui-actionsheet__cell">示例菜单</div>
-                    <div class="weui-actionsheet__cell">示例菜单</div> -->
-                    <!-- slides -->
-                    <div class="title">播放列表</div>
-                    <div class="weui-actionsheet__cell">示例菜单</div>
-                    <div class="weui-actionsheet__cell">示例菜单</div>
-                    <div class="weui-actionsheet__cell">示例菜单</div>
+                    <div class="title"><span></span>播放列表</div>
+                    <div class="weui-actionsheet__cell" v-for="n in songsPlay">
+                    <span class="icondiy-play"></span>
+                    {{n.filename}}
+
+                    <i class="iconfont icon-xiazai1"></i>
+                    </div>
+                    
                     <!-- Optional controls -->
                 </div>
                 <div class="weui-actionsheet__action">
-                    <div class="weui-actionsheet__cell" id="actionsheet_cancel" @click="hide">取消</div>
+                    <div class="weui-actionsheet__cell cancel" id="actionsheet_cancel" @click="hide">关闭</div>
                 </div>
             </div>
         </div>
     </div>
 </template>
 <script>
+import axios from 'axios'
 export default {
     data() {
             return {
                 isClick: false,
                 isShowMore: false,
-                isShowMask: false,
-                swiperOption: {
-                    autoplay: 3000,
-                    setWrapperSize: true,
-                    pagination: '.swiper-pagination',
-                    paginationClickable: true,
-                    observeParents: true
-                }
+                isShowMask: false
             }
         },
         methods: {
@@ -73,15 +66,31 @@ export default {
         computed: {
             imgUrl() {
                 return this.$store.getters.getImgurl
+            },
+            showPlay() {
+                return this.$store.getters.showPlay
+            },
+            songsPlay() {
+                return this.$store.getters.songsPlay
             }
         },
         directives: {
             setImg: {
                 bind: function(el, val) {
-                   console.log(el.src)
-                   console.log(val)
+                    console.log(el.src)
+                    console.log(val)
                 }
             }
+        },
+        mounted() {
+            console.log('555')
+            axios.get('/musici/getSongInfo.php?cmd=playInfo&hash=CB7EE97F4CC11C4EA7A1FA4B516A5D97')
+                .then((response) => {
+                    console.log(response)
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
         }
 }
 </script>
@@ -105,7 +114,7 @@ export default {
     box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.1);
 }
 
-img{
+img {
     display: block;
     width: 50px;
     height: 50px;
@@ -114,8 +123,6 @@ img{
     left: 8px;
     z-index: 100;
 }
-
-span.active {}
 
 .playButton {
     background-image: url('../assets/auto.png');
@@ -130,9 +137,7 @@ span.active {}
     right: 50px;
     z-index: 100;
 }
-..swiper-container{
-    margin-bottom: 20px;
-}
+
 .playButton.active {
     background-position: 0 -30px;
     top: 14px;
@@ -151,13 +156,60 @@ span.active {}
     right: 4px;
     z-index: 100;
 }
-.title{
-    font-size: 14px;
-    margin-left: 4px;
-    line-height: 30px;
-    text-align: center;
+
+
+/*播放列表样式*/
+
+.weui-actionsheet {
+    background-color: #fff;
 }
-.weui-actionsheet__cell{
+
+.weui-actionsheet__menu {
+    margin: 0 16px;
+    background-color: #fff;
+}
+
+.title {
     font-size: 16px;
+    margin-left: 4px;
+    line-height: 45px;
+    text-align: left;
+}
+
+.weui-actionsheet__cell {
+    font-size: 16px;
+    /*text-align: left;*/
+}
+
+.weui-actionsheet__action {
+    margin: 0 16px;
+    background-color: #fff;
+}
+
+#actionSheet_wrap .cancel {
+    content: " ";
+    border-top: 1px solid #e5e5e5;
+    color: #000;
+}
+
+span.icondiy-play {
+    background-image: url("http:////static0.qianqian.com/web/st/img/ui/list/play-state-aa7.gif");
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    background-size: 12px;
+    transition: margin .2s;
+    transition-property: margin;
+    transition-duration: 0.2s;
+    transition-timing-function: initial;
+    transition-delay: initial;
+    position: absolute;
+    left: 7px;
+    top: 16px;
+}
+i.icon-xiazai1{
+    color: #999;
+    position: absolute;
+    right: 0
 }
 </style>

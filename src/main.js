@@ -93,7 +93,9 @@ var store = new Vuex.Store({
     newClass:null,
     newDetails:null,
     range_id:null,
-    imgUrl:'../assets/record.png'
+    imgUrl:'',
+    showPlay:false,
+    songsPlay:[]
   },
   getters:{
 		getRange(state){
@@ -104,6 +106,12 @@ var store = new Vuex.Store({
 		},
     getImgurl(state){
       return state.imgUrl
+    },
+    showPlay(state){
+      return state.showPlay
+    },
+    songsPlay(state){
+      return state.songsPlay
     }
   },
   mutations:{
@@ -142,8 +150,11 @@ var store = new Vuex.Store({
     	state.range_id = data
     },
     setImg(state,data){
-      state.imgUrl = data;
-      // console.log(state.imgUrl)
+      state.imgUrl = data[0];
+      state.showPlay=data[1]
+    },
+    setSongs(state,data){
+      state.songsPlay= data
     }
   },
   actions:{
@@ -161,6 +172,9 @@ var store = new Vuex.Store({
     },
     setImg(context,data){//点击改变播放控制器的图片
       context.commit("setImg",data)
+    },
+    setSongs(context,data){
+      context.commit("setSongs",data)
     }
   }
 
