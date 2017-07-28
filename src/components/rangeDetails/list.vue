@@ -112,7 +112,7 @@
 	};
 </script>
 
-<style lang="less">
+<style lang="less" scoped>
 	.r_list {
 		.fh{
 			position: fixed;
