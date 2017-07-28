@@ -4,22 +4,24 @@
         	<p class="title">独家专区</p>
             <span class="more"></span>
         </div>
-        <section>
-            <img src="//shp.qpic.cn/qqvideo_ori/0/c0024iakzyd_360_204/0" alt="">
-            <p>{{column[0].filename}}</p>
-        </section>
-        <section class="left">
-            <img src="//shp.qpic.cn/qqvideo_ori/0/g00243r2wk7_360_204/0" alt="">
-            <p>{{column[1].filename}}</p>
-        </section>
-        <section>
-            <img src="//shp.qpic.cn/qqvideo_ori/0/a0024l5a58w_360_204/0" alt="">
-            <p>{{column[2].filename}}</p>
-        </section>
-        <section class="left">
-            <img src="//shp.qpic.cn/qqvideo_ori/0/b0024xgh79z_360_204/0" alt="">
-            <p>{{column[3].filename}}</p>
-        </section>
+        <div class="container" v-if="column">
+            <section>
+                <img src="//shp.qpic.cn/qqvideo_ori/0/c0024iakzyd_360_204/0" alt="">
+                <p>{{column[0].filename}}</p>
+            </section>
+            <section class="left">
+                <img src="//shp.qpic.cn/qqvideo_ori/0/g00243r2wk7_360_204/0" alt="">
+                <p>{{column[1].filename}}</p>
+            </section>
+            <section>
+                <img src="//shp.qpic.cn/qqvideo_ori/0/a0024l5a58w_360_204/0" alt="">
+                <p>{{column[2].filename}}</p>
+            </section>
+            <section class="left">
+                <img src="//shp.qpic.cn/qqvideo_ori/0/b0024xgh79z_360_204/0" alt="">
+                <p>{{column[3].filename}}</p>
+            </section>
+        </div>
     </div>
 </template>
 <script>
@@ -77,7 +79,11 @@ section {
     width: 49.6%;
     float: left;
 }
-
+section p{
+    display: block;
+    height: 40px;
+    margin-bottom: 4px;
+}
 .left {
     margin-left: 3px;
 }

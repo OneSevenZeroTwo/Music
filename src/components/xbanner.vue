@@ -1,5 +1,5 @@
 <template>
-    <swiper :options="swiperOption" ref="mySwiper">
+    <swiper :options="swiperOption" ref="mySwiper" v-if="bannerList">
         <!-- slides -->
         <swiper-slide v-for="i in bannerList" :key="i.id"><img :src="i.imgurl" /></swiper-slide>
         <!-- Optional controls -->
@@ -36,7 +36,7 @@ export default {
                 .catch((error) => {
                     console.log(error);
                 });
-            this.swiper.slideTo(4, 1000, false);
+            //this.swiper.slideTo(4, 1000, false);
         }
 }
 </script>

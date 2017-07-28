@@ -11,6 +11,8 @@ import songSheet from './views/songSheet'
 import singer from './views/singer'
 import MuseUI from 'muse-ui';
 import VueLazyload from 'vue-lazyload'
+import db from './views/db'
+import mod from './views/mod' 
 
 Vue.use(MuseUI)
 
@@ -31,10 +33,10 @@ Vue.use(VueAwesomeSwiper)
 
 // 图片懒加载
 Vue.use(VueLazyload, {
-  preLoad: 1.3,
-  error: 'static/images/404.png',
-  loading: 'static/images/404.png',
-  attempt: 1
+    preLoad: 1.3,
+    error: 'static/images/404.png',
+    loading: 'static/images/404.png',
+    attempt: 1
 })
 
 // 挂在axios在Vue构造器下
@@ -42,132 +44,129 @@ Vue.prototype.$ajax = axios;
 
 // 创建路由
 const routes = [{
-		path: '/app',
-		component: App,
-		children: [{
-				path: 'newSong',
-				component: newSong
-			},
-			{
-				path: 'range',
-				component: range
-			},
-			{
-				path: 'songSheet',
-				component: songSheet
-			},
-			{
-				path: 'singer',
-				component: singer,
-				children: [{
-						path: 'tolist',
-						component: xtotalist
-					},{
-						path: 'singlist/:id',
-						component: singlist
-					},
-					{
-						path: '/app/singer',
-						redirect: '/app/singer/tolist'
-					}
-				]
-			}
-		]
-	},
-	{
-		path: '/rangeDetails/:id',
-  	component:rangeDetails,
-	},
-	{
-		path: '/',
-		redirect: '/app/newSong'
-	}
-]
+    path: '/app',
+    component: App,
+    children: [{
+        path: 'newSong',
+        component: newSong
+    }, {
+        path: 'range',
+        component: range
+    }, {
+        path: 'songSheet',
+        component: songSheet
+    }, {
+        path: 'singer',
+        component: singer,
+        children: [{
+            path: 'tolist',
+            component: xtotalist
+        }, {
+            path: 'singlist/:id',
+            component: singlist
+        }, {
+            path: '/app/singer',
+            redirect: '/app/singer/tolist'
+        }]
+    }]
+}, {
+    path: '/rangeDetails/:id',
+    component: rangeDetails,
+}, {
+    path: '/db',
+    component: db,
+},{
+    path: '/mod/:id',
+    component: mod,
+},{
+    path: '/',
+    redirect: '/app/newSong'
+}]
 
 
 // 创建状态管理
 var store = new Vuex.Store({
 
-  state:{
-    newSong:null,
-    newClass:null,
-    newDetails:null,
-    range_id:null
-  },
-  getters:{
-		getRange(state){
-			return state.newClass
-		},
-		getDetails(state){
-			return state.newDetails
-		}
-  },
-  mutations:{
-    getMusic(state){
-      axios.get('http://localhost:6787/')
-      .then((response) => {
-        state.newSong = response.data
-        console.log(state.newSong)
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    state: {
+        newSong: null,
+        newClass: null,
+        newDetails: null,
+        range_id: null
     },
-    getRange(state){
-    	axios.get('http://localhost:5200/')
-      .then((response) => {
-        state.newClass = response.data
-//      console.log(state.newClass.rank.list)
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    getters: {
+        getRange(state) {
+            return state.newClass
+        },
+        getDetails(state) {
+            return state.newDetails
+        }
     },
-    rangeDetails(state){
-    	axios.get('http://localhost:6200/')
-      .then((response) => {
-        state.newDetails = response.data
-//      console.log(state.newDetails.rank.list)
-//				console.log(state.range_id)
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    mutations: {
+        getMusic(state) {
+            axios.get('http://localhost:6787/')
+                .then((response) => {
+                    state.newSong = response.data
+                    console.log(state.newSong)
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+        },
+        getRange(state) {
+            axios.get('http://localhost:5200/')
+                .then((response) => {
+                    state.newClass = response.data
+                        //      console.log(state.newClass.rank.list)
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+        },
+        rangeDetails(state) {
+            axios.get('http://localhost:6200/')
+                .then((response) => {
+                    state.newDetails = response.data
+                        //      console.log(state.newDetails.rank.list)
+                        //        console.log(state.range_id)
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+        },
+        setDetails(state, data) {
+            state.range_id = data
+        }
     },
-    setDetails(state, data){
-    	state.range_id = data
+    actions: {
+        getMusic(context, data) {
+            context.commit('getMusic')
+        },
+        getRange(context, data) {
+            context.commit('getRange')
+        },
+        rangeDetails(context, data) {
+            context.commit('rangeDetails')
+        },
+        setDetails(context, data) {
+            context.commit('setDetails', data)
+        }
     }
-  },
-  actions:{
-    getMusic(context, data) {
-      context.commit('getMusic')
-    },
-    getRange(context, data) {
-      context.commit('getRange')
-    },
-    rangeDetails(context, data) {
-      context.commit('rangeDetails')
-    },
-    setDetails(context, data){
-      context.commit('setDetails',data)
-    }
-  }
 
 })
 
 const router = new VueRouter({
-	routes
+    routes
 })
 
 FastClick.attach(document.body)
 
 Vue.config.productionTip = false
 
-/* eslint-disable no-new */
+
 new Vue({
-	router,
-	store,
-	template: `
-	<router-view></router-view>
+    router,
+    store,
+    template: `
+  <router-view></router-view>
   `
 }).$mount('#app-box')

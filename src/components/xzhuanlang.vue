@@ -79,6 +79,8 @@ section{
 section p{
     font-size: 12px;
     line-height: 14px;
+    display: block;
+    height: 16px;
 }
 section img{
     width: 100%;
