@@ -37,6 +37,8 @@
 				getpage:null,
 				lbwx:false,
 				fh:false,
+				ycc:[],
+				sjy:[]
 			}
 		},
 		mounted() {
@@ -44,20 +46,40 @@
 			setTimeout(() => {
 				if(xthis.xsongs){
 					xthis.list = xthis.list.concat(xthis.xsongs);
+					xthis.ycc = xthis.xsongs;
+					if(xthis.xsongs.length < 30){
+						xthis.xlsx = false;
+						xthis.lbwx = true;
+					}
 					document.querySelector("body").onscroll = function(e) {
 						var xhigth = document.documentElement.clientHeight;
 						var zhight = document.body.clientHeight;
 						var top = document.querySelector("body").scrollTop;
+						//标题事件
+						var title = document.querySelector("body .title");
+						if(title){
+							if(top > 250){
+								title.style.background = '#fc378c'
+							}else{
+								title.style.background = '-webkit-linear-gradient(top,rgba(0,0,0,.6),transparent)'
+							}					
+						}
+						//数据加载
 						if(xhigth + top == zhight){
 							xthis.xlsx = true;
 							xthis.getpage = xthis.getPage+1;
 							xthis.$store.dispatch('setPage',xthis.getpage);
 							xthis.$store.dispatch("rangeDetails");
-							xthis.list = xthis.list.concat(xthis.xsongs)
+							xthis.sjy = xthis.xsongs;
+							if(xthis.sjy == xthis.ycc){
+								xthis.sjy = [];
+							}
+							xthis.list = xthis.list.concat(xthis.sjy)
 							if(xthis.xsongs.length < 30){
 								xthis.xlsx = false;
 								xthis.lbwx = true;
 							}
+							xthis.ycc = xthis.xsongs;
 						}
 						if(top > xhigth){
 							xthis.fh = true;
@@ -66,23 +88,25 @@
 						}
 					}
 				}
-			}, 200)
+			}, 500)
 		},
 		methods:{
 			onfh(){
 				var i = 0;
 				var timer =setInterval(function(){
 					i+=10;
-					console.log(document.body.scrollTop)
 					document.body.scrollTop = document.body.scrollTop - i;
 					if(document.body.scrollTop <=0){
 						clearInterval(timer);
 					}
 				},5)
-			},
-			hot(){
-				 var ul = document.querySelector(".r_list ul");
-				 console.log(ul[0])
+			}
+		},
+		computed:{
+			getPage(){
+				if(this.$store.getters.giePage) {
+					return this.$store.getters.giePage
+				}
 			}
 		}
 	};
