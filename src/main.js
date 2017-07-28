@@ -91,7 +91,8 @@ var store = new Vuex.Store({
     newSong:null,
     newClass:null,
     newDetails:null,
-    range_id:null
+    range_id:null,
+    range_page:1,
   },
   getters:{
 		getRange(state){
@@ -99,6 +100,9 @@ var store = new Vuex.Store({
 		},
 		getDetails(state){
 			return state.newDetails
+		},
+		giePage(state){
+			return state.range_page
 		}
   },
   mutations:{
@@ -123,7 +127,12 @@ var store = new Vuex.Store({
       });
     },
     rangeDetails(state){
-    	axios.get('http://localhost:6200/')
+    	axios.get('http://localhost:6200/',{
+    		params:{
+    			rankid:state.range_id,
+    			rankpage:state.range_page
+			  }
+    	})
       .then((response) => {
         state.newDetails = response.data
 //      console.log(state.newDetails.rank.list)
@@ -135,6 +144,9 @@ var store = new Vuex.Store({
     },
     setDetails(state, data){
     	state.range_id = data
+    },
+    setPage(state, data){
+    	state.range_page = data
     }
   },
   actions:{
@@ -149,6 +161,9 @@ var store = new Vuex.Store({
     },
     setDetails(context, data){
       context.commit('setDetails',data)
+    },
+    setPage(context, data){
+      context.commit('setPage',data)
     }
   }
 
