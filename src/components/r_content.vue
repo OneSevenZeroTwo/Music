@@ -9,8 +9,9 @@
 					<div>
 						<h5 v-text="i.rankname"></h5>
 					</div>
-					<div style="float: right;position: relative;width: 16px;height: 108px;">
-						<i style="position: absolute;left: -20px; top: 50%;margin-top: -20px;font-size: 40px; color: #e9e9e9;" class="material-icons">&#xE409;</i>
+					<div class="tb">
+						<!--<i style="position: absolute;left: -20px; top: 50%;margin-top: -20px;font-size: 40px; color: #e9e9e9;" class="material-icons">&#xE409;</i>-->
+						<img src="../img/arrow_icon.png"/>
 					</div>		
 				</a>
 			</li>
@@ -32,7 +33,6 @@
 		},
 		mounted(){
 			this.getRange();
-			console.log(this)
 		},
 		computed:{
 			list(){
@@ -51,9 +51,11 @@
 </script>
 
 <style scoped>
-	li{list-style: none;}
+	li{list-style: none; position: relative;}
 	a{overflow: hidden; display: block; position: relative; margin-left: 3%; padding: 3% 3% 3% 0; border-bottom: 1px solid #e5e5e5;}
 	a div{float: left;}
+	a .tb{position: absolute; right: 5%;top: 50%; margin-top: -10px;}
+	a .tb img{width: 12px;height: 20px;}
 	h5{font-size: 20px;padding-left: 20px;line-height: 108px;color: #333; font-weight: normal;}
 	img{width: 108px;display: block;}
 </style>

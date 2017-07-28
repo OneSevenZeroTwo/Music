@@ -7,7 +7,7 @@ http.createServer(function(request, response) {
     var param = querystring.parse(paramStr);
     console.log(param);
     response.setHeader("Access-Control-Allow-Origin","*");
-    http.get("http://m.kugou.com/rank/info/?rankid=23784&page=1&json=true", function(res) {
+    http.get("http://m.kugou.com/rank/info/?rankid="+param.rankid+"&page="+param.rankpage+"&json=true", function(res) {
         var data = "";
         res.on('data', function(chunk) {
             data += chunk

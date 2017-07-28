@@ -3,20 +3,20 @@
         <div class="songlists-hot">
             <h2>热门歌单</h2>
             <div class="ul row">
-                <div class="li" @click="songs_list()" v-for="(n , index) in info" track-by="$index" :id="index">
+                <div class="li" v-for="(n , index) in info" track-by="$index" :key="n.id">
                     <div class="info">
                         <img v-lazy="n.imgurl">
                         <div class="playNum">
                             <i class="iconfont icon-ear"></i> {{n.playcount}}
                         </div>
-                        <span class="btn-play iconfont icon-play">
+                        <span class="btn-play iconfont icon-play" @click="setImg(n.imgurl,n.songs)">
                             
                         </span>
                     </div>
                     <div class="text">
-                        <dit class="type">
+                        <div class="type">
                             {{n.username}}
-                        </dit>
+                        </div>
                         <div class="title">
                             {{n.specialname}}
                         </div>
@@ -33,6 +33,12 @@ export default {
     data() {
             return {
                 info: ''
+            }
+        },
+        methods: {
+            setImg(imgUrl,songsPlay) {
+                this.$store.dispatch('setImg', [imgUrl,true]);
+                this.$store.dispatch('setSongs',songsPlay);
             }
         },
         mounted() {
@@ -54,7 +60,7 @@ export default {
 .songlists-hot {
     background: #fff;
     margin-top: 10px;
-    padding: 0px 15px 0;
+    padding: 0 1px 0 10px;
     display: flex;
     flex-flow: wrap;
     justify-content: space-between;
@@ -135,6 +141,7 @@ export default {
     right: 4px;
     z-index: 0;
 }
+
 .icon-play:before {
     position: absolute;
     z-index: 1;
