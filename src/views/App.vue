@@ -1,10 +1,6 @@
 <template>
     <div id="app">
-        <div class="topbar">
-            <x-header>bilibili音悦台</x-header>
-        </div>
-        <span class="back"></span>
-        <span class="search"></span>
+        <xheader></xheader> 
         <tab :line-width=2 active-color='#fc378c' v-model="index">
             <tab-item class="vux-center"><a class="tabLink" :href="'#/app/newSong'">新歌</a></tab-item>
             <tab-item class="vux-center"><a class="tabLink" :href="'#/app/range'">排行</a></tab-item>
@@ -21,17 +17,13 @@
 </template>
 <script>
 import {
-    XHeader
-} from 'vux'
-import {
     Tab,
     TabItem
 } from 'vux'
-//const tab = () => ['newSong', 'range', 'songSheet', 'singer']
-
+import xheader from '../components/xheader.vue'
 export default {
     components: {
-        XHeader,
+        xheader,
         Tab,
         TabItem
     },
@@ -43,36 +35,6 @@ export default {
 }
 </script>
 <style lang="less">
-.topbar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 100;
-    width: 100%;
-}
-
-.back {
-    display: block;
-    position: fixed;
-    width: 30px;
-    height: 30px;
-    background-color: #fff;
-    top: 9px;
-    left: 9px;
-    z-index: 200;
-}
-
-.search {
-    display: block;
-    position: fixed;
-    width: 30px;
-    height: 30px;
-    background-color: #fff;
-    top: 9px;
-    right: 9px;
-    z-index: 200;
-}
-
 .tabLink {
     color: #fc378c;
     width: 100%;
@@ -82,7 +44,7 @@ export default {
 
 @import '~vux/src/styles/reset.less';
 .vux-tab {
-    margin-top: 46px;
+    margin-top: 48px;
 }
 
 body {

@@ -23,7 +23,6 @@
     </div>
 </template>
 <script>
-import axios from 'axios'
 
 
 export default {
@@ -31,16 +30,6 @@ export default {
             return {
                 column: null
             }
-        },
-        mounted() {
-            axios.get('http://localhost:6789/newSong')
-                .then((response) => {
-                    this.column = response.data.data.splice(11, 4);
-                    console.log(response.data.data);
-                })
-                .catch((error) => {
-                    console.log(error);
-                });
         },
         filters: {
             shortTitle(input) {

@@ -21,8 +21,20 @@ import VueAwesomeSwiper from 'vue-awesome-swiper'
 
 //吴镇宇项目需要引入的子路由
 import xtotalist from "./components/ZhenV_RT/xtotallist.vue"
-import singlist from "./components/ZhenV_RT/xsinglist.vue"
 
+import singlist from "./components/ZhenV_RT/xsinglist.vue"
+import 'weui'
+
+import pinyin_dict_notone from "./lib/pinyin_dict_notone.js";
+
+window.pinyin_dict_notone = pinyin_dict_notone;
+
+import "./lib/pinyinUtil.js";
+
+
+
+
+//piny.use(first);
 
 Vue.use(VueRouter)
 Vue.use(Vuex)
@@ -61,9 +73,6 @@ const routes = [{
 				children: [{
 						path: 'tolist',
 						component: xtotalist
-					},{
-						path: 'singlist/:id',
-						component: singlist
 					},
 					{
 						path: '/app/singer',
@@ -72,6 +81,10 @@ const routes = [{
 				]
 			}
 		]
+	},
+	{
+						path: '/singlist/:id',
+						component: singlist
 	},
 	{
 		path: '/rangeDetails/:id',
@@ -93,6 +106,9 @@ var store = new Vuex.Store({
     newDetails:null,
     range_id:null,
     range_page:1,
+    imgUrl:'',
+    showPlay:false,
+    songsPlay:[],
   },
   getters:{
 		getRange(state){
@@ -103,7 +119,16 @@ var store = new Vuex.Store({
 		},
 		giePage(state){
 			return state.range_page
-		}
+		},
+    getImgurl(state){
+      return state.imgUrl
+    },
+    showPlay(state){
+      return state.showPlay
+    },
+    songsPlay(state){
+      return state.songsPlay
+    },
   },
   mutations:{
     getMusic(state){
@@ -120,7 +145,6 @@ var store = new Vuex.Store({
     	axios.get('http://localhost:5200/')
       .then((response) => {
         state.newClass = response.data
-//      console.log(state.newClass.rank.list)
       })
       .catch((error) => {
         console.log(error);
@@ -135,8 +159,6 @@ var store = new Vuex.Store({
     	})
       .then((response) => {
         state.newDetails = response.data
-//      console.log(state.newDetails.rank.list)
-//				console.log(state.range_id)
       })
       .catch((error) => {
         console.log(error);
@@ -147,7 +169,14 @@ var store = new Vuex.Store({
     },
     setPage(state, data){
     	state.range_page = data
-    }
+    },
+    setImg(state,data){
+      state.imgUrl = data[0];
+      state.showPlay=data[1]
+    },
+    setSongs(state,data){
+      state.songsPlay= data
+    },
   },
   actions:{
     getMusic(context, data) {
@@ -164,9 +193,14 @@ var store = new Vuex.Store({
     },
     setPage(context, data){
       context.commit('setPage',data)
+    },
+    setImg(context,data){//点击改变播放控制器的图片
+      context.commit("setImg",data)
+    },
+    setSongs(context,data){
+      context.commit("setSongs",data)
     }
   }
-
 })
 
 const router = new VueRouter({
