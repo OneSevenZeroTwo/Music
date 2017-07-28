@@ -142,7 +142,7 @@ var store = new Vuex.Store({
       });
     },
     getRange(state){
-    	axios.get('http://localhost:5200/')
+    	axios.get('/music/rank/list&json=true')
       .then((response) => {
         state.newClass = response.data
       })
@@ -151,11 +151,11 @@ var store = new Vuex.Store({
       });
     },
     rangeDetails(state){
-    	axios.get('http://localhost:6200/',{
-    		params:{
-    			rankid:state.range_id,
-    			rankpage:state.range_page
-			  }
+    	axios.get('/music/rank/info/?rankid='+state.range_id+'&page='+state.range_page+'&json=true',{
+//  		params:{
+//  			rankid:state.range_id,
+//  			rankpage:state.range_page
+//			  }
     	})
       .then((response) => {
         state.newDetails = response.data

@@ -2,7 +2,7 @@
 	<div class="r_list">
 		<ul>
 			<li class="li" v-for="(i,index) in list">
-				<div class="left">
+				<div class="left" :class="[{red:index==0},{dh:index==1},{qh:index==2}]">
 					<span>{{index+1}}</span>
 				</div>
 				<div class="conter">
@@ -19,7 +19,11 @@
 			<li class="lbw" v-show="lbwx">
 				<p>没有更多了...</p>
 			</li>
+			
 		</ul>
+		<div class="fh" v-show="fh" @click="onfh">
+			<img src="../../img/to_top.png"/>
+		</div>
 	</div>
 </template>
 
@@ -27,69 +31,58 @@
 	export default {
 		props: ["xsongs"],
 		data() {
-//			var list = ["George","Georgeqwe"];
-//			var arr = ['a','b'];
-//			setTimeout(() => {
-////				list.push(this.xsongs)
-//				list = list.concat(arr)	;			
-//			}, 300)
 			return {
 				list:[],
 				xlsx:false,
 				getpage:null,
-				lbwx:false
+				lbwx:false,
+				fh:false,
 			}
 		},
 		mounted() {
-			var xthis= this
+			var xthis= this;
 			setTimeout(() => {
 				if(xthis.xsongs){
-					console.log(xthis.xsongs);
 					xthis.list = xthis.list.concat(xthis.xsongs);
-				}
-			}, 300)
-			this.xhigth;
-		},
-		computed: {
-			xhigth(){
-				var xthis = this;
-				setTimeout(() => {
-					if(xthis.xsongs){
-						document.querySelector("body").onscroll = function(e) {
-							var xhigth = document.documentElement.clientHeight;
-							var zhight = document.body.clientHeight;
-							var top = document.querySelector("body").scrollTop;
-							if(xhigth + top == zhight){
-								console.log(xhigth,zhight,top)
-								xthis.xlsx = true;
-								xthis.getpage = xthis.getPage+1;
-								xthis.$store.dispatch('setPage',xthis.getpage);
-								xthis.$store.dispatch("rangeDetails");
-								xthis.list = xthis.list.concat(xthis.xsongs)
-								console.log(xthis.getpage);
-								if(xthis.xsongs.length < 30){
-									xthis.xlsx = false;
-									xthis.lbwx = true;
-								}
+					document.querySelector("body").onscroll = function(e) {
+						var xhigth = document.documentElement.clientHeight;
+						var zhight = document.body.clientHeight;
+						var top = document.querySelector("body").scrollTop;
+						if(xhigth + top == zhight){
+							xthis.xlsx = true;
+							xthis.getpage = xthis.getPage+1;
+							xthis.$store.dispatch('setPage',xthis.getpage);
+							xthis.$store.dispatch("rangeDetails");
+							xthis.list = xthis.list.concat(xthis.xsongs)
+							if(xthis.xsongs.length < 30){
+								xthis.xlsx = false;
+								xthis.lbwx = true;
 							}
-							console.log('qwe')
 						}
-					}			
-				}, 300)
-			},
-			getPage(){
-				if(this.$store.getters.giePage) {
-					return this.$store.getters.giePage
+						if(top > xhigth){
+							xthis.fh = true;
+						}else{
+							xthis.fh = false;
+						}
+					}
 				}
+			}, 200)
+		},
+		methods:{
+			onfh(){
+				var i = 0;
+				var timer =setInterval(function(){
+					i+=10;
+					console.log(document.body.scrollTop)
+					document.body.scrollTop = document.body.scrollTop - i;
+					if(document.body.scrollTop <=0){
+						clearInterval(timer);
+					}
+				},5)
 			},
-			xadd(){
-				var xthis = this;
-				setTimeout(() => {
-//					console.log(xthis.xsongs);
-//					console.log(xthis.list)
-					xthis.list = xthis.list.concat(xthis.xsongs)
-//					console.log(xthis.list)
-				}, 300)
+			hot(){
+				 var ul = document.querySelector(".r_list ul");
+				 console.log(ul[0])
 			}
 		}
 	};
@@ -97,6 +90,14 @@
 
 <style lang="less">
 	.r_list {
+		.fh{
+			position: fixed;
+			right: 6%;
+			bottom: 10%;
+			img{
+				height: 42px;
+			}
+		}
 		ul {
 			padding-left: 3%;
 			.li {
@@ -106,19 +107,31 @@
 				width: 100%;
 				border-bottom: 1px solid #e5e5e5;
 				.left {
+					color: #999;
 					float: left;
 					width: 28px;
 					height: 22px;
-					margin-top: -11px;
+					margin-top: -10px;
 					position: absolute;
 					top: 50%;
 					text-align: center;
-					border-radius: 9px;
-					color: #999;
+					border-radius: 8px;
 					font-family: Microsoft Yahei;
 					span {
 						line-height: 22px;
 					}
+				}
+				.red{
+					background: #e80000;
+					color: white;
+				}
+				.dh{
+					background: #ff7200;
+					color: white;
+				}
+				.qh{
+					background: #f8b300;
+					color: white;
 				}
 				.conter {
 					float: left;

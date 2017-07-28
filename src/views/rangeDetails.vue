@@ -1,8 +1,8 @@
 <template>
 	<div id="app">
-		<div class="topbar">
+		<!--<div class="topbar">
 			<x-header>bilibili音悦台</x-header>
-		</div>
+		</div>-->
 		<span class="back"></span>
 		<span class="search"></span>
 		<Banner :xinfo=info></Banner>
@@ -30,7 +30,6 @@
 			}
 		},
 		mounted() {
-//			console.log(this)
 			this.$store.dispatch('setDetails', this.$route.params.id)
 			this.getDetails();
 		},
