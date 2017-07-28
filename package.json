@@ -12,6 +12,7 @@
     "axios": "^0.16.2",
     "body-parser": "^1.17.2",
     "fastclick": "^1.0.6",
+    "jquery": "^3.2.1",
     "muse-ui": "^2.1.0",
     "style-loader": "^0.18.2",
     "swiper": "^3.4.2",

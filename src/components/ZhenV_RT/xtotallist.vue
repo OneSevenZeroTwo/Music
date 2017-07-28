@@ -19,15 +19,13 @@
 
 <script>
 	import axios from "axios";
-
+	
 	export default {
 
 		data() {
 			return {
 				hotsinger: '',
-//				huasinger: '',
-//				risinger: '',
-//				ousinger: ''
+
 			}
 		},
 		methods: {

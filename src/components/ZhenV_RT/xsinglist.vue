@@ -10,214 +10,231 @@
 				</mu-col>
 
 			</mu-row>
-			<div class="hot">A</div>
+			<div class="hot A" v-if="xianA">A</div>
+
 			<mu-list>
-				<template v-for="item in myA" >
+				<template v-for="item in myA" class="wo1">
 					<mu-list-item disableRipple :title="item.singername" />
 					<mu-divider/>
 				</template>
 			</mu-list>
-			<div class="hot">B</div>
+			<div class="hot B" v-if="xianB" >B</div>
 			<mu-list>
-				<template v-for="item in myB" >
+				<template v-for="item in myB">
 					<mu-list-item disableRipple :title="item.singername" />
 					<mu-divider/>
 				</template>
 			</mu-list>
-			<div class="hot">C</div>
+			<div class="hot C" v-if="xianC" >C</div>
 			<mu-list>
-				<template v-for="item in myC" >
+				<template v-for="item in myC">
 					<mu-list-item disableRipple :title="item.singername" />
 					<mu-divider/>
 				</template>
 			</mu-list>
-			<div class="hot">D</div>
+			<div class="hot D" v-if="xianD">D</div>
 			<mu-list>
-				<template v-for="item in myD" >
+				<template v-for="item in myD">
 					<mu-list-item disableRipple :title="item.singername" />
 					<mu-divider/>
 				</template>
 			</mu-list>
-			<div class="hot">E</div>
+			<div class="hot E" v-if="xianE">E</div>
 			<mu-list>
-				<template v-for="item in myE" >
+				<template v-for="item in myE">
 					<mu-list-item disableRipple :title="item.singername" />
 					<mu-divider/>
 				</template>
 			</mu-list>
-			<div class="hot">F</div>
+			<div class="hot F" v-if="xianF">F</div>
 			<mu-list>
-				<template v-for="item in myF" >
+				<template v-for="item in myF">
 					<mu-list-item disableRipple :title="item.singername" />
 					<mu-divider/>
 				</template>
 			</mu-list>
-			<div class="hot">G</div>
+			<div class="hot G" v-if="xianG">G</div>
 			<mu-list>
-				<template v-for="item in myG" >
+				<template v-for="item in myG">
 					<mu-list-item disableRipple :title="item.singername" />
 					<mu-divider/>
 				</template>
 			</mu-list>
-			<div class="hot">H</div>
+			<div class="hot H" v-if="xianH">H</div>
 			<mu-list>
-				<template v-for="item in myH" >
+				<template v-for="item in myH">
 					<mu-list-item disableRipple :title="item.singername" />
 					<mu-divider/>
 				</template>
 			</mu-list>
-			<div class="hot">I</div>
+			<div class="hot I" v-if="xianI">I</div>
 			<mu-list>
-				<template v-for="item in myI" >
+				<template v-for="item in myI">
 					<mu-list-item disableRipple :title="item.singername" />
 					<mu-divider/>
 				</template>
 			</mu-list>
-			<div class="hot">J</div>
+			<div class="hot J" v-if="xianJ">J</div>
 			<mu-list>
-				<template v-for="item in myJ" >
+				<template v-for="item in myJ">
 					<mu-list-item disableRipple :title="item.singername" />
 					<mu-divider/>
 				</template>
 			</mu-list>
-			<div class="hot">K</div>
+			<div class="hot K" v-if="xianK">K</div>
 			<mu-list>
-				<template v-for="item in myK" >
+				<template v-for="item in myK">
 					<mu-list-item disableRipple :title="item.singername" />
 					<mu-divider/>
 				</template>
 			</mu-list>
-			<div class="hot">L</div>
+			<div class="hot L" v-if="xianL">L</div>
 			<mu-list>
-				<template v-for="item in myL" >
+				<template v-for="item in myL">
 					<mu-list-item disableRipple :title="item.singername" />
 					<mu-divider/>
 				</template>
 			</mu-list>
-			<div class="hot">M</div>
+			<div class="hot M" v-if="xianM">M</div>
 			<mu-list>
-				<template v-for="item in myM" >
+				<template v-for="item in myM">
 					<mu-list-item disableRipple :title="item.singername" />
 					<mu-divider/>
 				</template>
 			</mu-list>
-			<div class="hot">N</div>
+			<div class="hot N" v-if="xianN">N</div>
 			<mu-list>
-				<template v-for="item in myN" >
+				<template v-for="item in myN">
 					<mu-list-item disableRipple :title="item.singername" />
 					<mu-divider/>
 				</template>
 			</mu-list>
-			<div class="hot">O</div>
+			<div class="hot O" v-if="xianO">O</div>
 			<mu-list>
-				<template v-for="item in myO" >
+				<template v-for="item in myO">
 					<mu-list-item disableRipple :title="item.singername" />
 					<mu-divider/>
 				</template>
 			</mu-list>
-			<div class="hot">P</div>
+			<div class="hot P" v-if="xianP">P</div>
 			<mu-list>
-				<template v-for="item in myP" >
+				<template v-for="item in myP">
 					<mu-list-item disableRipple :title="item.singername" />
 					<mu-divider/>
 				</template>
 			</mu-list>
-			<div class="hot">Q</div>
+			<div class="hot Q" v-if="xianQ">Q</div>
 			<mu-list>
-				<template v-for="item in myQ" >
+				<template v-for="item in myQ">
 					<mu-list-item disableRipple :title="item.singername" />
 					<mu-divider/>
 				</template>
 			</mu-list>
-			<div class="hot">R</div>
+			<div class="hot R" v-if="xianR">R</div>
 			<mu-list>
-				<template v-for="item in myR" >
+				<template v-for="item in myR">
 					<mu-list-item disableRipple :title="item.singername" />
 					<mu-divider/>
 				</template>
 			</mu-list>
-			<div class="hot">S</div>
+			<div class="hot S" v-if="xianS">S</div>
 			<mu-list>
-				<template v-for="item in myS" >
+				<template v-for="item in myS">
 					<mu-list-item disableRipple :title="item.singername" />
 					<mu-divider/>
 				</template>
 			</mu-list>
-			<div class="hot">T</div>
+			<div class="hot T" v-if="xianT">T</div>
 			<mu-list>
-				<template v-for="item in myT" >
+				<template v-for="item in myT">
 					<mu-list-item disableRipple :title="item.singername" />
 					<mu-divider/>
 				</template>
 			</mu-list>
-			<div class="hot">U</div>
+			<div class="hot U" v-if="xianU">U</div>
 			<mu-list>
-				<template v-for="item in myU" >
+				<template v-for="item in myU">
 					<mu-list-item disableRipple :title="item.singername" />
 					<mu-divider/>
 				</template>
 			</mu-list>
-			<div class="hot">V</div>
+			<div class="hot V" v-if="xianV">V</div>
 			<mu-list>
-				<template v-for="item in myV" >
+				<template v-for="item in myV">
 					<mu-list-item disableRipple :title="item.singername" />
 					<mu-divider/>
 				</template>
 			</mu-list>
-			<div class="hot">W</div>
+			<div class="hot W" v-if="xianW">W</div>
 			<mu-list>
-				<template v-for="item in myW" >
+				<template v-for="item in myW">
 					<mu-list-item disableRipple :title="item.singername" />
 					<mu-divider/>
 				</template>
 			</mu-list>
-			<div class="hot">X</div>
+			<div class="hot X" v-if="xianX">X</div>
 			<mu-list>
-				<template v-for="item in myX" >
+				<template v-for="item in myX">
 					<mu-list-item disableRipple :title="item.singername" />
 					<mu-divider/>
 				</template>
 			</mu-list>
-			<div class="hot">Y</div>
+			<div class="hot Y" v-if="xianY">Y</div>
 			<mu-list>
-				<template v-for="item in myY" >
+				<template v-for="item in myY">
 					<mu-list-item disableRipple :title="item.singername" />
 					<mu-divider/>
 				</template>
 			</mu-list>
-			<div class="hot">Z</div>
+			<div class="hot Z" v-if="xianZ">Z</div>
 			<mu-list>
-				<template v-for="item in myZ" >
+				<template v-for="item in myZ">
 					<mu-list-item disableRipple :title="item.singername" />
 					<mu-divider/>
 				</template>
 			</mu-list>
-			<div class="hot">#</div>
+			<div class="hot jin" v-if="xian">#</div>
 			<mu-list>
-				<template v-for="item in my" >
+				<template v-for="item in my">
 					<mu-list-item disableRipple :title="item.singername" />
 					<mu-divider/>
 				</template>
 			</mu-list>
 			<xtop></xtop>
+			<!--<xstairs :mystairs="shouzimu"></xstairs>-->
+			<div class="outbox">
+				<div class="word_sort" id="J_word_sort">
+					<ul>
+						<!--<li @click="setsl" class="gao">热</li>-->
+						<li v-for="(ele,index) in shouzimu" :name="index" @click="setscroll(ele,index)" v-bind:class="{'gao':isShow==index}">{{ele}}</li>
 
+					</ul>
+				</div>
+
+			</div>
+			<xload :getload="load"></xload>
 		</div>
 	</div>
 </template>
 
 <script>
 	import axios from "axios";
+	import $ from "jquery";
 	import xtop from "../xtop.vue";
+	import xload from "../xload.vue";
 	import xtitle from "../xtitle.vue";
+	//	import xstairs from "../xstairs.vue";
 	import "../../lib/pinyin_dict_firstletter";
 
 	export default {
 		data() {
 			return {
+				isShow: 0,
 				getid: '',
 				list: '',
 				title: [],
 				totlelist: [],
+				load: false,
 				mytitle: "",
 				page: 0,
 				myA: [],
@@ -246,7 +263,35 @@
 				myX: [],
 				myY: [],
 				myZ: [],
-				my: []
+				my: [],
+				xianA: false,
+				xianB: false,
+				xianC: false,
+				xianD: false,
+				xianE: false,
+				xianF: false,
+				xianG: false,
+				xianH: false,
+				xianI: false,
+				xianJ: false,
+				xianK: false,
+				xianL: false,
+				xianM: false,
+				xianN: false,
+				xianO: false,
+				xianP: false,
+				xianQ: false,
+				xianR: false,
+				xianS: false,
+				xianT: false,
+				xianU: false,
+				xianV: false,
+				xianW: false,
+				xianX: false,
+				xianY: false,
+				xianZ: false,
+				xian: false,
+				shouzimu: []
 			}
 		},
 		methods: {
@@ -277,19 +322,62 @@
 				})
 
 			},
+			setscroll: function(ele, e) {
+				console.log(e);
+				this.isShow = e;
+				console.log(this.isShow);
+				var $top = null;
+				try {
+					if(ele === "热") {
+						$('body').animate({
+							scrollTop: 0
+						});
+					} else {
+						$top = $("." + ele + "").offset().top - 49;
+						$('body').animate({
+							scrollTop: $top
+						});
+					}
+				}catch(error){
+					$(".hot").offset().top
+				}
+
+				//					$top = $("."+ele+"").offset().top-49;
+
+				//				$top = $("."+ele+"").offset().top-49;
+				//				console.log($top);
+
+			},
+			setsl: function() {
+
+				$('body').animate({
+					scrollTop: 0
+				});
+			},
 			getl: function() {
+				this.load = true;
 				var salf = this;
 
 				this.page++;
+
 				axios({
 					method: 'get',
 					url: '/music/singer/list/' + salf.getid + '/' + salf.page + '?json=true'
 
 				}).then((response) => {
+					//					console.log(response);
 					var mylist = response.data.singers.list.info;
 
 					salf.totlelist = salf.totlelist.concat(mylist);
-					
+
+					//					console.log(salf.totlelist);
+					if(salf.page < 10) {
+						salf.getl();
+					} else {
+						salf.getl1();
+						return;
+					}
+
 				})
 			},
 			getl1: function() {
@@ -302,119 +390,194 @@
 
 				}).then((response) => {
 					var mylist = response.data.singers.list.info;
-
+					//					console.log(salf.totlelist);
 					salf.totlelist = salf.totlelist.concat(mylist);
-					for(var c = 0; c < this.totlelist.length; c++) {
+					//关键一步去掉重复的名字
+					var res = [this.totlelist[0].singername];
+					for(var c = 1; c < this.totlelist.length; c++) {
+						var repeat = false;
+						for(var j = 0; j < res.length; j++) {
+							if(this.totlelist[c].singername == res[j]) {
+								repeat = true;
+								break;
+							}
+						}
+						if(!repeat) {
+							res.push(this.totlelist[c].singername);
+							if(pinyinUtil.getFirstLetter(this.totlelist[c].singername.charAt(0)) == "A") {
+								salf.myA = salf.myA.concat(this.totlelist[c]);
+								salf.xianA = true;
+							}
+							if(pinyinUtil.getFirstLetter(this.totlelist[c].singername.charAt(0)) == "B") {
+								salf.myB = salf.myB.concat(this.totlelist[c]);
+								salf.xianB = true;
+							}
+							if(pinyinUtil.getFirstLetter(this.totlelist[c].singername.charAt(0)) == "C") {
+								salf.myC = salf.myC.concat(this.totlelist[c]);
+								salf.xianC = true;
+							}
+							if(pinyinUtil.getFirstLetter(this.totlelist[c].singername.charAt(0)) == "D") {
+								salf.myD = salf.myD.concat(this.totlelist[c]);
+								salf.xianD = true;
+							}
+							if(pinyinUtil.getFirstLetter(this.totlelist[c].singername.charAt(0)) == "E") {
+								salf.myE = salf.myE.concat(this.totlelist[c]);
+								salf.xianE = true;
 
-						if(pinyinUtil.getFirstLetter(this.totlelist[c].singername.charAt(0)) == "A") {
-							salf.myA = salf.myA.concat(this.totlelist[c]);
+							}
+							if(pinyinUtil.getFirstLetter(this.totlelist[c].singername.charAt(0)) == "F") {
+								salf.myF = salf.myF.concat(this.totlelist[c]);
+								salf.xianF = true;
 
-						}
-						if(pinyinUtil.getFirstLetter(this.totlelist[c].singername.charAt(0)) == "B") {
-							salf.myB = salf.myB.concat(this.totlelist[c]);
+							}
+							if(pinyinUtil.getFirstLetter(this.totlelist[c].singername.charAt(0)) == "G") {
+								salf.myG = salf.myG.concat(this.totlelist[c]);
+								salf.xianG = true;
 
-						}
-						if(pinyinUtil.getFirstLetter(this.totlelist[c].singername.charAt(0)) == "C") {
-							salf.myC = salf.myC.concat(this.totlelist[c]);
+							}
+							if(pinyinUtil.getFirstLetter(this.totlelist[c].singername.charAt(0)) == "H") {
+								salf.myH = salf.myH.concat(this.totlelist[c]);
+								salf.xianH = true;
 
-						}
-						if(pinyinUtil.getFirstLetter(this.totlelist[c].singername.charAt(0)) == "D") {
-							salf.myD = salf.myD.concat(this.totlelist[c]);
+							}
+							if(pinyinUtil.getFirstLetter(this.totlelist[c].singername.charAt(0)) == "I") {
+								salf.myI = salf.myI.concat(this.totlelist[c]);
+								salf.xianI = true;
 
-						}
-						if(pinyinUtil.getFirstLetter(this.totlelist[c].singername.charAt(0)) == "E") {
-							salf.myE = salf.myE.concat(this.totlelist[c]);
+							}
+							if(pinyinUtil.getFirstLetter(this.totlelist[c].singername.charAt(0)) == "J") {
+								salf.myJ = salf.myJ.concat(this.totlelist[c]);
+								salf.xianJ = true;
 
-						}
-						if(pinyinUtil.getFirstLetter(this.totlelist[c].singername.charAt(0)) == "F") {
-							salf.myF = salf.myF.concat(this.totlelist[c]);
+							}
+							if(pinyinUtil.getFirstLetter(this.totlelist[c].singername.charAt(0)) == "K") {
+								salf.myK = salf.myK.concat(this.totlelist[c]);
+								salf.xianK = true;
 
-						}
-						if(pinyinUtil.getFirstLetter(this.totlelist[c].singername.charAt(0)) == "G") {
-							salf.myG = salf.myG.concat(this.totlelist[c]);
-							
-						}
-						if(pinyinUtil.getFirstLetter(this.totlelist[c].singername.charAt(0)) == "H") {
-							salf.myH = salf.myH.concat(this.totlelist[c]);
-							
-						}
-						if(pinyinUtil.getFirstLetter(this.totlelist[c].singername.charAt(0)) == "I") {
-							salf.myI = salf.myI.concat(this.totlelist[c]);
-							
-						}
-						if(pinyinUtil.getFirstLetter(this.totlelist[c].singername.charAt(0)) == "J") {
-							salf.myJ = salf.myJ.concat(this.totlelist[c]);
-							
-						}
-						if(pinyinUtil.getFirstLetter(this.totlelist[c].singername.charAt(0)) == "K") {
-							salf.myK = salf.myK.concat(this.totlelist[c]);
-							
-						}
-						if(pinyinUtil.getFirstLetter(this.totlelist[c].singername.charAt(0)) == "L") {
-							salf.myL = salf.myL.concat(this.totlelist[c]);
-							
-						}
-						if(pinyinUtil.getFirstLetter(this.totlelist[c].singername.charAt(0)) == "M") {
-							salf.myM = salf.myM.concat(this.totlelist[c]);
-							
-						}
-						if(pinyinUtil.getFirstLetter(this.totlelist[c].singername.charAt(0)) == "N") {
-							salf.myN = salf.myN.concat(this.totlelist[c]);
-							
-						}
-						if(pinyinUtil.getFirstLetter(this.totlelist[c].singername.charAt(0)) == "O") {
-							salf.myO = salf.myO.concat(this.totlelist[c]);
-							
-						}
-						if(pinyinUtil.getFirstLetter(this.totlelist[c].singername.charAt(0)) == "P") {
-							salf.myP = salf.myP.concat(this.totlelist[c]);
-							
-						}
-						if(pinyinUtil.getFirstLetter(this.totlelist[c].singername.charAt(0)) == "Q") {
-							salf.myQ = salf.myQ.concat(this.totlelist[c]);
-							
-						}
-						if(pinyinUtil.getFirstLetter(this.totlelist[c].singername.charAt(0)) == "R") {
-							salf.myR = salf.myR.concat(this.totlelist[c]);
-							
-						}
-						if(pinyinUtil.getFirstLetter(this.totlelist[c].singername.charAt(0)) == "S") {
-							salf.myS = salf.myS.concat(this.totlelist[c]);
-							
-						}
-						if(pinyinUtil.getFirstLetter(this.totlelist[c].singername.charAt(0)) == "T") {
-							salf.myT = salf.myT.concat(this.totlelist[c]);
-							
-						}
-						if(pinyinUtil.getFirstLetter(this.totlelist[c].singername.charAt(0)) == "U") {
-							salf.myU = salf.myU.concat(this.totlelist[c]);
-							
-						}
-						if(pinyinUtil.getFirstLetter(this.totlelist[c].singername.charAt(0)) == "V") {
-							salf.myV = salf.myV.concat(this.totlelist[c]);
-							
-						}
-						if(pinyinUtil.getFirstLetter(this.totlelist[c].singername.charAt(0)) == "W") {
-							salf.myW = salf.myW.concat(this.totlelist[c]);
-							
-						}
-						if(pinyinUtil.getFirstLetter(this.totlelist[c].singername.charAt(0)) == "X") {
-							salf.myX = salf.myX.concat(this.totlelist[c]);
-							
-						}
-						if(pinyinUtil.getFirstLetter(this.totlelist[c].singername.charAt(0)) == "Y") {
-							salf.myY = salf.myY.concat(this.totlelist[c]);
-							
-						}
-						if(pinyinUtil.getFirstLetter(this.totlelist[c].singername.charAt(0)) == "Z") {
-							salf.myZ = salf.myZ.concat(this.totlelist[c]);
-							
-						}
-						if(pinyinUtil.getFirstLetter(this.totlelist[c].singername.charAt(0)) == undefined) {
-							salf.my = salf.my.concat(this.totlelist[c]);
-							
+							}
+							if(pinyinUtil.getFirstLetter(this.totlelist[c].singername.charAt(0)) == "L") {
+								salf.myL = salf.myL.concat(this.totlelist[c]);
+								salf.xianL = true;
+
+							}
+							if(pinyinUtil.getFirstLetter(this.totlelist[c].singername.charAt(0)) == "M") {
+								salf.myM = salf.myM.concat(this.totlelist[c]);
+								salf.xianM = true;
+
+							}
+							if(pinyinUtil.getFirstLetter(this.totlelist[c].singername.charAt(0)) == "N") {
+								salf.myN = salf.myN.concat(this.totlelist[c]);
+								salf.xianN = true;
+
+							}
+							if(pinyinUtil.getFirstLetter(this.totlelist[c].singername.charAt(0)) == "O") {
+								salf.myO = salf.myO.concat(this.totlelist[c]);
+								salf.xianO = true;
+
+							}
+							if(pinyinUtil.getFirstLetter(this.totlelist[c].singername.charAt(0)) == "P") {
+								salf.myP = salf.myP.concat(this.totlelist[c]);
+								salf.xianP = true;
+
+							}
+							if(pinyinUtil.getFirstLetter(this.totlelist[c].singername.charAt(0)) == "Q") {
+								salf.myQ = salf.myQ.concat(this.totlelist[c]);
+								salf.xianQ = true;
+
+							}
+							if(pinyinUtil.getFirstLetter(this.totlelist[c].singername.charAt(0)) == "R") {
+								salf.myR = salf.myR.concat(this.totlelist[c]);
+								salf.xianR = true;
+
+							}
+							if(pinyinUtil.getFirstLetter(this.totlelist[c].singername.charAt(0)) == "S") {
+								salf.myS = salf.myS.concat(this.totlelist[c]);
+
+							}
+							if(pinyinUtil.getFirstLetter(this.totlelist[c].singername.charAt(0)) == "T") {
+								salf.myT = salf.myT.concat(this.totlelist[c]);
+								salf.xianT = true;
+
+							}
+							if(pinyinUtil.getFirstLetter(this.totlelist[c].singername.charAt(0)) == "U") {
+								salf.myU = salf.myU.concat(this.totlelist[c]);
+								salf.xianU = true;
+
+							}
+							if(pinyinUtil.getFirstLetter(this.totlelist[c].singername.charAt(0)) == "V") {
+								salf.myV = salf.myV.concat(this.totlelist[c]);
+								salf.xianV = true;
+
+							}
+							if(pinyinUtil.getFirstLetter(this.totlelist[c].singername.charAt(0)) == "W") {
+								salf.myW = salf.myW.concat(this.totlelist[c]);
+								salf.xianW = true;
+
+							}
+							if(pinyinUtil.getFirstLetter(this.totlelist[c].singername.charAt(0)) == "X") {
+								salf.myX = salf.myX.concat(this.totlelist[c]);
+								salf.xianX = true;
+
+							}
+							if(pinyinUtil.getFirstLetter(this.totlelist[c].singername.charAt(0)) == "Y") {
+								salf.myY = salf.myY.concat(this.totlelist[c]);
+								salf.xianY = true;
+
+							}
+							if(pinyinUtil.getFirstLetter(this.totlelist[c].singername.charAt(0)) == "Z") {
+								salf.myZ = salf.myZ.concat(this.totlelist[c]);
+								salf.xianZ = true;
+
+							}
+							if(pinyinUtil.getFirstLetter(this.totlelist[c].singername.charAt(0)) !== "A" && pinyinUtil.getFirstLetter(this.totlelist[c].singername.charAt(0)) !== "B" && pinyinUtil.getFirstLetter(this.totlelist[c].singername.charAt(0)) !== "C" && pinyinUtil.getFirstLetter(this.totlelist[c].singername.charAt(0)) !== "D" && pinyinUtil.getFirstLetter(this.totlelist[c].singername.charAt(0)) !== "E" && pinyinUtil.getFirstLetter(this.totlelist[c].singername.charAt(0)) !== "F" && pinyinUtil.getFirstLetter(this.totlelist[c].singername.charAt(0)) !== "G" && pinyinUtil.getFirstLetter(this.totlelist[c].singername.charAt(0)) !== "H" && pinyinUtil.getFirstLetter(this.totlelist[c].singername.charAt(0)) !== "I" && pinyinUtil.getFirstLetter(this.totlelist[c].singername.charAt(0)) !== "G" && pinyinUtil.getFirstLetter(this.totlelist[c].singername.charAt(0)) !== "K" && pinyinUtil.getFirstLetter(this.totlelist[c].singername.charAt(0)) !== "L" && pinyinUtil.getFirstLetter(this.totlelist[c].singername.charAt(0)) !== "M" && pinyinUtil.getFirstLetter(this.totlelist[c].singername.charAt(0)) !== "N" && pinyinUtil.getFirstLetter(this.totlelist[c].singername.charAt(0)) !== "O" && pinyinUtil.getFirstLetter(this.totlelist[c].singername.charAt(0)) !== "P" && pinyinUtil.getFirstLetter(this.totlelist[c].singername.charAt(0)) !== "Q" && pinyinUtil.getFirstLetter(this.totlelist[c].singername.charAt(0)) !== "R" && pinyinUtil.getFirstLetter(this.totlelist[c].singername.charAt(0)) !== "S" && pinyinUtil.getFirstLetter(this.totlelist[c].singername.charAt(0)) !== "T" && pinyinUtil.getFirstLetter(this.totlelist[c].singername.charAt(0)) !== "U" && pinyinUtil.getFirstLetter(this.totlelist[c].singername.charAt(0)) !== "V" && pinyinUtil.getFirstLetter(this.totlelist[c].singername.charAt(0)) !== "W" && pinyinUtil.getFirstLetter(this.totlelist[c].singername.charAt(0)) !== "X" && pinyinUtil.getFirstLetter(this.totlelist[c].singername.charAt(0)) !== "Y" && pinyinUtil.getFirstLetter(this.totlelist[c].singername.charAt(0)) !== "Z" && pinyinUtil.getFirstLetter(this.totlelist[c].singername.charAt(0)) !== "J") {
+								salf.my = salf.my.concat(this.totlelist[c]);
+								salf.xian = true;
+
+							}
 						}
 					}
+					salf.load = false;
+					var getlis = [];
+					for(var i = 0; i < res.length; i++) {
+						var mylis = pinyinUtil.getFirstLetter(res[i].charAt(0));
+
+						getlis = getlis.concat(mylis);
+					}
+					var bcc = [getlis[0]];
+					var bbb = "";
+					var panduan = false;
+					for(var a = 1; a < getlis.length; a++) {
+						var repeat = false;
+						for(var b = 0; b < getlis.length; b++) {
+							if(getlis[a] == bcc[b]) {
+								repeat = true;
+								break;
+							}
+						}
+						if(!repeat) {
+							bcc.push(getlis[a]);
+							bcc.sort();
+												
+						}
+					}
+					var bbb;
+					for(var f = 0; f < bcc.length; f++) {
+						if(bcc[f] !== "A" && bcc[f] !== "B" && bcc[f] !== "C" && bcc[f] !== "D" && bcc[f] !== "E" && bcc[f] !== "F" && bcc[f] !== "G" && bcc[f] !== "H" && bcc[f] !== "I" && bcc[f] !== "G" && bcc[f] !== "K" && bcc[f] !== "L" && bcc[f] !== "M" && bcc[f] !== "N" && bcc[f] !== "O" && bcc[f] !== "P" && bcc[f] !== "Q" && bcc[f] !== "R" && bcc[f] !== "S" && bcc[f] !== "U" && bcc[f] !== "V" && bcc[f] !== "W" && bcc[f] !== "X" && bcc[f] !== "Y" && bcc[f] !== "Z" && bcc[f] !== "T" && bcc[f] !== "J") {
+							//										console.log(bcc[f]);									
+						} else {
+							bbb += bcc[f] + ",";
+
+						}
+					}
+					//					bbb.slice(bbb.length-1)
+					//					console.log(bbb.lastIndexOf(","));
+					bbb = bbb.slice(0, bbb.length - 1)
+
+					bbb = bbb.split(",")
+					bbb.unshift("热");
+					//					console.log(bbb);
+					salf.shouzimu = bbb;
+
 				})
 			}
 		},
@@ -424,63 +587,48 @@
 			this.getid = this.$route.params.id;
 			this.getlist();
 			this.getl();
-			this.getl();
-			this.getl();
-			this.getl();
-			this.getl();
-			this.getl();
-			this.getl();
-			this.getl();
-			this.getl();
-			this.getl();
-			this.getl();
-			this.getl();
-			this.getl();
-			this.getl();
-			this.getl();
-			this.getl();
-			this.getl();
-			this.getl();
-			this.getl();
-			this.getl();
-			this.getl();
-			this.getl();
-			this.getl();
-			this.getl();
-			this.getl();
-			this.getl();
-			this.getl();
-			this.getl();
-			this.getl();
-			this.getl();
-			this.getl();
-			this.getl();
-			this.getl();
-			this.getl();
-			this.getl();
-			this.getl();
-			this.getl();
-			this.getl();
-			this.getl();
-			this.getl();
-			this.getl();
-			this.getl();
-			this.getl();
-			this.getl();
-			this.getl();
-			var salf = this;
-			setTimeout(function(){
-				salf.getl1();
-			},100)
-			
-			
-		
-
+			var sale = this;
+//			console.log(this.shouzimu)
+			$(window).scroll(function(eve) {
+//				console.log($(this).scrollTop());
+//					console.log(111)
+//					console.log(sale.shouzimu);	
+				var page = 0;
+				for(var i=0;i<sale.shouzimu.length;i++){
+//					console.log(sale.shouzimu);
+					if(sale.shouzimu[i] == "热"){
+						sale.isShow = 0;
+//					
+					}else{
+						try{
+//							console.log(document.scrollTop);
+							if($(this).scrollTop() > $("."+sale.shouzimu[i]+"").offset().top - 49){
+//							sale.isShow = $("."+sale.shouzimu[i]+"").attr("data-get");
+//							console.log($("."+sale.shouzimu[i]+""))
+//							console.log($("."+sale.shouzimu[i]+"").index());
+								page = $("."+sale.shouzimu[i]+"").index() -3;
+								beack;
+//							console.log(sale.isShow = $("."+sale.shouzimu[i]+"").attr("data-get"))
+							}
+							
+						}catch(error){
+							
+						}
+//						
+					}
+//					
+				}
+				console.log(page);
+//				console.log($("."+sale.shouzimu[i]+"").index())
+				 
+		})
 		},
 
 		components: {
 			xtitle,
-			xtop
+			xtop,
+			xload,
+
 		}
 	}
 </script>
@@ -494,5 +642,46 @@
 		line-height: 25px;
 		text-indent: 1em;
 		font-family: "微软雅黑";
+	}
+	
+	ul li {
+		list-style-type: none;
+	}
+	
+	.top_box {
+		display: none;
+	}
+	
+	.word_sort {
+		font-size: 0.16rem;
+		overflow: hidden;
+	}
+	
+	.word_sort ul {
+		position: fixed;
+		right: 7px;
+		top: 38%;
+		margin-top: -50%;
+		background: #FFFDEF;
+		opacity: 0.5;
+		width: 1.4rem;
+	}
+	
+	.word_sort ul li {
+		text-align: center;
+		border-bottom: 0.013333rem solid #ddd;
+	}
+	
+	.word_sort ul li .gaoliang {
+		background-color: #FC378C;
+	}
+	
+	.gao {
+		background-color: #FC378C;
+		color: white
+	}
+	
+	.active_alp {
+		color: #C70034;
 	}
 </style>
