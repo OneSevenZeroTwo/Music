@@ -73,9 +73,9 @@ export default {
                 this.isShowMore = false;
                 this.isShowMask = false;
             },
-            icondiyPlay(index, hash) { //切换歌单列表
+            icondiyPlay(index, hash) { //切换歌曲
                 this.page = index;
-                //切换歌单下的音乐列表=>请求MP3;
+                //切换歌单下不同的歌曲=>请求MP3;
                 axios.get('/music/app/i/getSongInfo.php?cmd=playInfo&hash=' + hash)
                     .then((response) => {
                         this.music_src = response.data.url;
@@ -120,7 +120,7 @@ export default {
                 if (this.$store.getters.songsPlay.length === 0) {
                     return
                 }
-                // 切换歌单=>请求MP3;
+                // 切换不同的歌单=>请求MP3;
                 var hash = this.$store.getters.songsPlay[0].hash
                 axios.get('/music/app/i/getSongInfo.php?cmd=playInfo&hash=' + hash)
                     .then((response) => {
@@ -130,12 +130,12 @@ export default {
                         this.songName = response.data.songName
                             //状态更改
                         var audio = document.getElementById('audio');
+                        this.page = 0 ;
                         this.isClick = true
                     })
                     .catch((error) => {
                         console.log(error);
                     });
-
                 return this.$store.getters.songsPlay
             }
         },

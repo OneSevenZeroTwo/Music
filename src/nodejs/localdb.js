@@ -24,7 +24,7 @@ function createCon() {
     });
 }
 
-// 获取商品列表的数据
+// 获取评论列表的数据
 app.get('/comment', function(req, res) {
     var pageCount = (req.query.page - 1) * 10;
     console.log(pageCount);
@@ -46,6 +46,54 @@ app.get('/comment', function(req, res) {
             //关闭数据库 
             connection.end();
         });
+    });
+    res.append("Access-Control-Allow-Origin", "*");
+});
+
+// 获取单个评论的数据
+app.get('/mod', function(req, res) {
+    var id = req.query.id;
+    console.log(id);
+    createCon();
+    connection.connect();
+    connection.query('SELECT * FROM comment where id=' + id, function(error, results, fields) {
+        if (error) throw error;
+        res.send(results);
+        //关闭数据库 
+        connection.end();
+    });
+    res.append("Access-Control-Allow-Origin", "*");
+});
+
+// 存入修改后的评论数据
+app.get('/save', function(req, res) {
+    var id = req.query.id;
+    var title = req.query.title;
+    var subtitle = req.query.subtitle;
+    var rating = req.query.rating;
+    var content = req.query.content;
+    createCon();
+    connection.connect();
+    connection.query('UPDATE  comment set title="'+ title +'",subtitle="'+ subtitle +'",rating="'+ rating +'",content="'+ content +'"where id="'+id+'"', function(error, results, fields) {
+        if (error) throw error;
+        res.send(results);
+        //关闭数据库 
+        //connection.end();
+    });
+    res.append("Access-Control-Allow-Origin", "*");
+});
+
+// 获取文章数据
+app.get('/passage', function(req, res) {
+    var id = req.query.id;
+    console.log(id);
+    createCon();
+    connection.connect();
+   connection.query('SELECT * FROM passage where id=' + id, function(error, results, fields) {
+        if (error) throw error;
+        res.send(results);
+        //关闭数据库 
+        //connection.end();
     });
     res.append("Access-Control-Allow-Origin", "*");
 });
