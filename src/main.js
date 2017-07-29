@@ -74,7 +74,7 @@ const routes = [{
             path: 'tolist',
             component: xtotalist
         }, {
-            path: 'singlist/:id',
+            path: '/singlist/:id',
             component: singlist
         }, {
             path: '/app/singer',
