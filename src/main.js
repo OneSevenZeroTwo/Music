@@ -15,7 +15,7 @@ import VueLazyload from 'vue-lazyload'
 import db from './views/db'
 import mod from './views/mod'
 import passageDetail from './views/passageDetail'
-
+import song from './views/song'
 Vue.use(MuseUI)
 
 import Vuex from 'vuex'
@@ -98,6 +98,9 @@ const routes = [{
     // 文章详情路由
     path: '/passageDetail/:id',
     component: passageDetail,
+},{
+  path:"/song",
+  component:song
 }, {
     path: '/',
     redirect: '/app/newSong'
