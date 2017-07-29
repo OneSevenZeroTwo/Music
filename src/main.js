@@ -14,6 +14,7 @@ import MuseUI from 'muse-ui';
 import VueLazyload from 'vue-lazyload'
 import db from './views/db'
 import mod from './views/mod' 
+import passageDetail from './views/passageDetail' 
 
 Vue.use(MuseUI)
 
@@ -85,11 +86,16 @@ const routes = [{
     path: '/rangeDetails/:id',
     component: rangeDetails,
 }, {
+    // 数据库路由
     path: '/db',
     component: db,
 },{
     path: '/mod/:id',
     component: mod,
+},{
+    // 文章详情路由
+    path: '/passageDetail/:id',
+    component: passageDetail,
 },{
     path: '/',
     redirect: '/app/newSong'
@@ -104,10 +110,12 @@ var store = new Vuex.Store({
     newDetails:null,
     range_id:null,
     range_page:1,
-    imgUrl:'',
-    showPlay:false,
     songsPlay:[],
     scrolly:null,
+    // 播放器数据状态管理
+    showPlay:false,
+    imgUrl:'',
+
   },
   getters:{
 		getRange(state){

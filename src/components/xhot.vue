@@ -5,10 +5,10 @@
             <span class="more"></span>
         </div>
         <section>
-            <span class="firstErji"></span>
+            <span class="firstErji" ></span>
             <span class="firstBofang"></span>
             <i class="firstI">{{ hotList[0].duration}}</i>
-            <img src="http://y.gtimg.cn/music/photo_new/T002R300x300M000002sib2i06iuRx.jpg?max_age=2592000" alt="">
+            <img src="http://y.gtimg.cn/music/photo_new/T002R300x300M000002sib2i06iuRx.jpg?max_age=2592000" alt="" >
             <p>{{ hotList[0].filename | shortTitle }}</p>
             <!-- <p v-show="!isShow">加载中</p> -->
         </section>
@@ -56,15 +56,16 @@ import axios from 'axios'
 export default {
     data() {
             return {
-                hotList: null
+                hotList: null,
                 //isShow:false
+                isShowPlay:false
             }
         },
         mounted() {
             axios.get('/music/?json=true')
                 .then((response) => {
                     this.hotList = response.data.data.splice(0, 6);
-                    //this.isShow = true;
+                    console.log(this.hotList);
                 })
                 .catch((error) => {
                     console.log(error);

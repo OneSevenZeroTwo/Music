@@ -120,7 +120,7 @@ export default {
                 if (this.$store.getters.songsPlay.length === 0) {
                     return
                 }
-                // 切换歌单=>请求MP3;
+                // 切换歌曲=>请求MP3;
                 var hash = this.$store.getters.songsPlay[0].hash
                 axios.get('/music/app/i/getSongInfo.php?cmd=playInfo&hash=' + hash)
                     .then((response) => {
@@ -135,7 +135,6 @@ export default {
                     .catch((error) => {
                         console.log(error);
                     });
-
                 return this.$store.getters.songsPlay
             }
         },

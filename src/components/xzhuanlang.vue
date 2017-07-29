@@ -5,20 +5,28 @@
             <span class="more"></span>
         </div>
         <section>
-            <img src="https://y.gtimg.cn/music/common/upload/t_musicmall_focus/124141.jpg" alt="">
-            <p>陈粒在蓬莱</p>
+            <a :href="'#/passageDetail/'+ 5">
+                <img src="https://y.gtimg.cn/music/common/upload/t_musicmall_focus/124141.jpg" alt="">
+                <p>陈粒在蓬莱</p>
+            </a>
         </section>
         <section class="left">
-            <img src="https://y.gtimg.cn/music/common/upload/t_focus_info_iphone/124253.jpg" alt="">
-            <p>中年贾跃亭和朴树，都在为钱奔波</p>
+            <a :href="'#/passageDetail/'+ 8">
+                <img src="https://y.gtimg.cn/music/common/upload/t_focus_info_iphone/124253.jpg" alt="">
+                <p>中年贾跃亭和朴树，都在为钱奔波</p>
+            </a>
         </section>
         <section class="bottom">
-            <img src="https://y.gtimg.cn/music/common/upload/t_focus_info_iphone/124060.jpg" alt="">
-            <p>歌都不会唱当什么超级英雄</p>
+            <a :href="'#/passageDetail/'+ 7">
+                <img src="https://y.gtimg.cn/music/common/upload/t_focus_info_iphone/124060.jpg" alt="">
+                <p>歌都不会唱当什么超级英雄</p>
+            </a>
         </section>
         <section class="left bottom">
-            <img src="https://y.gtimg.cn/music/common/upload/t_focus_info_iphone/124219.jpg" alt="">
-            <p>我欲渡你成佛，却被你渡成魔</p>
+            <a :href="'#/passageDetail/'+ 9">
+                <img src="https://y.gtimg.cn/music/common/upload/t_focus_info_iphone/124219.jpg" alt="">
+                <p>我欲渡你成佛，却被你渡成魔</p>
+            </a>
         </section>
     </div>
 </template>
@@ -81,11 +89,12 @@ section p{
     line-height: 14px;
     display: block;
     height: 16px;
+    color: #000;
 }
 section img{
     width: 100%;
 }
 .bottom{
-    margin-bottom: 68px;
+    margin-bottom: 20px;
 }
 </style>
