@@ -52,7 +52,7 @@
 		
 	}
 	#zezhao .tu img{
-		margin-top: 20px;
+		margin-top:10px;
 		position: relative;
 	}
 	
