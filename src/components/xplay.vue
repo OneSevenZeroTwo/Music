@@ -1,5 +1,5 @@
 <template>
-    <div v-show="showPlay">
+    <div v-show="showPlay" class="kgmusic">
         <section>
             <div class="play">
             <div id="progress">

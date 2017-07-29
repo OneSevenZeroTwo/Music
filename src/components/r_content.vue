@@ -33,6 +33,7 @@
 		},
 		mounted(){
 			this.getRange();
+			this.$store.dispatch('setIndex',1);
 		},
 		computed:{
 			list(){

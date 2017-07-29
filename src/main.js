@@ -13,8 +13,8 @@ import singer from './views/singer'
 import MuseUI from 'muse-ui';
 import VueLazyload from 'vue-lazyload'
 import db from './views/db'
-import mod from './views/mod' 
-import passageDetail from './views/passageDetail' 
+import mod from './views/mod'
+import passageDetail from './views/passageDetail'
 
 Vue.use(MuseUI)
 
@@ -24,9 +24,9 @@ import axios from 'axios'
 import VueAwesomeSwiper from 'vue-awesome-swiper'
 
 //吴镇宇项目需要引入的子路由
-import xtotalist from "./components/ZhenV_RT/xtotallist.vue"
-
-import singlist from "./components/ZhenV_RT/xsinglist.vue"
+import xtotalist from "./components/ZhenV_RT/xtotallist.vue";
+import xsong from "./components/ZhenV_RT/xsong.vue";
+import singlist from "./components/ZhenV_RT/xsinglist.vue";
 import 'weui'
 
 import pinyin_dict_notone from "./lib/pinyin_dict_notone.js";
@@ -75,9 +75,6 @@ const routes = [{
             path: 'tolist',
             component: xtotalist
         }, {
-            path: 'singlist/:id',
-            component: singlist
-        }, {
             path: '/app/singer',
             redirect: '/app/singer/tolist'
         }]
@@ -86,17 +83,22 @@ const routes = [{
     path: '/rangeDetails/:id',
     component: rangeDetails,
 }, {
-    // 数据库路由
+    path: '/singlist/:id',
+    component: singlist
+}, {
+    path: '/xsong/:id',
+    component: xsong
+}, {
     path: '/db',
     component: db,
-},{
+}, {
     path: '/mod/:id',
     component: mod,
-},{
+}, {
     // 文章详情路由
     path: '/passageDetail/:id',
     component: passageDetail,
-},{
+}, {
     path: '/',
     redirect: '/app/newSong'
 }]
@@ -104,110 +106,132 @@ const routes = [{
 
 // 创建状态管理
 var store = new Vuex.Store({
-  state:{
-    newSong:null,
-    newClass:null,
-    newDetails:null,
-    range_id:null,
-    range_page:1,
-    songsPlay:[],
-    scrolly:null,
-    // 播放器数据状态管理
-    showPlay:false,
-    imgUrl:'',
+    state: {
+        newSong: null,
+        newClass: null,
+        newDetails: null,
+        range_id: null,
+        range_page: 1,
+        songsPlay: [],
+        scrolly: null,
+        // 播放器数据状态管理
+        showPlay: false,
+        imgUrl: '',
+        isshow: false,
+        getIndex: null,
+        getMusic: null,
+    },
+    getters: {
+        getRange(state) {
+            return state.newClass
+        },
+        getDetails(state) {
+            return state.newDetails
+        },
+        giePage(state) {
+            return state.range_page
+        },
+        getImgurl(state) {
+            return state.imgUrl
+        },
+        showPlay(state) {
+            return state.showPlay
+        },
+        songsPlay(state) {
+            return state.songsPlay
+        },
+        Index(state) {
+            return state.getIndex
+        },
+        newMusic(state) {
+            return state.getMusic
+        },
+    },
+    mutations: {
+        getMusic(state) {
+            axios.get('http://localhost:6787/')
+                .then((response) => {
+                    state.newSong = response.data
+                    console.log(state.newSong)
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+        },
+        getRange(state) {
+            axios.get('/music/rank/list&json=true')
+                .then((response) => {
+                    state.newClass = response.data
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+        },
+        rangeDetails(state) {
+            axios.get('/music/rank/info/?rankid=' + state.range_id + '&page=' + state.range_page + '&json=true', {})
+                .then((response) => {
+                    state.newDetails = response.data
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+        },
+        setDetails(state, data) {
+            state.range_id = data
+        },
+        setPage(state, data) {
+            state.range_page = data
+        },
+        setImg(state, data) {
+            state.imgUrl = data[0];
+            state.showPlay = data[1]
+        },
+        setSongs(state, data) {
+            state.songsPlay = data
+        },
+        setIndex(state, data) {
+            state.getIndex = data
+        },
+        setMusic(state, data) {
+            axios.get('/music/app/i/getSongInfo.php?cmd=playInfo&hash=' + data)
+                .then((response) => {
+                    state.getMusic = response.data
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+        },
+    },
+    actions: {
+        getMusic(context, data) {
+            context.commit('getMusic')
+        },
+        getRange(context, data) {
+            context.commit('getRange')
+        },
+        rangeDetails(context, data) {
+            context.commit('rangeDetails')
+        },
+        setDetails(context, data) {
+            context.commit('setDetails', data)
+        },
+        setPage(context, data) {
+            context.commit('setPage', data)
+        },
+        setImg(context, data) { //点击改变播放控制器的图片
+            context.commit("setImg", data)
+        },
+        setSongs(context, data) {
+            context.commit("setSongs", data)
+        },
+        setIndex(context, data) {
+            context.commit("setIndex", data)
+        },
+        setMusic(context, data) {
+            context.commit("setMusic", data)
+        },
 
-  },
-  getters:{
-		getRange(state){
-			return state.newClass
-		},
-		getDetails(state){
-			return state.newDetails
-		},
-		giePage(state){
-			return state.range_page
-		},
-    getImgurl(state){
-      return state.imgUrl
-    },
-    showPlay(state){
-      return state.showPlay
-    },
-    songsPlay(state){
-      return state.songsPlay
-    },
-  },
-  mutations:{
-    getMusic(state){
-      axios.get('http://localhost:6787/')
-      .then((response) => {
-        state.newSong = response.data
-        console.log(state.newSong)
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-    },
-    getRange(state){
-    	axios.get('/music/rank/list&json=true')
-      .then((response) => {
-        state.newClass = response.data
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-    },
-    rangeDetails(state){
-    	axios.get('/music/rank/info/?rankid='+state.range_id+'&page='+state.range_page+'&json=true',{
-//  		params:{
-//  			rankid:state.range_id,
-//  			rankpage:state.range_page
-//			  }
-    	})
-      .then((response) => {
-        state.newDetails = response.data
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-    },
-    setDetails(state, data){
-    	state.range_id = data
-    },
-    setPage(state, data){
-    	state.range_page = data
-    },
-    setImg(state,data){
-      state.imgUrl = data[0];
-      state.showPlay=data[1]
-    },
-    setSongs(state,data){
-      state.songsPlay= data
-    },
-  },
-  actions:{
-    getMusic(context, data) {
-      context.commit('getMusic')
-    },
-    getRange(context, data) {
-      context.commit('getRange')
-    },
-    rangeDetails(context, data) {
-      context.commit('rangeDetails')
-    },
-    setDetails(context, data){
-      context.commit('setDetails',data)
-    },
-    setPage(context, data){
-      context.commit('setPage',data)
-    },
-    setImg(context,data){//点击改变播放控制器的图片
-      context.commit("setImg",data)
-    },
-    setSongs(context,data){
-      context.commit("setSongs",data)
     }
-  }
 })
 
 const router = new VueRouter({
