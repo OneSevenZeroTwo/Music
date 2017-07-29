@@ -1,7 +1,7 @@
 <template>
 	<div class="r_list">
 		<ul>
-			<li class="li" v-for="(i,index) in list">
+			<li class="li" v-for="(i,index) in list" @click="music(index)">
 				<div class="left" :class="[{red:index==0},{dh:index==1},{qh:index==2}]">
 					<span>{{index+1}}</span>
 				</div>
@@ -43,7 +43,7 @@
 		},
 		mounted() {
 			var xthis= this;
-			setTimeout(() => {
+			setTimeout(() => {console.log(xthis.xsongs)
 				if(xthis.xsongs){
 					xthis.list = xthis.list.concat(xthis.xsongs);
 					xthis.ycc = xthis.xsongs;
@@ -88,7 +88,10 @@
 						}
 					}
 				}
-			}, 500)
+			}, 500);
+			if(this.newMusic){
+				console.log(this.newMusic)
+			}
 		},
 		methods:{
 			onfh(){
@@ -100,6 +103,19 @@
 						clearInterval(timer);
 					}
 				},5)
+			},
+			music(e){
+				document.querySelector("#app .kgmusic").style.display = 'block'
+				//获取嘻哈值
+				var xhz = this.list[e].hash
+				//获取歌曲列表
+				this.$store.dispatch('setMusic',xhz);
+				var xthis = this;
+				setTimeout(() => {
+					var arr = [xthis.newMusic];
+					xthis.$store.dispatch('setImg', [xthis.newMusic.imgUrl,true]);
+               		xthis.$store.dispatch('setSongs',arr);
+				},500)
 			}
 		},
 		computed:{
@@ -107,7 +123,14 @@
 				if(this.$store.getters.giePage) {
 					return this.$store.getters.giePage
 				}
-			}
+			},
+			newMusic(){
+				if(this.$store.getters.newMusic) {
+					var img = this.$store.getters.newMusic;
+					img.imgUrl =  img.imgUrl.replace(/{size}/g,'400');
+					return img;
+				}
+			},
 		}
 	};
 </script>

@@ -3,6 +3,7 @@
 		<div class="title">
 			<div @click="goBack"></div>
 			<p v-text="xinfo.rankname"></p>
+			<div class="imgright"></div>
 		</div>
 		<img :src=xinfo.banner7url alt="" />
 	</div>
@@ -30,20 +31,24 @@ export default {
 		background: -webkit-linear-gradient(top,rgba(0,0,0,.6),transparent);
 		div{
 			float: left;
-			width: 10%;
-			height: 60px;
+			width: 15%;
+			height: 48px;
+			background-size: 100px 200px;
 			background: url(../../img/goback_1.png) no-repeat center;
 		}
 		p{
 			display: inline-block;
 			float: left;
-			width: 80%;
-			height: 60px;
+			width: 70%;
+			height: 48px;
 			text-align: center;
-			line-height: 60px;
+			line-height: 48px;
 			font-size: 20px;
 			font-family: Microsoft Yahei;
 			color: white;
+		}
+		.imgright{
+			background: url(../../img/search.png) no-repeat center;
 		}
 	}
 </style>

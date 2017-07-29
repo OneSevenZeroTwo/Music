@@ -1,12 +1,10 @@
 <template>
 	<div id="app">
-		<!--<div class="topbar">
-			<x-header>bilibili音悦台</x-header>
-		</div>-->
 		<span class="back"></span>
 		<span class="search"></span>
 		<Banner :xinfo=info></Banner>
 		<List :xsongs=songs></List>
+		<xplay></xplay>
 	</div>
 </template>
 
@@ -14,6 +12,7 @@
 	import { XHeader } from 'vux'
 	import Banner from '../components/rangeDetails/banner.vue'
 	import List from '../components/rangeDetails/list.vue'
+	import xplay from "../components/xplay.vue"
 
 	export default {
 		data() {
@@ -22,7 +21,8 @@
 		components: {
 			XHeader,
 			Banner,
-			List
+			List,
+			xplay
 		},
 		methods: {
 			getDetails() {

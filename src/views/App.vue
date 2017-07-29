@@ -29,9 +29,19 @@ export default {
     },
     data() {
         return {
-            index: 0
+            index: NaN,
         }
-    }
+    },
+    mounted(){
+		this.index = this.getIndex
+    },
+    computed:{
+		getIndex(){
+			if(this.$store.getters.Index) {
+				return this.$store.getters.Index
+			}
+		}
+	}
 }
 </script>
 <style lang="less">

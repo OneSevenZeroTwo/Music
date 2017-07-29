@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-<<<<<<< HEAD
-	<name>kugou</name>
-=======
-	<name>get</name>
->>>>>>> 5e1de15ab94acda2c5bb692cbe5f1d8c116096d7
+	<name>project</name>
 	<comment></comment>
 	<projects>
 	</projects>
@@ -20,11 +16,25 @@
 	</natures>
 	<filteredResources>
 		<filter>
-<<<<<<< HEAD
-			<id>1501119109614</id>
-=======
-			<id>1501116481043</id>
->>>>>>> 5e1de15ab94acda2c5bb692cbe5f1d8c116096d7
+			<id>1501271581386</id>
+			<name></name>
+			<type>26</type>
+			<matcher>
+				<id>org.eclipse.ui.ide.multiFilter</id>
+				<arguments>1.0-name-matches-false-false-node_modules</arguments>
+			</matcher>
+		</filter>
+		<filter>
+			<id>1501271773396</id>
+			<name></name>
+			<type>26</type>
+			<matcher>
+				<id>org.eclipse.ui.ide.multiFilter</id>
+				<arguments>1.0-name-matches-false-false-node_modules</arguments>
+			</matcher>
+		</filter>
+		<filter>
+			<id>1501290540325</id>
 			<name></name>
 			<type>26</type>
 			<matcher>
