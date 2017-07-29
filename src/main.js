@@ -115,18 +115,23 @@ var store = new Vuex.Store({
     showPlay:false,
     songsPlay:[],
     scrolly:null,
-    isshow:false
+
+    isshow:false,
+
+    getIndex:null,
+    getMusic:null,
+
   },
   getters:{
-		getRange(state){
-			return state.newClass
-		},
-		getDetails(state){
-			return state.newDetails
-		},
-		giePage(state){
-			return state.range_page
-		},
+	getRange(state){
+		return state.newClass
+	},
+	getDetails(state){
+		return state.newDetails
+	},
+	giePage(state){
+		return state.range_page
+	},
     getImgurl(state){
       return state.imgUrl
     },
@@ -135,6 +140,12 @@ var store = new Vuex.Store({
     },
     songsPlay(state){
       return state.songsPlay
+    },
+    Index(state){
+      return state.getIndex
+    },
+    newMusic(state){
+      return state.getMusic
     },
   },
   mutations:{
@@ -158,18 +169,14 @@ var store = new Vuex.Store({
       });
     },
     rangeDetails(state){
-    	axios.get('/music/rank/info/?rankid='+state.range_id+'&page='+state.range_page+'&json=true',{
-//  		params:{
-//  			rankid:state.range_id,
-//  			rankpage:state.range_page
-//			  }
-    	})
-      .then((response) => {
-        state.newDetails = response.data
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+		axios.get('/music/rank/info/?rankid='+state.range_id+'&page='+state.range_page+'&json=true',{
+		})
+	  .then((response) => {
+	    state.newDetails = response.data
+	  })
+	  .catch((error) => {
+	    console.log(error);
+	  });
     },
     setDetails(state, data){
     	state.range_id = data
@@ -183,6 +190,18 @@ var store = new Vuex.Store({
     },
     setSongs(state,data){
       state.songsPlay= data
+    },
+    setIndex(state,data){
+      state.getIndex= data
+    },
+    setMusic(state,data){
+      axios.get('/music/app/i/getSongInfo.php?cmd=playInfo&hash='+data)
+      .then((response) => {
+        state.getMusic = response.data
+      })
+      .catch((error) => {
+        console.log(error);
+      });
     },
   },
   actions:{
@@ -206,7 +225,14 @@ var store = new Vuex.Store({
     },
     setSongs(context,data){
       context.commit("setSongs",data)
-    }
+    },
+    setIndex(context,data){
+      context.commit("setIndex",data)
+    },
+    setMusic(context,data){
+      context.commit("setMusic",data)
+    },
+    
   }
 })
 

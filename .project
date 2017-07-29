@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
+<<<<<<< HEAD
 	<name>push</name>
+=======
+	<name>kugou</name>
+>>>>>>> f176a23bbf5b5ce0b3a9d338a825aa0916b92cea
 	<comment></comment>
 	<projects>
 	</projects>
@@ -16,7 +20,11 @@
 	</natures>
 	<filteredResources>
 		<filter>
+<<<<<<< HEAD
 			<id>1501294009849</id>
+=======
+			<id>1501325891452</id>
+>>>>>>> f176a23bbf5b5ce0b3a9d338a825aa0916b92cea
 			<name></name>
 			<type>26</type>
 			<matcher>
