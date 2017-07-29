@@ -1909,8 +1909,8 @@ html.pixel-ratio-3 .mu-divider {
 	left: 0;
 	right: 0;
 	bottom: 0;
-	padding: 16px;
-	background-color: rgba(0, 0, 0, .54)
+	padding: 8px;
+	background-color: rgba(0, 0, 0, .3)
 }
 
 .mu-card-media-title .mu-card-title {

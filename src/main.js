@@ -23,9 +23,9 @@ import axios from 'axios'
 import VueAwesomeSwiper from 'vue-awesome-swiper'
 
 //吴镇宇项目需要引入的子路由
-import xtotalist from "./components/ZhenV_RT/xtotallist.vue"
-
-import singlist from "./components/ZhenV_RT/xsinglist.vue"
+import xtotalist from "./components/ZhenV_RT/xtotallist.vue";
+import xsong from "./components/ZhenV_RT/xsong.vue";
+import singlist from "./components/ZhenV_RT/xsinglist.vue";
 import 'weui'
 
 import pinyin_dict_notone from "./lib/pinyin_dict_notone.js";
@@ -74,9 +74,6 @@ const routes = [{
             path: 'tolist',
             component: xtotalist
         }, {
-            path: '/singlist/:id',
-            component: singlist
-        }, {
             path: '/app/singer',
             redirect: '/app/singer/tolist'
         }]
@@ -84,7 +81,17 @@ const routes = [{
 }, {
     path: '/rangeDetails/:id',
     component: rangeDetails,
-}, {
+}, 
+{
+     path: '/singlist/:id',
+     component: singlist
+}
+, 
+{
+     path: '/xsong/:id',
+     component: xsong
+}
+,{
     path: '/db',
     component: db,
 },{
@@ -108,6 +115,7 @@ var store = new Vuex.Store({
     showPlay:false,
     songsPlay:[],
     scrolly:null,
+    isshow:false
   },
   getters:{
 		getRange(state){

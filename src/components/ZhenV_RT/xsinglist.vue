@@ -1,11 +1,11 @@
 <template>
 	<div>
 		<xtitle></xtitle>
-		<div class="gridlist-demo-container" style="margin-top:48px;">
+		<div class="gridlist-demo-container" style="margin-top: 48px;">
 			<div class="hot">热门</div>
 			<mu-row gutter>
-				<mu-col width="20" tablet="30" desktop="25" v-for="n in title" :key="n.singerid" style="margin: 10px;">
-					<img :src="n.imgurl" alt="" style="width:100%;height: 100%;border-radius: 50%;" />
+				<mu-col width="20" tablet="30" desktop="25" v-for="n in title" :key="n.singerid" style="margin: 10px;" >
+					<img :src="n.imgurl" alt="" style="width:100%;height: 100%;border-radius: 50%;" @click="songlist(n.singerid)" />
 					<p style="text-align: center;font-size: 12px;">{{n.singername}}</p>
 				</mu-col>
 
@@ -13,190 +13,190 @@
 			<div class="hot A" v-if="xianA">A</div>
 
 			<mu-list>
-				<template v-for="item in myA" class="wo1">
-					<mu-list-item disableRipple :title="item.singername" />
+				<template v-for="item in myA" class="wo1" >
+					<mu-list-item disableRipple :title="item.singername" @click="songlist(item.singerid)" />
 					<mu-divider/>
 				</template>
 			</mu-list>
-			<div class="hot B" v-if="xianB" >B</div>
+			<div class="hot B" v-if="xianB">B</div>
 			<mu-list>
 				<template v-for="item in myB">
-					<mu-list-item disableRipple :title="item.singername" />
+					<mu-list-item disableRipple :title="item.singername" @click="songlist(item.singerid)" />
 					<mu-divider/>
 				</template>
 			</mu-list>
-			<div class="hot C" v-if="xianC" >C</div>
+			<div class="hot C" v-if="xianC">C</div>
 			<mu-list>
 				<template v-for="item in myC">
-					<mu-list-item disableRipple :title="item.singername" />
+					<mu-list-item disableRipple :title="item.singername" @click="songlist(item.singerid)" />
 					<mu-divider/>
 				</template>
 			</mu-list>
 			<div class="hot D" v-if="xianD">D</div>
 			<mu-list>
 				<template v-for="item in myD">
-					<mu-list-item disableRipple :title="item.singername" />
+					<mu-list-item disableRipple :title="item.singername"  @click="songlist(item.singerid)"/>
 					<mu-divider/>
 				</template>
 			</mu-list>
 			<div class="hot E" v-if="xianE">E</div>
 			<mu-list>
 				<template v-for="item in myE">
-					<mu-list-item disableRipple :title="item.singername" />
+					<mu-list-item disableRipple :title="item.singername"  @click="songlist(item.singerid)"/>
 					<mu-divider/>
 				</template>
 			</mu-list>
 			<div class="hot F" v-if="xianF">F</div>
 			<mu-list>
 				<template v-for="item in myF">
-					<mu-list-item disableRipple :title="item.singername" />
+					<mu-list-item disableRipple :title="item.singername" @click="songlist(item.singerid)" />
 					<mu-divider/>
 				</template>
 			</mu-list>
 			<div class="hot G" v-if="xianG">G</div>
 			<mu-list>
 				<template v-for="item in myG">
-					<mu-list-item disableRipple :title="item.singername" />
+					<mu-list-item disableRipple :title="item.singername"  @click="songlist(item.singerid)"/>
 					<mu-divider/>
 				</template>
 			</mu-list>
 			<div class="hot H" v-if="xianH">H</div>
 			<mu-list>
 				<template v-for="item in myH">
-					<mu-list-item disableRipple :title="item.singername" />
+					<mu-list-item disableRipple :title="item.singername" @click="songlist(item.singerid)" />
 					<mu-divider/>
 				</template>
 			</mu-list>
 			<div class="hot I" v-if="xianI">I</div>
 			<mu-list>
 				<template v-for="item in myI">
-					<mu-list-item disableRipple :title="item.singername" />
+					<mu-list-item disableRipple :title="item.singername"  @click="songlist(item.singerid)"/>
 					<mu-divider/>
 				</template>
 			</mu-list>
 			<div class="hot J" v-if="xianJ">J</div>
 			<mu-list>
 				<template v-for="item in myJ">
-					<mu-list-item disableRipple :title="item.singername" />
+					<mu-list-item disableRipple :title="item.singername" @click="songlist(item.singerid)" />
 					<mu-divider/>
 				</template>
 			</mu-list>
 			<div class="hot K" v-if="xianK">K</div>
 			<mu-list>
 				<template v-for="item in myK">
-					<mu-list-item disableRipple :title="item.singername" />
+					<mu-list-item disableRipple :title="item.singername"  @click="songlist(item.singerid)"/>
 					<mu-divider/>
 				</template>
 			</mu-list>
 			<div class="hot L" v-if="xianL">L</div>
 			<mu-list>
 				<template v-for="item in myL">
-					<mu-list-item disableRipple :title="item.singername" />
+					<mu-list-item disableRipple :title="item.singername" @click="songlist(item.singerid)" />
 					<mu-divider/>
 				</template>
 			</mu-list>
 			<div class="hot M" v-if="xianM">M</div>
 			<mu-list>
 				<template v-for="item in myM">
-					<mu-list-item disableRipple :title="item.singername" />
+					<mu-list-item disableRipple :title="item.singername"  @click="songlist(item.singerid)"/>
 					<mu-divider/>
 				</template>
 			</mu-list>
 			<div class="hot N" v-if="xianN">N</div>
 			<mu-list>
 				<template v-for="item in myN">
-					<mu-list-item disableRipple :title="item.singername" />
+					<mu-list-item disableRipple :title="item.singername"  @click="songlist(item.singerid)"/>
 					<mu-divider/>
 				</template>
 			</mu-list>
 			<div class="hot O" v-if="xianO">O</div>
 			<mu-list>
 				<template v-for="item in myO">
-					<mu-list-item disableRipple :title="item.singername" />
+					<mu-list-item disableRipple :title="item.singername" @click="songlist(item.singerid)" />
 					<mu-divider/>
 				</template>
 			</mu-list>
 			<div class="hot P" v-if="xianP">P</div>
 			<mu-list>
 				<template v-for="item in myP">
-					<mu-list-item disableRipple :title="item.singername" />
+					<mu-list-item disableRipple :title="item.singername"  @click="songlist(item.singerid)"/>
 					<mu-divider/>
 				</template>
 			</mu-list>
 			<div class="hot Q" v-if="xianQ">Q</div>
 			<mu-list>
 				<template v-for="item in myQ">
-					<mu-list-item disableRipple :title="item.singername" />
+					<mu-list-item disableRipple :title="item.singername"  @click="songlist(item.singerid)"/>
 					<mu-divider/>
 				</template>
 			</mu-list>
 			<div class="hot R" v-if="xianR">R</div>
 			<mu-list>
 				<template v-for="item in myR">
-					<mu-list-item disableRipple :title="item.singername" />
+					<mu-list-item disableRipple :title="item.singername"  @click="songlist(item.singerid)"/>
 					<mu-divider/>
 				</template>
 			</mu-list>
 			<div class="hot S" v-if="xianS">S</div>
 			<mu-list>
 				<template v-for="item in myS">
-					<mu-list-item disableRipple :title="item.singername" />
+					<mu-list-item disableRipple :title="item.singername" @click="songlist(item.singerid)" />
 					<mu-divider/>
 				</template>
 			</mu-list>
 			<div class="hot T" v-if="xianT">T</div>
 			<mu-list>
 				<template v-for="item in myT">
-					<mu-list-item disableRipple :title="item.singername" />
+					<mu-list-item disableRipple :title="item.singername"  @click="songlist(item.singerid)"/>
 					<mu-divider/>
 				</template>
 			</mu-list>
 			<div class="hot U" v-if="xianU">U</div>
 			<mu-list>
 				<template v-for="item in myU">
-					<mu-list-item disableRipple :title="item.singername" />
+					<mu-list-item disableRipple :title="item.singername"  @click="songlist(item.singerid)"/>
 					<mu-divider/>
 				</template>
 			</mu-list>
 			<div class="hot V" v-if="xianV">V</div>
 			<mu-list>
 				<template v-for="item in myV">
-					<mu-list-item disableRipple :title="item.singername" />
+					<mu-list-item disableRipple :title="item.singername"  @click="songlist(item.singerid)"/>
 					<mu-divider/>
 				</template>
 			</mu-list>
 			<div class="hot W" v-if="xianW">W</div>
 			<mu-list>
 				<template v-for="item in myW">
-					<mu-list-item disableRipple :title="item.singername" />
+					<mu-list-item disableRipple :title="item.singername"  @click="songlist(item.singerid)"/>
 					<mu-divider/>
 				</template>
 			</mu-list>
 			<div class="hot X" v-if="xianX">X</div>
 			<mu-list>
 				<template v-for="item in myX">
-					<mu-list-item disableRipple :title="item.singername" />
+					<mu-list-item disableRipple :title="item.singername" @click="songlist(item.singerid)" />
 					<mu-divider/>
 				</template>
 			</mu-list>
 			<div class="hot Y" v-if="xianY">Y</div>
 			<mu-list>
 				<template v-for="item in myY">
-					<mu-list-item disableRipple :title="item.singername" />
+					<mu-list-item disableRipple :title="item.singername"  @click="songlist(item.singerid)"/>
 					<mu-divider/>
 				</template>
 			</mu-list>
 			<div class="hot Z" v-if="xianZ">Z</div>
 			<mu-list>
 				<template v-for="item in myZ">
-					<mu-list-item disableRipple :title="item.singername" />
+					<mu-list-item disableRipple :title="item.singername"  @click="songlist(item.singerid)"/>
 					<mu-divider/>
 				</template>
 			</mu-list>
 			<div class="hot jin" v-if="xian">#</div>
 			<mu-list>
 				<template v-for="item in my">
-					<mu-list-item disableRipple :title="item.singername" />
+					<mu-list-item disableRipple :title="item.singername" @click="songlist(item.singerid)" />
 					<mu-divider/>
 				</template>
 			</mu-list>
@@ -235,6 +235,7 @@
 				title: [],
 				totlelist: [],
 				load: false,
+				bool: 0,
 				mytitle: "",
 				page: 0,
 				myA: [],
@@ -303,7 +304,7 @@
 					url: '/music/singer/list/' + salf.getid + '?json=true'
 
 				}).then((response) => {
-
+					console.log(response);
 					salf.list = response.data.singers.list.info.map(function(item) {
 						//因为获取到数据里面需要传入宽高所以这边做了一层小处理
 						item.imgurl = item.imgurl.replace('{size}', '400')
@@ -322,6 +323,10 @@
 				})
 
 			},
+			songlist:function(getid){
+				console.log(getid);
+				window.location.href = "#/xsong/" + getid;
+			},
 			setscroll: function(ele, e) {
 				console.log(e);
 				this.isShow = e;
@@ -338,14 +343,9 @@
 							scrollTop: $top
 						});
 					}
-				}catch(error){
+				} catch(error) {
 					$(".hot").offset().top
 				}
-
-				//					$top = $("."+ele+"").offset().top-49;
-
-				//				$top = $("."+ele+"").offset().top-49;
-				//				console.log($top);
 
 			},
 			setsl: function() {
@@ -557,7 +557,7 @@
 						if(!repeat) {
 							bcc.push(getlis[a]);
 							bcc.sort();
-												
+
 						}
 					}
 					var bbb;
@@ -588,40 +588,44 @@
 			this.getlist();
 			this.getl();
 			var sale = this;
-//			console.log(this.shouzimu)
-			$(window).scroll(function(eve) {
-//				console.log($(this).scrollTop());
+//			 $(document).bind(touchEvents.touchmove, function (event) {
+//      	    event.preventDefault();
+//          
+//    		  });
+			$(document).on('touchmove',function (eve) {
+//				console.log(eve);
+				//				console.log($(this).scrollTop());
+				//					console.log(111)
+				//					console.log(sale.shouzimu);	
+			
 //					console.log(111)
-//					console.log(sale.shouzimu);	
-				var page = 0;
-				for(var i=0;i<sale.shouzimu.length;i++){
-//					console.log(sale.shouzimu);
-					if(sale.shouzimu[i] == "热"){
-						sale.isShow = 0;
-//					
-					}else{
-						try{
-//							console.log(document.scrollTop);
-							if($(this).scrollTop() > $("."+sale.shouzimu[i]+"").offset().top - 49){
-//							sale.isShow = $("."+sale.shouzimu[i]+"").attr("data-get");
-//							console.log($("."+sale.shouzimu[i]+""))
-//							console.log($("."+sale.shouzimu[i]+"").index());
-								page = $("."+sale.shouzimu[i]+"").index() -3;
-								beack;
-//							console.log(sale.isShow = $("."+sale.shouzimu[i]+"").attr("data-get"))
+					var page = 0;
+					for(var i = 0; i < sale.shouzimu.length; i++) {
+						//					console.log(sale.shouzimu);
+						if(sale.shouzimu[i] == "热") {
+							sale.isShow = 0;
+							//					
+						} else {
+							try {
+								if($(this).scrollTop() > $("." + sale.shouzimu[i] + "").offset().top - 49) {
+
+									page = i;
+									beack;
+
+								}
+
+							} catch(error) {
+
 							}
-							
-						}catch(error){
-							
+							//						
 						}
-//						
+						//					
 					}
-//					
-				}
-				console.log(page);
-//				console.log($("."+sale.shouzimu[i]+"").index())
-				 
-		})
+					sale.isShow = page;
+				
+
+			})
+
 		},
 
 		components: {
