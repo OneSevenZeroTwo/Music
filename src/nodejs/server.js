@@ -33,7 +33,7 @@ function createConnection() {
 		host: 'localhost',
 		user: 'root',
 		password: '',
-		database: 'musicapp'
+		database: 'test'
 	});
 }
 //console.log(app);

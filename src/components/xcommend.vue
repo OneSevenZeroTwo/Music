@@ -165,7 +165,7 @@ export default {
                 console.log(arr);
                 //console.log(this.commend[num-10]);
                 var songList = [this.commend[num-10]];
-                this.$store.dispatch('setImg', [arr[num].currentSrc,true]);
+                this.$store.dispatch('setImg', [arr[num+1].currentSrc,true]);
                 this.$store.dispatch('setSongs',songList);
             }
         },

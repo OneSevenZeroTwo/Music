@@ -9,15 +9,21 @@
 		<ul>
 			<li class="index-page">
 				<a @click="changeDirection()" class="sildeLeft " href="javascript:void(0)">
-					<i class="material-icons">&#xE815;</i> 首页</a>
+					<i class="material-icons">&#xE815;</i> 
+					<p>首页</p>
+				</a>
 			</li>
 			<li class="log-reg">
-				<a class="sildeLeft" href="#/login">
-					<i class="material-icons">&#xE853;</i> {{logReg?'已登录':'登录 / 注册'}} </a>
+				<a class="sildeLeft" href="#/login" @click="clearCookie">
+					<i class="material-icons" >&#xE853;</i> 
+					<p>{{logReg?'退出':'登录'}}</p> 
+				</a>
 			</li>
 			<li class="ask-help">
 				<a class="sildeLeft" href="javascript:void(0)">
-					<i class="material-icons">&#xE0DD;</i> 联系客服</a>
+					<i class="material-icons" style="margin-left:2px">&#xE0DD;</i> 
+					<p>联系客服</p>
+				</a>
 			</li>
 			<li>
 				<a @click="changeDirection()" class="exit_silde" href="javascript:void(0)">
@@ -38,16 +44,27 @@
 		computed: {
 			direction() {
 				return this.$store.state.direction;
-				var cookies = document.cookie;
 			}
 		},
 		methods: {
 			changeDirection() {
 				this.$store.state.direction = "left";
 				//console.log(this.$store.state.direction)
-				
+			},
+			clearCookie(){
+				this.logReg = false;
+				com.setCookie('tel','');
 			}
-
+		},
+		mounted(){
+			var cookie = com.getCookie('tel');
+			console.log(com.getCookie('tel'));
+			if(cookie.length >0){
+				this.logReg = true;
+			}else{
+				this.logReg = false;
+			}
+			
 		}
 
 	}
@@ -139,6 +156,15 @@
 		color: #C0BFC4;
 		position: absolute;
 		bottom: 20%;
-		left: 28%;
+		left: 50%;
+		margin-left: -8px;
+	}
+	ul i{
+		float: left;
+	}
+	ul p{
+		margin-left: 4px;
+		float: left;
+		margin-top: 2px;
 	}
 </style>
