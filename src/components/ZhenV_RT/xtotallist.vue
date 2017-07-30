@@ -9,7 +9,7 @@
 					<img :src="tile.imgurl"  style="width:80%;height:80%;border-radius: 50%;" />
 					<span slot="title"  style="width: 100%;height: 100%;">{{tile.classname}}</span>
 					<!--<span class="zhezhao">{{tile.classname}}</span>-->
-					<div  style="position: absolute;width: 100%;top:0;left:0;height: 100%;z-index: 99999999;" @click="singerlist(tile.classid,tile.classname)"></div>
+					<div  style="position: absolute;width: 100%;top:0;left:0;height: 100%;z-index: 1;" @click="singerlist(tile.classid,tile.classname)"></div>
 				</mu-grid-tile>
 				
 			</mu-grid-list>
@@ -72,6 +72,8 @@
 	.myclass{
 		background-color: #red;
 	}
-
+	.mu-grid-tile-titlebar{
+		height:141px
+	}
 </style>
    

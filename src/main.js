@@ -11,6 +11,7 @@ import range from './views/range'
 import songSheet from './views/songSheet'
 import singer from './views/singer'
 import MuseUI from 'muse-ui';
+//import 'muse-ui/dist/muse-ui.css';
 import VueLazyload from 'vue-lazyload'
 import db from './views/db'
 import mod from './views/mod'
@@ -34,15 +35,22 @@ import pinyin_dict_notone from "./lib/pinyin_dict_notone.js";
 window.pinyin_dict_notone = pinyin_dict_notone;
 
 import "./lib/pinyinUtil.js";
+import com from "./lib/common(模块化).js"
+window.com = com;
 
 
 
 
 //piny.use(first);
+//引入登录注册
+import Register from "./views/register.vue";
+import Login from "./views/login.vue";
 
 Vue.use(VueRouter)
 Vue.use(Vuex)
 Vue.use(VueAwesomeSwiper)
+
+Vue.prototype.$ajax = axios;
 
 // 图片懒加载
 Vue.use(VueLazyload, {
@@ -101,11 +109,20 @@ const routes = [{
 },{
   path:"/song",
   component:song
-}, {
+},
+    //注册登录路由
+    {
+        path: '/register',
+        component: Register
+    },
+    {
+        path: '/login',
+        component: Login
+    }, 
+    {
     path: '/',
     redirect: '/app/newSong'
 }]
-
 
 // 创建状态管理
 var store = new Vuex.Store({
@@ -117,6 +134,7 @@ var store = new Vuex.Store({
         range_page: 1,
         songsPlay: [],
         scrolly: null,
+        showComment:false,
         // 播放器数据状态管理
         showPlay: false,
         imgUrl: '',
@@ -124,7 +142,14 @@ var store = new Vuex.Store({
         getIndex: null,
         getMusic: null,
         louti:false,
-        zimu:null
+        zimu:null,
+
+        commentNum:null,
+        isShowContainer:true,
+        //侧边栏初始化
+        direction: 'left',
+        loginStatus:null
+
     },
     getters: {
         getRange(state) {
@@ -235,7 +260,6 @@ var store = new Vuex.Store({
         setMusic(context, data) {
             context.commit("setMusic", data)
         },
-
     }
 })
 
@@ -255,3 +279,4 @@ new Vue({
   <router-view></router-view>
   `
 }).$mount('#app-box')
+
