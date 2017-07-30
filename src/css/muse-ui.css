@@ -3169,7 +3169,7 @@ html.pixel-ratio-3 .mu-dropDown-menu-line {
 	left: 0;
 	top: 0;
 	opacity: 0;
-	color: #7e57c2;
+	color: #fc378c;
 	-webkit-transform: scale(0);
 	-ms-transform: scale(0);
 	transform: scale(0);
@@ -3216,7 +3216,7 @@ html.pixel-ratio-3 .mu-dropDown-menu-line {
 	-webkit-transform: scale(0);
 	-ms-transform: scale(0);
 	transform: scale(0);
-	color: #7e57c2
+	color: #fc378c
 }
 
 .mu-radio input[type=radio]:checked+.mu-radio-wrapper .mu-radio-icon-checked {

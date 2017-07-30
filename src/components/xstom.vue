@@ -8,7 +8,7 @@
 					
 				
 				<div class="details" style="margin-top:-6px; padding-top:20px;padding-bottom: 20px;">
-					<p class="biao"><span class="setpan">{{xiang}}</span></p>
+					<p class="biao"><span class="setpan">{{xiang}}<p>{{outtime}}</p></span></p>
 				</div>
 				<div class="remove"><img src="../img/up1.png" alt="" @click="show"/></div>
 		</div>
@@ -18,7 +18,7 @@
 <script>
 	export default{
 		
-		props: ["list","get","xiang"],
+		props: ["list","get","xiang","outtime"],
 		methods:{
 			show(){
 				this.$store.state.isshow = false

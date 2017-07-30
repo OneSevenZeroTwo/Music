@@ -123,6 +123,8 @@ var store = new Vuex.Store({
         isshow: false,
         getIndex: null,
         getMusic: null,
+        louti:false,
+        zimu:null
     },
     getters: {
         getRange(state) {
