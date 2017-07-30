@@ -3,7 +3,7 @@
 	<div>
 		
 		<div class="gridlist-demo-container">
-			<mu-grid-list class="gridlist-demo" style="margin-top:20px;">
+			<mu-grid-list class="gridlist-demo" style="margin-top:20px;margin-left:0px;margin-bottom: 0px;margin-right: 0px;">
 				
 				<mu-grid-tile v-for="tile, index in hotsinger" :key="index" titlePosition="top" titleBarClass="myclass" >
 					<img :src="tile.imgurl"  style="width:80%;height:80%;border-radius: 50%;" />

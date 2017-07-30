@@ -371,7 +371,7 @@
 					salf.totlelist = salf.totlelist.concat(mylist);
 
 					//					console.log(salf.totlelist);
-					if(salf.page < 10) {
+					if(salf.page < 14) {
 						salf.getl();
 					} else {
 						salf.getl1();

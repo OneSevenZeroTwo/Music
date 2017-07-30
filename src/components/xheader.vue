@@ -4,10 +4,28 @@
         <div class="topbar">
             <span>bilibili音悦台</span>
         </div>
-        <span class="back"></span>
+        <span class="back" @click="changeDirection()"></span>
         <span class="search"></span>
     </div>
 </template>
+<script type="text/javascript">
+	module.exports = {
+		computed: {
+			title() {
+				//暴力获取状态
+				//this.$store.state.title
+				return this.$store.getters.getCount
+			}
+		},
+		methods:{
+			changeDirection() {
+				this.$store.state.direction = "right";
+				//console.log(this.$store.state.direction)
+			}
+		}
+	}
+</script>
+
 <style scoped>
 .topbar {
     position: fixed;
