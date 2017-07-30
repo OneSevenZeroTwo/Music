@@ -114,12 +114,15 @@ var store = new Vuex.Store({
         range_page: 1,
         songsPlay: [],
         scrolly: null,
+        showComment:false,
         // 播放器数据状态管理
         showPlay: false,
         imgUrl: '',
         isshow: false,
         getIndex: null,
         getMusic: null,
+        commentNum:null,
+        isShowContainer:true
     },
     getters: {
         getRange(state) {
