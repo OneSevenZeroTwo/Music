@@ -1,7 +1,7 @@
 <template>
     <div id="song">
         <div class="header">
-            <i class="iconfont icon-home"></i>
+            <i class="iconfont icon-home" @click="back()"></i>
             <div class="header-content">
                 <p class="title">演员</p>
                 <p class="author">薛之谦</p>
@@ -10,11 +10,10 @@
         </div>
         <!-- 歌手头像 歌词同步 -->
         <div class="song-info">
-            <div class="picture">
-                <img src="" alt="">
+            <div id="picture" :class="{'zhuan':zhuan}">
+                <img src="../img/changpian.png" alt="">
             </div>
             <div class="lyric">
-                歌词
             </div>
             <div class="row">
                 <i class="iconfont icon-love"></i>
@@ -36,26 +35,73 @@
                 <button onclick="player.switchMode()">player.switchMode()</button> -->
             </div>
         </div>
+        <!-- 广告 -->
+        <div class="ad" v-show = "appear">
+             <img src="http://business.cdn.qianqian.com/qianqian/pic/bos_client_14976036646c41b35e918e1c10d11fe38669ec2061.jpg" alt="">
+        </div>
     </div>
 </template>
 <script>
-var skPlayer = require("../lib/skPlayer.min.js");
+import skPlayer from '../lib/skPlayer.js';
+import '../css/skPlayer.scss'
 
+import axios from 'axios'
 export default {
-	mounted(){
-	    var player = new skPlayer.skPlayer({
-	        autoplay: true,
+    data(){
+        return {
+            "zhuan":true,
+            "appear":true
+        }
+    },
+    computed: {
+        songlist() {
+            return this.$store.getters.getRecord
+        }
+    },
+    methods: {
+        back() {
+            // window.location.href = "/#/app/songSheet"
+            window.history.back()
+        }
+    },
+    mounted() {
+        //接收唱片信息;
+        var songlist = this.$store.getters.getRecord
+        var player = new skPlayer({
+            listshow:false,
             music: {
-                type: 'cloud',
-                source: 317921676
+                type: 'file',
+                source:songlist
             }
-	    });
-	}
+        });
+        player.play()
+        //-------------唱片的旋转类名控制;
+        var audio = document.querySelector('.skPlayer-source');
+        var kPlayer = document.querySelector('.skPlayer-play-btn')
+        var self = this
+
+        kPlayer.onclick =function(){
+            if(audio.paused){
+               self.zhuan = false
+            }else{
+                self.zhuan = true
+            }  
+        }
+        //----广告的隐藏
+        var ad = document.querySelector('.skPlayer-list-switch')
+        ad.onclick =function(){
+            if (self.appear) {
+                self.appear = false;
+            }else{
+                self.appear = true;
+            }
+        }
+    }
 }
+
 
 </script>
 <style scoped>
-/*@import url('../css/skPlayer.scss');*/
 #song {
     background-color: #f8f8f8;
     overflow: hidden;
@@ -112,18 +158,21 @@ export default {
     overflow: hidden;
 }
 
-.picture {
+#picture {
     width: 166px;
     height: 166px;
     background-color: #fff;
     align-self: center;
     margin-left: 110px;
     margin-top: 30px;
-    border-radius: 4px;
-    box-shadow: 0 0 10px 0 rgba(50, 50, 50, .31)
+    border-radius: 50%;
+    box-shadow: 0 0 10px 2px rgba(50, 50, 50, .31);
+}
+.zhuan{
+    animation: "loading" 3s infinite linear
 }
 
-.picture img {
+#picture img {
     width: 100%;
     height: 100%;
 }
@@ -142,20 +191,43 @@ export default {
 
 .play {
     padding: 0 20px;
-    height: 266px;
-    background-color: pink;
+    height: 240px;
     position: relative;
 }
-#skPlayer{
-	position: absolute;
-	left: 0;
-	top:0;
+
+#skPlayer {
+    position: absolute;
+    left: 0;
+    top: 0;
 }
 
-#skPlayer .skPlayer-picture .skPlayer-play-btn{
-	left:50px
+#skPlayer .skPlayer-picture .skPlayer-play-btn {
+    left: 50px
 }
-.skPlayer-list{
-	height: 135px;
+
+.skPlayer-list {
+    height: 135px;
+}
+.ad{
+    width: 80%;
+    height:100px;
+    text-align: center;
+    position: absolute;
+    bottom: 32px;
+}
+.ad img{
+    width: 100%;
+    height: 100%;
+    margin-left: 42px;
+    border-radius: 16px;
+}
+@-webkit-keyframes "loading" {
+    /**关键帧名称**/
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
 }
 </style>
