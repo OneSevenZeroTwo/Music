@@ -97,6 +97,20 @@ app.get('/getcomment', function(req, res) {
     res.append("Access-Control-Allow-Origin", "*");
 });
 
+// 保存前端更新的评论数据
+app.get('/savecomment', function(req, res) {
+    var comCount = req.query.com;
+    createCon();
+    connection.connect();
+    connection.query('SELECT * FROM comment limit ' + comCount + ',' + comCount, function(error, results, fields) {
+        if (error) throw error;
+        res.send(results);
+        //关闭数据库 
+        //connection.end();
+    });
+    res.append("Access-Control-Allow-Origin", "*");
+});
+
 // 获取文章数据
 app.get('/passage', function(req, res) {
     var id = req.query.id;

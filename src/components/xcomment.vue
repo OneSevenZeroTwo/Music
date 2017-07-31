@@ -3,28 +3,40 @@
         <p class="title">最新评论</p>
         <span class="back" @click="hideComment"></span>
         <div class="main">
-	        <section v-for="c in comData" class="comData">
-	            <div class="top">
-	            	<span class="head">
-	                	<img :src="c.imgurl" alt="">
-	            	</span>
-	                <p class="author">{{c.author}}</p>
-	                <p class="editetime">{{c.editetime}}</p>
-	                <span class="sendReply"></span>
-	            </div>
-	            <p class="comment_content">{{c.content}}</p>
-	            <div class="reply">
-	            </div>
-	        </section>
+            <section v-for="c in comData" class="comData">
+                <div class="top">
+                    <span class="head">
+                        <img :src="c.imgurl" alt="">
+                    </span>
+                    <p class="author">{{c.author}}</p>
+                    <p class="editetime">{{c.editetime}}</p>
+                    <span class="sendReply"></span>
+                </div>
+                <p class="comment_content">{{c.content}}</p>
+                <div class="reply">
+                </div>
+            </section>
         </div>
         <section class="sendComment" v-show='!screenHight'>
             <input type="text" placeholder="发表评论">
-            <button>发表</button>
+            <button @click="send">发表</button>
+        </section>
+        <section class="alert">
+            <div class="js_dialog" id="iosDialog2" v-show="isShowAlert">
+                <div class="weui-mask"></div>
+                <div class="weui-dialog">
+                    <div class="weui-dialog__bd">发表评论前请先登录</div>
+                    <div class="weui-dialog__ft">
+                        <a href="#/login" class="weui-dialog__btn weui-dialog__btn_primary">登录</a>
+                    </div>
+                </div>
+            </div>
         </section>
     </div>
 </template>
 <script>
 import axios from 'axios'
+// import $ from 'jquery'
 
 export default {
     data() {
@@ -32,12 +44,18 @@ export default {
                 screenHight: null,
                 //isShow:false
                 isClick: false,
-                comData:null
+                comData: null,
+                isShowAlert: false,
+                // 定义 getData
+                getData: {},
+                // 定义自定义指令的绑定值
+                ifUpdate: true
             }
         },
         mounted() {
+            var date = new Date();
+            console.log(Date.parse(date));
             this.screenHight = window.screen.availHeight;
-            console.log(this.$store.state.commentNum);
             var self = this;
             axios.get('http://localhost:8008/getcomment', {
                     params: {
@@ -53,7 +71,7 @@ export default {
                 });
         },
         computed: {
-        	// 点击时出现评论页面
+            // 点击时出现评论页面
             showComment() {
                 if (this.$store.state.showComment == true) {
                     this.screenHight = 0;
@@ -70,6 +88,40 @@ export default {
             },
             buttonClick() {
                 this.isClick = true;
+            },
+            send() {
+                var cookie = com.getCookie('tel');
+                if (cookie == '') {
+                    this.isShowAlert = true;
+                } else {
+
+                }
+            }
+        },
+        // 定义自定义指令 自动刷新评论
+        directives: {
+            initData: function(val, oldVal) {
+                if (!val) {
+                    return;
+                }
+                var self = this;
+                axios.get('http://localhost:8008/savecomment', {
+                        params: {
+                            imgurl:'../../static/images/404.png',
+                            author:com.getCookie('tel'),
+                            editetime:'now',
+                            content:document.getElementsByTagName('input')
+                        }
+                    })
+                    .then(function(response) {
+                        self.comData = response.data;
+                        console.log(self.comData);
+                    })
+                    .catch(function(error) {
+                        console.log(error);
+                    });
+                // 下次 ifUpdate 值更新为 true 时就会再次使用上面的 ajax 去获取数据
+                self.vm.ifUpdate = false;
             }
         }
 }
@@ -135,40 +187,48 @@ export default {
 .title {
     margin-top: 50px;
 }
-.top{
-	overflow: hidden;
-}
-.top .head{
-	border-radius: 50%;
-	overflow: hidden;
-	float: left;
-	display: inline-block;
-	width: 40px;
-	height:40px;
-	border:1px solid #ddd;
-	text-align: center;
-}
-.head img{
-	height: 100%;
-}
-.editetime,.author{
-	margin-left: 50px;
-}
-.editetime{
-	font-size: 12px;
-	color:#ddd;
-}
-.comData{
-	margin-top: 20px;
-	border-bottom: 1px solid rgba(0,0,0,.1);
-	padding-bottom: 10px;
 
+.top {
+    overflow: hidden;
 }
-.comment_content{
-	margin-top: 4px;
-	text-align: justify;
+
+.top .head {
+    border-radius: 50%;
+    overflow: hidden;
+    float: left;
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    border: 1px solid #ddd;
+    text-align: center;
 }
-.main{
-	margin-bottom: 50px;
+
+.head img {
+    height: 100%;
+}
+
+.editetime,
+.author {
+    margin-left: 50px;
+}
+
+.editetime {
+    font-size: 12px;
+    color: #ddd;
+}
+
+.comData {
+    margin-top: 20px;
+    border-bottom: 1px solid rgba(0, 0, 0, .1);
+    padding-bottom: 10px;
+}
+
+.comment_content {
+    margin-top: 4px;
+    text-align: justify;
+}
+
+.main {
+    margin-bottom: 50px;
 }
 </style>
