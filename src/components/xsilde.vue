@@ -14,6 +14,10 @@
 					<p>首页</p>
 				</a>
 			</div>
+			<div class="mine-page">
+				<a class="sildeLeft " href="#/shoucang">
+				<i class="material-icons">&#xE553;</i> {{savePage?'':'收藏'}}</a>
+			</div>
 			<div class="log-reg">
 				<a class="sildeLeft" href="#/login" @click="clearCookie">
 					<i class="material-icons" >&#xE853;</i> 
@@ -40,7 +44,8 @@
 		data(){
 			return{
 				logReg:false,
-				nickname:null
+				nickname:null,
+				savePage:false
 			}
 		},
 		computed: {
@@ -52,6 +57,9 @@
 			changeDirection() {
 				this.$store.state.direction = "left";
 				//console.log(this.$store.state.direction)
+			},
+			uploadPic(){
+				
 			},
 			clearCookie(){
 				this.logReg = false;
@@ -154,12 +162,11 @@
 	}
 	
 	.exit_silde {
-		font-size: 16px;
+		font-size: 20px;
 		color: #C0BFC4;
 		position: absolute;
-		bottom: 20%;
-		left: 50%;
-		margin-left: -8px;
+		bottom: 10%;
+		left: 80%;
 	}
 	.list div a{
 		overflow: hidden;
