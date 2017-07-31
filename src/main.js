@@ -37,15 +37,11 @@ window.pinyin_dict_notone = pinyin_dict_notone;
 import "./lib/pinyinUtil.js";
 
 
-
-
-<<<<<<< Updated upstream
-//piny.use(first);
-=======
 //引入登录注册
 import Register from "./views/register.vue";
 import Login from "./views/login.vue";
->>>>>>> Stashed changes
+//引入收藏
+import Shoucang from "./views/shoucang.vue";
 
 Vue.use(VueRouter)
 Vue.use(Vuex)
@@ -55,17 +51,11 @@ Vue.prototype.$ajax = axios;
 
 // 图片懒加载
 Vue.use(VueLazyload, {
-<<<<<<< Updated upstream
     preLoad: 1.3,
     error: 'static/images/404.png',
     loading: 'static/images/404.png',
     attempt: 1
-=======
-	preLoad: 1.3,
-	error: 'static/images/404.png',
-	loading: 'static/images/404.png',
-	attempt: 1
->>>>>>> Stashed changes
+
 })
 
 // 挂在axios在Vue构造器下
@@ -73,7 +63,6 @@ Vue.prototype.$ajax = axios;
 
 // 创建路由
 const routes = [{
-<<<<<<< Updated upstream
     path: '/app',
     component: App,
     children: [{
@@ -118,48 +107,8 @@ const routes = [{
 },{
   path:"/song",
   component:song
-}, {
-    path: '/',
-    redirect: '/app/newSong'
-}]
-=======
-		path: '/app',
-		component: App,
-		children: [{
-				path: 'newSong',
-				component: newSong
-			},
-			{
-				path: 'range',
-				component: range
-			},
-			{
-				path: 'songSheet',
-				component: songSheet
-			},
-			{
-				path: 'singer',
-				component: singer,
-				children: [{
-						path: 'tolist',
-						component: xtotalist
-					}, {
-						path: 'singlist/:id',
-						component: singlist
-					},
-					{
-						path: '/app/singer',
-						redirect: '/app/singer/tolist'
-					}
-				]
-			}
-		]
-	},
-	{
-		path: '/rangeDetails/:id',
-		component: rangeDetails
-	},
-	//注册登录路由
+},
+	//注册登录收藏路由
 	{
 		path: '/register',
 		component: Register
@@ -167,18 +116,19 @@ const routes = [{
 	{
 		path: '/login',
 		component: Login
+	},{
+    path: '/',
+    redirect: '/app/newSong'
 	},
-	//重定向路由
 	{
-		path: '/',
-		redirect: '/app/newSong'
+		path: '/shoucang',
+		component: Shoucang
 	}
 ]
->>>>>>> Stashed changes
+
 
 // 创建状态管理
 var store = new Vuex.Store({
-<<<<<<< Updated upstream
     state: {
         newSong: null,
         newClass: null,
@@ -193,6 +143,12 @@ var store = new Vuex.Store({
         isshow: false,
         getIndex: null,
         getMusic: null,
+        //侧边栏初始化
+		direction: 'left',
+		telephone:'',
+		password:'',
+		//收藏
+		singername:[]
     },
     getters: {
         getRange(state) {
@@ -303,79 +259,6 @@ var store = new Vuex.Store({
         setMusic(context, data) {
             context.commit("setMusic", data)
         },
-=======
-
-	state: {
-		newSong: null,
-		newClass: null,
-		newDetails: null,
-		range_id: null,
-		//侧边栏初始化
-		direction: 'left',
-		telephone:'',
-		password:''
-
-	},
-	getters: {
-		getRange(state) {
-			return state.newClass
-		},
-		getDetails(state) {
-			return state.newDetails
-		}
-	},
-	mutations: {
-		getMusic(state) {
-			axios.get('http://localhost:6787/')
-				.then((response) => {
-					state.newSong = response.data
-					console.log(state.newSong)
-				})
-				.catch((error) => {
-					console.log(error);
-				});
-		},
-		getRange(state) {
-			axios.get('http://localhost:5200/')
-				.then((response) => {
-					state.newClass = response.data
-					//      console.log(state.newClass.rank.list)
-				})
-				.catch((error) => {
-					console.log(error);
-				});
-		},
-		rangeDetails(state) {
-			axios.get('http://localhost:6200/')
-				.then((response) => {
-					state.newDetails = response.data
-					//      console.log(state.newDetails.rank.list)
-					//				console.log(state.range_id)
-				})
-				.catch((error) => {
-					console.log(error);
-				});
-		},
-		setDetails(state, data) {
-			state.range_id = data
-		}
-	},
-	actions: {
-		getMusic(context, data) {
-			context.commit('getMusic')
-		},
-		getRange(context, data) {
-			context.commit('getRange')
-		},
-		rangeDetails(context, data) {
-			context.commit('rangeDetails')
-		},
-		setDetails(context, data) {
-			context.commit('setDetails', data)
-		}
-	}
->>>>>>> Stashed changes
-
     }
 })
 
@@ -395,9 +278,4 @@ new Vue({
   <router-view></router-view>
   `
 }).$mount('#app-box')
-<<<<<<< Updated upstream
-=======
-router.beforeEach((to,from,next)=>{
-	console.log(123)
-})
->>>>>>> Stashed changes
+

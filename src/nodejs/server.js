@@ -94,12 +94,12 @@ app.get('/login',function(req,res){
 	
 })
 
-//上传头像
+/*//上传头像
 app.post('/touxiang', function(req, res) {
 	createConnection();
 	var tel = req.query.telephone;
-	console.log(111111111111111,imgurl)
-	/*connection.query(`update user set touxiang = '${imgurl}' where telephone = '${tel}'`, function(error, results, fields) {
+	console.log(1111,imgurl)
+	connection.query(`update user set touxiang = '${imgurl}' where telephone = '${tel}'`, function(error, results, fields) {
 		if(error) throw error;
 		//results =>array类型
 		console.log('The solution is: ', results);
@@ -107,10 +107,10 @@ app.post('/touxiang', function(req, res) {
 			my: results
 		}
 		res.send(JSON.stringify(obj));connection.end();
-	});*/
+	});
 	res.append("Access-Control-Allow-Origin", "*");
 	
-})
+})*/
 
 /*
 //只要路由是/test就进入到此逻辑
@@ -119,6 +119,34 @@ app.all('/test', function(req, res) {
 	res.send('进入到test页面');
 })
 */
+
+//收藏
+app.post('/shoucang', function(req, res) {
+	createConnection();
+	connection.connect();
+	var telephone = req.query.telephone;
+	var singername  = req.query.singername ;
+	connection.query(`SELECT singername FROM shoucang WHERE telephone = '${telephone}'`, function(error, results, fields){
+		if(error) throw error;
+		console.log(results[0].singername );
+		var str = results[0].singername ;
+		console.log(str);
+		// if(str.length>=1){
+		if(str){
+			str += ','+singername ;
+		}else{
+			str = singername ;
+		}		
+		console.log(str);
+		connection.query(`update shoucang set singername  = '${str}' where telephone = '${telephone}'`,function(error, results, fields){
+			if(error) throw error;
+			res.send('收藏成功');
+		})
+	})
+	res.append("Access-Control-Allow-Origin", "*")
+})
+
+
 //不能设置成80，因为apache端口已经占用
 var server = app.listen(12345, function() {
 	//测试

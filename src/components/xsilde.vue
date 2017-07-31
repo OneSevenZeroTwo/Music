@@ -11,6 +11,10 @@
 				<a @click="changeDirection()" class="sildeLeft " href="javascript:void(0)">
 					<i class="material-icons">&#xE815;</i> 首页</a>
 			</li>
+			<li class="mine-page">
+				<a class="sildeLeft " href="#/shoucang">
+					<i class="material-icons">&#xE553;</i> {{savePage?'':'收藏'}} </a>
+			</li>
 			<li class="log-reg">
 				<a class="sildeLeft" href="#/login">
 					<i class="material-icons">&#xE853;</i> {{logReg?'已登录':'登录 / 注册'}} </a>
@@ -21,7 +25,7 @@
 			</li>
 			<li>
 				<a @click="changeDirection()" class="exit_silde" href="javascript:void(0)">
-					<i class="material-icons">&#xE14C;</i></a>
+					<i class="material-icons">&#xE5CB;</i></a>
 			</li>
 		</ul>
 	</div>
@@ -32,7 +36,8 @@
 	export default {
 		data(){
 			return{
-				logReg:false
+				logReg:false,
+				savePage:false
 			}
 		},
 		computed: {
@@ -45,6 +50,9 @@
 			changeDirection() {
 				this.$store.state.direction = "left";
 				//console.log(this.$store.state.direction)
+				
+			},
+			uploadPic(){
 				
 			}
 
@@ -135,10 +143,10 @@
 	}
 	
 	.exit_silde {
-		font-size: 16px;
+		font-size: 20px;
 		color: #C0BFC4;
 		position: absolute;
-		bottom: 20%;
-		left: 28%;
+		bottom: 10%;
+		left: 80%;
 	}
 </style>
