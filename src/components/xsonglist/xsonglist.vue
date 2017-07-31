@@ -5,7 +5,7 @@
             <div class="ul row">
                 <div class="li" v-for="(n , index) in info" track-by="$index" :key="n.id">
                     <div class="info">
-                        <img v-lazy="n.imgurl">
+                        <img v-lazy="n.imgurl" >
                         <div class="playNum">
                             <i class="iconfont icon-ear"></i> {{n.playcount}}
                         </div>

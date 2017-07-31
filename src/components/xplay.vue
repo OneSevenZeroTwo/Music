@@ -5,7 +5,7 @@
             <div id="progress">
                 <span id="bar"></span>
             </div>
-                <img :src="imgUrl">
+                <img :src="imgUrl" @click = "record_msg()">
                 <h4>{{songName}}</h4>
                 <p>{{singerName}}</p>
                 <i :class="{'active':isClick}" @click="playStatus" class="playButton"></i>
@@ -95,6 +95,9 @@ export default {
                 var audio = document.getElementById('audio');
                 var down = document.getElementById('down');
                 var src = audio.src
+            },
+            record_msg(){
+                window.location.href = "/#/song"
             }
 
         },
@@ -132,6 +135,11 @@ export default {
                         var audio = document.getElementById('audio');
                         this.page = 0 ;
                         this.isClick = true
+
+                        //传递信息给唱片组件---重要--
+                       var record = this.$store.getters.songsPlay;
+                       this.$store.dispatch('setRecord',record);
+
                     })
                     .catch((error) => {
                         console.log(error);
