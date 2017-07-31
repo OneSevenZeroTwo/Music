@@ -1,5 +1,5 @@
 <template>
-	<mu-back-top :height="500" :bottom="67" :right="45" :duration="1000">
+	<mu-back-top :height="500" :bottom="86" :right="45" :duration="1000">
 		<!--<i  class="mu-icon material-icons">keyboard_arrow_up</i>-->
 		<mu-raised-button label="keyboard_arrow_up" class="demo-raised-button mu-icon material-icons" primary/>
 	</mu-back-top>

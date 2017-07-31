@@ -101,9 +101,10 @@
 						if(res.data.user.length == 0) {
 							//alert('登录帐号或登录密码错误');
 							this.openCon = '登录帐号或登录密码错误'
-						}else
-						if(res.data.user.length == 1) {
+						}
+						else if(res.data.user.length == 1) {
 							//alert('登录成功');
+							console.log(this.$store.state.loginStatus);
 							var cookies = document.cookie;
 							if(cookies) {
 								var arr = cookies.split('; ');
@@ -115,9 +116,7 @@
 									}
 								})
 							}
-
 						}
-
 					})
 					.catch((error) => {
 						console.log(error);
