@@ -6,7 +6,7 @@
 		<xcolumn></xcolumn>
 		<xchosen></xchosen>
 		<xzhuanlang></xzhuanlang>
-		<xplay></xplay>	
+		<xplay></xplay>
 	</div>
 </template>
 <script>
@@ -19,17 +19,17 @@
 	import xplay from '../components/xplay.vue'
 
 	export default {
-	  components: {
-	    xbanner,
-	    xhot,
-	    xcommend,
-	    xcolumn,
-	    xchosen,
-	    xzhuanlang,
-	    xplay
-	  },
-		mounted(){
-			this.$store.dispatch('setIndex','0');
+		components: {
+			xbanner,
+			xhot,
+			xcommend,
+			xcolumn,
+			xchosen,
+			xzhuanlang,
+			xplay
+		},
+		mounted() {
+			this.$store.dispatch('setIndex', '0');
 		}
 	}
 </script>

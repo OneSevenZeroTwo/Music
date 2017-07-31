@@ -20,7 +20,7 @@ import db from './views/db'
 import mod from './views/mod'
 import passageDetail from './views/passageDetail'
 import song from './views/song'
-Vue.use(MuseUI)
+import connection from './views/connection'
 
 import Vuex from 'vuex'
 import axios from 'axios'
@@ -42,16 +42,18 @@ import com from "./lib/common(模块化).js"
 window.com = com;
 
 
-
-
-//piny.use(first);
 //引入登录注册
 import Register from "./views/register.vue";
 import Login from "./views/login.vue";
+//引入收藏
+import Shoucang from "./views/shoucang.vue";
+
 
 Vue.use(VueRouter)
 Vue.use(Vuex)
 Vue.use(VueAwesomeSwiper)
+Vue.use(MuseUI)
+
 
 Vue.prototype.$ajax = axios;
 
@@ -68,28 +70,28 @@ Vue.prototype.$ajax = axios;
 
 // 创建路由
 const routes = [{
-    path: '/app',
-    component: App,
-    children: [{
-        path: 'newSong',
-        component: newSong
-    }, {
-        path: 'range',
-        component: range
-    }, {
-        path: 'songSheet',
-        component: songSheet
-    }, {
-        path: 'singer',
-        component: singer,
+        path: '/app',
+        component: App,
         children: [{
-            path: 'tolist',
-            component: xtotalist
+            path: 'newSong',
+            component: newSong
         }, {
-            path: '/app/singer',
-            redirect: '/app/singer/tolist'
+            path: 'range',
+            component: range
+        }, {
+            path: 'songSheet',
+            component: songSheet
+        }, {
+            path: 'singer',
+            component: singer,
+            children: [{
+                path: 'tolist',
+                component: xtotalist
+            }, {
+                path: '/app/singer',
+                redirect: '/app/singer/tolist'
+            }]
         }]
-    }]
 }, {
     path: '/rangeDetails/:id',
     component: rangeDetails,
@@ -137,6 +139,14 @@ const routes = [{
     }]
 },
 {
+	path: '/shoucang',
+    component: Shoucang
+},
+{
+	path: '/connection',
+    component: connection
+},
+{
 	path: '/',
 	redirect: '/app/newSong'
 }]
@@ -151,7 +161,7 @@ var store = new Vuex.Store({
         range_page: 1,
         songsPlay: [],
         scrolly: null,
-        showComment:false,
+        showComment: false,
         // 播放器数据状态管理
         showPlay: false,
         imgUrl: '',
@@ -161,17 +171,29 @@ var store = new Vuex.Store({
         louti:false,
         zimu:null,
         zxrm:null,
-        newsearch:null,
+        newsearch:'',
         getsearch:null,
         newId:1,
-        
-
         commentNum:null,
         isShowContainer:true,
+        //唱片
+        record:'',
         //侧边栏初始化
         direction: 'left',
-        loginStatus:null
-
+        telephone: '',
+        password: '',
+        //收藏
+        singername: [],
+        louti: false,
+        zimu: null,
+        commentNum: null,
+        isShowContainer: true,
+        newComment:null,
+        newCommentCount:null,
+        // 存放文章的历史浏览高度
+        arrHight:[],
+        getshou:[],
+        loginStatus: null
     },
     getters: {
         getRange(state) {
@@ -207,6 +229,9 @@ var store = new Vuex.Store({
         getId(state) {
             return state.newId
         },
+        getRecord(state){
+            return state.record
+        }
     },
     mutations: {
         getMusic(state) {
@@ -289,6 +314,26 @@ var store = new Vuex.Store({
         setgq(state, data) {
 			state.newsearch = data
         },
+        setRecord(state,data){//添加音乐详情页面的歌单列表;
+            var arr = [];
+            data.forEach(function(item) {
+            item.hash
+            axios.get('/music/app/i/getSongInfo.php?cmd=playInfo&hash=' +item.hash)
+                .then((response) => {
+                   var temp = {}
+                   temp.name = response.data.songName;
+                   temp.author = response.data.singerName;
+                   temp.src = response.data.url;
+                   temp.cover = response.data.imgUrl.replace('{size}', '400')
+                   arr.push(temp)
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+             })
+            state.record = arr;
+
+        }
     },
     actions: {
         getMusic(context, data) {
@@ -333,6 +378,9 @@ var store = new Vuex.Store({
         setgq(context, data) {
             context.commit("setgq", data)
         },
+        setRecord(context,data){
+            context.commit('setRecord',data)
+        }
     }
 })
 
@@ -352,4 +400,3 @@ new Vue({
   <router-view></router-view>
   `
 }).$mount('#app-box')
-

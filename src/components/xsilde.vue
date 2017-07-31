@@ -6,30 +6,35 @@
 				<img @click="uploadPic()" class="headpic" src="../../static/images/404.png">
 			</div>
 		</form>
-		<ul>
-			<li class="index-page">
+		<div class="nickname">{{nickname}}</div>
+		<section class="list">
+			<div class="index-page">
 				<a @click="changeDirection()" class="sildeLeft " href="javascript:void(0)">
 					<i class="material-icons">&#xE815;</i> 
 					<p>首页</p>
 				</a>
-			</li>
-			<li class="log-reg">
+			</div>
+			<div class="mine-page">
+				<a class="sildeLeft " href="#/shoucang">
+				<i class="material-icons">&#xE553;</i> {{savePage?'':'收藏'}}</a>
+			</div>
+			<div class="log-reg">
 				<a class="sildeLeft" href="#/login" @click="clearCookie">
 					<i class="material-icons" >&#xE853;</i> 
 					<p>{{logReg?'退出':'登录'}}</p> 
 				</a>
-			</li>
-			<li class="ask-help">
+			</div>
+			<div class="ask-help">
 				<a class="sildeLeft" href="javascript:void(0)">
 					<i class="material-icons" style="margin-left:2px">&#xE0DD;</i> 
-					<p>联系客服</p>
+					<p><a href="#/connection" style="color:#C0BFC4">联系客服</a></p>
 				</a>
-			</li>
-			<li>
+			</div>
+			<div>
 				<a @click="changeDirection()" class="exit_silde" href="javascript:void(0)">
-					<i class="material-icons">&#xE14C;</i></a>
-			</li>
-		</ul>
+				<i class="material-icons">&#xE14C;</i></a>
+			</div>
+		</section>
 	</div>
 
 </template>
@@ -38,7 +43,9 @@
 	export default {
 		data(){
 			return{
-				logReg:false
+				logReg:false,
+				nickname:null,
+				savePage:false
 			}
 		},
 		computed: {
@@ -50,6 +57,9 @@
 			changeDirection() {
 				this.$store.state.direction = "left";
 				//console.log(this.$store.state.direction)
+			},
+			uploadPic(){
+				
 			},
 			clearCookie(){
 				this.logReg = false;
@@ -64,7 +74,7 @@
 			}else{
 				this.logReg = false;
 			}
-			
+			this.nickname = com.getCookie('tel');
 		}
 
 	}
@@ -98,7 +108,7 @@
 		left: 0;
 	}
 	
-	li:nth-child(1) {
+	.list div:nth-child(1) {
 		margin-top: 15%
 	}
 	
@@ -152,19 +162,27 @@
 	}
 	
 	.exit_silde {
-		font-size: 16px;
+		font-size: 20px;
 		color: #C0BFC4;
 		position: absolute;
-		bottom: 20%;
-		left: 50%;
-		margin-left: -8px;
+		bottom: 10%;
+		left: 80%;
 	}
-	ul i{
+	.list div a{
+		overflow: hidden;
+	}
+	i{
 		float: left;
+		display: inline-block;	
 	}
-	ul p{
+	p{
 		margin-left: 4px;
 		float: left;
 		margin-top: 2px;
+	}
+	.nickname{
+		width: 100%;
+		text-align: center;
+		color: #fff;
 	}
 </style>

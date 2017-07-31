@@ -65,7 +65,7 @@ app.get('/mod', function(req, res) {
     res.append("Access-Control-Allow-Origin", "*");
 });
 
-// 存入修改后的评论数据
+// 后台存入修改后的评论数据
 app.get('/save', function(req, res) {
     var id = req.query.id;
     var title = req.query.title;
@@ -74,7 +74,7 @@ app.get('/save', function(req, res) {
     var content = req.query.content;
     createCon();
     connection.connect();
-    connection.query('UPDATE  comment set title="'+ title +'",subtitle="'+ subtitle +'",rating="'+ rating +'",content="'+ content +'"where id="'+id+'"', function(error, results, fields) {
+    connection.query('UPDATE  comment set title="' + title + '",subtitle="' + subtitle + '",rating="' + rating + '",content="' + content + '"where id="' + id + '"', function(error, results, fields) {
         if (error) throw error;
         res.send(results);
         //关闭数据库 
@@ -97,13 +97,33 @@ app.get('/getcomment', function(req, res) {
     res.append("Access-Control-Allow-Origin", "*");
 });
 
+// 保存前端更新的评论数据
+app.get('/savecomment', function(req, res) {
+    var imgurl = req.query.imgurl;
+    var author = req.query.author;
+    var editetime = req.query.editetime;
+    var content = req.query.content;
+    createCon();
+    connection.connect();
+    // 插入新的评论
+    connection.query('insert into comment(imgurl,author,editetime,content) values("' + imgurl + '","' + author + '","' + editetime + '","' + content + '")', function(error, results, fields) {
+        if (error) throw error;
+        // 获取新插入的评论
+        connection.query('SELECT * FROM comment where author="' + author + '"and editetime = "'+ editetime + '"' , function(error, results, fields) {
+            if (error) throw error;
+            res.send(results);    
+        });
+    });
+    res.append("Access-Control-Allow-Origin", "*");
+});
+
 // 获取文章数据
 app.get('/passage', function(req, res) {
     var id = req.query.id;
     console.log(id);
     createCon();
     connection.connect();
-   connection.query('SELECT * FROM passage where id=' + id, function(error, results, fields) {
+    connection.query('SELECT * FROM passage where id=' + id, function(error, results, fields) {
         if (error) throw error;
         res.send(results);
         //关闭数据库 
