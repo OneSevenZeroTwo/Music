@@ -30,8 +30,11 @@
 			}
 		},
 		mounted() {
+			this.$store.dispatch('setPage',1);
 			this.$store.dispatch('setDetails', this.$route.params.id)
 			this.getDetails();
+			this.$watch("songs",function(){
+			})
 		},
 		computed: {
 			info() {

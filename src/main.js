@@ -6,6 +6,9 @@ import FastClick from 'fastclick';
 import VueRouter from 'vue-router'
 import App from './views/App'
 import rangeDetails from './views/rangeDetails'
+import search from './views/search'
+import hotSearch from "./components/search/hotSearch.vue"
+import keywordSearch from "./components/search/keywordSearch.vue"
 import newSong from './views/newSong'
 import range from './views/range'
 import songSheet from './views/songSheet'
@@ -110,18 +113,32 @@ const routes = [{
   path:"/song",
   component:song
 },
-    //注册登录路由
-    {
-        path: '/register',
-        component: Register
-    },
-    {
-        path: '/login',
-        component: Login
-    }, 
-    {
-    path: '/',
-    redirect: '/app/newSong'
+//注册登录路由
+{
+    path: '/register',
+    component: Register
+},
+{
+    path: '/login',
+    component: Login
+}, 
+{
+	path: '/search',
+    component: search,
+    children:[{
+    	path: 'hotSearch',
+        component: hotSearch
+    },{
+    	path: 'keywordSearch',
+        component: keywordSearch
+    },{
+    	path: '/search',
+		redirect: '/search/hotSearch'
+    }]
+},
+{
+	path: '/',
+	redirect: '/app/newSong'
 }]
 
 // 创建状态管理
@@ -143,6 +160,11 @@ var store = new Vuex.Store({
         getMusic: null,
         louti:false,
         zimu:null,
+        zxrm:null,
+        newsearch:null,
+        getsearch:null,
+        newId:1,
+        
 
         commentNum:null,
         isShowContainer:true,
@@ -175,6 +197,15 @@ var store = new Vuex.Store({
         },
         newMusic(state) {
             return state.getMusic
+        },
+        getzxrm(state) {
+            return state.zxrm
+        },
+        getsearch(state) {
+            return state.getsearch
+        },
+        getId(state) {
+            return state.newId
         },
     },
     mutations: {
@@ -231,6 +262,33 @@ var store = new Vuex.Store({
                     console.log(error);
                 });
         },
+        getzxrm(state, data) {
+            axios.get('/search/api/v3/search/hot?format=json&plat=0&count=30')
+            .then((response) => {
+                state.zxrm = response.data
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+        },
+        setsearch(state, data) {
+			state.newsearch = data
+        },
+        getsearch(state, data) {
+			axios.get('/search/api/v3/search/song?format=json&keyword='+state.newsearch+'&page='+state.newId+'&pagesize=30&showtype=1')
+            .then((response) => {
+                state.getsearch = response.data
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+        },
+        setId(state, data) {
+			state.newId = data
+        },
+        setgq(state, data) {
+			state.newsearch = data
+        },
     },
     actions: {
         getMusic(context, data) {
@@ -259,6 +317,21 @@ var store = new Vuex.Store({
         },
         setMusic(context, data) {
             context.commit("setMusic", data)
+        },
+        getzxrm(context, data) {
+            context.commit("getzxrm", data)
+        },
+        setsearch(context, data) {
+            context.commit("setsearch", data)
+        },
+        getsearch(context, data) {
+            context.commit("getsearch", data)
+        },
+        setId(context, data) {
+            context.commit("setId", data)
+        },
+        setgq(context, data) {
+            context.commit("setgq", data)
         },
     }
 })

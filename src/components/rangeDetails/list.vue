@@ -8,7 +8,7 @@
 				<div class="conter">
 					<p>{{i.filename}}</p>
 				</div>
-				<div class="right">
+				<div class="right" @click="xiazai">
 					<!--<span></span>-->
 					<img src="../../img/download_icon_2.png" alt="" />
 				</div>
@@ -37,16 +37,14 @@
 				getpage:null,
 				lbwx:false,
 				fh:false,
-				ycc:[],
-				sjy:[]
 			}
 		},
 		mounted() {
-			var xthis= this;
-			setTimeout(() => {console.log(xthis.xsongs)
-				if(xthis.xsongs){
-					xthis.list = xthis.list.concat(xthis.xsongs);
-					xthis.ycc = xthis.xsongs;
+			//$watch可以解决异步问题
+			this.$watch("xsongs",function(){
+				if(this.xsongs.length != 0){
+					this.list = this.list.concat(this.xsongs);
+					var xthis= this;
 					if(xthis.xsongs.length < 30){
 						xthis.xlsx = false;
 						xthis.lbwx = true;
@@ -66,32 +64,30 @@
 						}
 						//数据加载
 						if(xhigth + top == zhight){
-							xthis.xlsx = true;
-							xthis.getpage = xthis.getPage+1;
-							xthis.$store.dispatch('setPage',xthis.getpage);
-							xthis.$store.dispatch("rangeDetails");
-							xthis.sjy = xthis.xsongs;
-							if(xthis.sjy == xthis.ycc){
-								xthis.sjy = [];
-							}
-							xthis.list = xthis.list.concat(xthis.sjy)
 							if(xthis.xsongs.length < 30){
 								xthis.xlsx = false;
 								xthis.lbwx = true;
+							}else{
+								xthis.xlsx = true;								
 							}
-							xthis.ycc = xthis.xsongs;
+							xthis.getpage = xthis.getPage+1;
+							xthis.$store.dispatch('setPage',xthis.getpage);
+							xthis.$store.dispatch("rangeDetails");
 						}
-						if(top > xhigth){
-							xthis.fh = true;
+						if(top>xhigth){
+							xthis.fh = true
 						}else{
-							xthis.fh = false;
+							xthis.fh = false
 						}
 					}
 				}
-			}, 500);
-			if(this.newMusic){
-				console.log(this.newMusic)
-			}
+			})
+			//音乐播放
+			this.$watch("newMusic",function(){
+				var arr = [this.newMusic];
+				this.$store.dispatch('setImg', [this.newMusic.imgUrl,true]);
+           		this.$store.dispatch('setSongs',arr);
+			})
 		},
 		methods:{
 			onfh(){
@@ -110,12 +106,11 @@
 				var xhz = this.list[e].hash
 				//获取歌曲列表
 				this.$store.dispatch('setMusic',xhz);
-				var xthis = this;
-				setTimeout(() => {
-					var arr = [xthis.newMusic];
-					xthis.$store.dispatch('setImg', [xthis.newMusic.imgUrl,true]);
-               		xthis.$store.dispatch('setSongs',arr);
-				},500)
+			},
+			xiazai(){
+				this.$watch("newMusic",function(){
+					window.location.href = this.newMusic.url
+				})
 			}
 		},
 		computed:{
@@ -207,6 +202,7 @@
 				text-align: center;
 				margin: 20px 0;
 				font-size: 20px;
+				margin-bottom: 80px;
 			}
 		}
 	}

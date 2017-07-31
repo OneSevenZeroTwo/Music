@@ -5,7 +5,8 @@
             <span>bilibili音悦台</span>
         </div>
         <span class="back" @click="changeDirection()"></span>
-        <span class="search"></span>
+        <!--<span class="search" ></span>-->
+        <a class="search" href="#/search"></a>
     </div>
 </template>
 <script type="text/javascript">
@@ -61,10 +62,12 @@
     position: fixed;
     width: 30px;
     height: 30px;
-    background-color: #fff;
+    /*background-color: #fff;*/
     top: 9px;
     right: 9px;
     z-index: 200;
+    background: url(../img/search.png) no-repeat center;
+    background-size: 22px;
 }
 </style>
 

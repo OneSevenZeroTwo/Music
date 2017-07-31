@@ -8,7 +8,9 @@
 
 	
 	export default {
-		
+		mounted(){
+			this.$store.dispatch('setIndex',3);
+		}
 	}
 </script>
 <style scoped>

@@ -27,6 +27,9 @@
 	    xchosen,
 	    xzhuanlang,
 	    xplay
-	  }
+	  },
+		mounted(){
+			this.$store.dispatch('setIndex','0');
+		}
 	}
 </script>

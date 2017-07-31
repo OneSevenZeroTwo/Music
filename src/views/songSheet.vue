@@ -13,6 +13,9 @@ export default {
 	components:{
 		xsonglist,
 		xplay
+	},
+	mounted(){
+		this.$store.dispatch('setIndex',2);
 	}
 }
 </script>

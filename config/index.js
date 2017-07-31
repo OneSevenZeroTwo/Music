@@ -34,6 +34,13 @@ module.exports = {
             pathRewrite:{
                 '^/music':''
             }
+        },
+        "/search":{
+            target:'http://mobilecdn.kugou.com',
+            changeOrigin:true,
+            pathRewrite:{
+                '^/search':''
+            }
         }
     },
     // CSS Sourcemaps off by default because relative paths are "buggy"
