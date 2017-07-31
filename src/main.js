@@ -153,7 +153,8 @@ var store = new Vuex.Store({
         zimu: null,
         commentNum: null,
         isShowContainer: true,
-        loginStatus: null
+        loginStatus: null,
+        getshou:[]
     },
     getters: {
         getRange(state) {
