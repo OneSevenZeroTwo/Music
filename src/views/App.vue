@@ -1,6 +1,7 @@
 <template>
     <div id="app">
-        <xheader></xheader> 
+        <xheader></xheader>
+        <xsilde></xsilde>
         <tab :line-width=2 active-color='#fc378c' v-model="index">
             <tab-item class="vux-center"><a class="tabLink" :href="'#/app/newSong'">新歌</a></tab-item>
             <tab-item class="vux-center"><a class="tabLink" :href="'#/app/range'">排行</a></tab-item>
@@ -19,13 +20,15 @@
 import {
     Tab,
     TabItem
-} from 'vux'
-import xheader from '../components/xheader.vue'
+} from 'vux';
+import xheader from '../components/xheader.vue';
+import xsilde from '../components/xsilde.vue';
 export default {
     components: {
         xheader,
         Tab,
-        TabItem
+        TabItem,
+        xsilde
     },
     data() {
         return {

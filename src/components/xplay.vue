@@ -192,16 +192,16 @@ export default {
     background-color: rgba(0, 0, 0, .4);
 }
 
-.play {
+.play{
     width: 100%;
+    z-index: 10;
     position: fixed;
     bottom: 0;
     left: 0;
     height: 60px;
     background-color: #fff;
-    box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 5px 1px rgba(0,0,0,0.1);
 }
-
 .play h4 {
     position: absolute;
     left: 67px;
@@ -259,7 +259,6 @@ img {
     right: 4px;
     z-index: 100;
 }
-
 
 /*播放列表样式*/
 

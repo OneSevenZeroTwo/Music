@@ -200,7 +200,7 @@
 					<mu-divider/>
 				</template>
 			</mu-list>
-			<xtop></xtop>
+			<!--<xtop></xtop>-->
 			<!--<xstairs :mystairs="shouzimu"></xstairs>-->
 			<div class="outbox">
 				<div class="word_sort" id="J_word_sort">
@@ -213,6 +213,7 @@
 
 			</div>
 			<xload :getload="load"></xload>
+			<xlouti></xlouti>
 		</div>
 	</div>
 </template>
@@ -220,10 +221,10 @@
 <script>
 	import axios from "axios";
 	import $ from "jquery";
-	import xtop from "../xtop.vue";
+
 	import xload from "../xload.vue";
 	import xtitle from "../xtitle.vue";
-	//	import xstairs from "../xstairs.vue";
+	import xlouti from "../xlouti.vue";
 	import "../../lib/pinyin_dict_firstletter";
 
 	export default {
@@ -324,13 +325,21 @@
 
 			},
 			songlist:function(getid){
-				console.log(getid);
+
 				window.location.href = "#/xsong/" + getid;
 			},
 			setscroll: function(ele, e) {
-				console.log(e);
+
 				this.isShow = e;
-				console.log(this.isShow);
+				this.$store.state.louti = true;
+				this.$store.state.zimu = ele;
+				var salf = this;
+				
+				setTimeout(function(){
+					console.log(123);
+					console.log(salf.$store.state);
+					salf.$store.state.louti = false;
+				},1000)
 				var $top = null;
 				try {
 					if(ele === "热") {
@@ -529,6 +538,8 @@
 								salf.xianZ = true;
 
 							}
+							
+							//用来判断首字母不为a-z的字母进去#号里面
 							if(pinyinUtil.getFirstLetter(this.totlelist[c].singername.charAt(0)) !== "A" && pinyinUtil.getFirstLetter(this.totlelist[c].singername.charAt(0)) !== "B" && pinyinUtil.getFirstLetter(this.totlelist[c].singername.charAt(0)) !== "C" && pinyinUtil.getFirstLetter(this.totlelist[c].singername.charAt(0)) !== "D" && pinyinUtil.getFirstLetter(this.totlelist[c].singername.charAt(0)) !== "E" && pinyinUtil.getFirstLetter(this.totlelist[c].singername.charAt(0)) !== "F" && pinyinUtil.getFirstLetter(this.totlelist[c].singername.charAt(0)) !== "G" && pinyinUtil.getFirstLetter(this.totlelist[c].singername.charAt(0)) !== "H" && pinyinUtil.getFirstLetter(this.totlelist[c].singername.charAt(0)) !== "I" && pinyinUtil.getFirstLetter(this.totlelist[c].singername.charAt(0)) !== "G" && pinyinUtil.getFirstLetter(this.totlelist[c].singername.charAt(0)) !== "K" && pinyinUtil.getFirstLetter(this.totlelist[c].singername.charAt(0)) !== "L" && pinyinUtil.getFirstLetter(this.totlelist[c].singername.charAt(0)) !== "M" && pinyinUtil.getFirstLetter(this.totlelist[c].singername.charAt(0)) !== "N" && pinyinUtil.getFirstLetter(this.totlelist[c].singername.charAt(0)) !== "O" && pinyinUtil.getFirstLetter(this.totlelist[c].singername.charAt(0)) !== "P" && pinyinUtil.getFirstLetter(this.totlelist[c].singername.charAt(0)) !== "Q" && pinyinUtil.getFirstLetter(this.totlelist[c].singername.charAt(0)) !== "R" && pinyinUtil.getFirstLetter(this.totlelist[c].singername.charAt(0)) !== "S" && pinyinUtil.getFirstLetter(this.totlelist[c].singername.charAt(0)) !== "T" && pinyinUtil.getFirstLetter(this.totlelist[c].singername.charAt(0)) !== "U" && pinyinUtil.getFirstLetter(this.totlelist[c].singername.charAt(0)) !== "V" && pinyinUtil.getFirstLetter(this.totlelist[c].singername.charAt(0)) !== "W" && pinyinUtil.getFirstLetter(this.totlelist[c].singername.charAt(0)) !== "X" && pinyinUtil.getFirstLetter(this.totlelist[c].singername.charAt(0)) !== "Y" && pinyinUtil.getFirstLetter(this.totlelist[c].singername.charAt(0)) !== "Z" && pinyinUtil.getFirstLetter(this.totlelist[c].singername.charAt(0)) !== "J") {
 								salf.my = salf.my.concat(this.totlelist[c]);
 								salf.xian = true;
@@ -569,13 +580,11 @@
 
 						}
 					}
-					//					bbb.slice(bbb.length-1)
-					//					console.log(bbb.lastIndexOf(","));
+					
 					bbb = bbb.slice(0, bbb.length - 1)
 
 					bbb = bbb.split(",")
 					bbb.unshift("热");
-					//					console.log(bbb);
 					salf.shouzimu = bbb;
 
 				})
@@ -588,17 +597,9 @@
 			this.getlist();
 			this.getl();
 			var sale = this;
-//			 $(document).bind(touchEvents.touchmove, function (event) {
-//      	    event.preventDefault();
-//          
-//    		  });
+			//感应手动触动屏幕拖动
 			$(document).on('touchmove',function (eve) {
-//				console.log(eve);
-				//				console.log($(this).scrollTop());
-				//					console.log(111)
-				//					console.log(sale.shouzimu);	
-			
-//					console.log(111)
+
 					var page = 0;
 					for(var i = 0; i < sale.shouzimu.length; i++) {
 						//					console.log(sale.shouzimu);
@@ -630,8 +631,8 @@
 
 		components: {
 			xtitle,
-			xtop,
-			xload,
+			xlouti,
+			xload
 
 		}
 	}

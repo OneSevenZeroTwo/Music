@@ -1,5 +1,5 @@
 <template>
-	<div class="outbox">	
+	<!--<div class="outbox">	
 		<div class="word_sort" id="J_word_sort">
 			<ul>
 				<li>热</li>
@@ -15,7 +15,7 @@
 			</ul>
 		</div>
 
-	</div>
+	</div>-->
 </template>
 
 <script>

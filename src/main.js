@@ -11,6 +11,7 @@ import range from './views/range'
 import songSheet from './views/songSheet'
 import singer from './views/singer'
 import MuseUI from 'muse-ui';
+//import 'muse-ui/dist/muse-ui.css';
 import VueLazyload from 'vue-lazyload'
 import db from './views/db'
 import mod from './views/mod'
@@ -34,15 +35,22 @@ import pinyin_dict_notone from "./lib/pinyin_dict_notone.js";
 window.pinyin_dict_notone = pinyin_dict_notone;
 
 import "./lib/pinyinUtil.js";
+import com from "./lib/common(模块化).js"
+window.com = com;
 
 
+//引入登录注册
+import Register from "./views/register.vue";
+import Login from "./views/login.vue";
+//引入收藏
+import Shoucang from "./views/shoucang.vue";
 
-
-//piny.use(first);
 
 Vue.use(VueRouter)
 Vue.use(Vuex)
 Vue.use(VueAwesomeSwiper)
+
+Vue.prototype.$ajax = axios;
 
 // 图片懒加载
 Vue.use(VueLazyload, {
@@ -57,55 +65,66 @@ Vue.prototype.$ajax = axios;
 
 // 创建路由
 const routes = [{
-    path: '/app',
-    component: App,
-    children: [{
-        path: 'newSong',
-        component: newSong
-    }, {
-        path: 'range',
-        component: range
-    }, {
-        path: 'songSheet',
-        component: songSheet
-    }, {
-        path: 'singer',
-        component: singer,
+        path: '/app',
+        component: App,
         children: [{
-            path: 'tolist',
-            component: xtotalist
+            path: 'newSong',
+            component: newSong
         }, {
-            path: '/app/singer',
-            redirect: '/app/singer/tolist'
+            path: 'range',
+            component: range
+        }, {
+            path: 'songSheet',
+            component: songSheet
+        }, {
+            path: 'singer',
+            component: singer,
+            children: [{
+                path: 'tolist',
+                component: xtotalist
+            }, {
+                path: '/app/singer',
+                redirect: '/app/singer/tolist'
+            }]
         }]
-    }]
-}, {
-    path: '/rangeDetails/:id',
-    component: rangeDetails,
-}, {
-    path: '/singlist/:id',
-    component: singlist
-}, {
-    path: '/xsong/:id',
-    component: xsong
-}, {
-    path: '/db',
-    component: db,
-}, {
-    path: '/mod/:id',
-    component: mod,
-}, {
-    // 文章详情路由
-    path: '/passageDetail/:id',
-    component: passageDetail,
-},{
-  path:"/song",
-  component:song
-}, {
-    path: '/',
-    redirect: '/app/newSong'
-}]
-
+    }, {
+        path: '/rangeDetails/:id',
+        component: rangeDetails,
+    }, {
+        path: '/singlist/:id',
+        component: singlist
+    }, {
+        path: '/xsong/:id',
+        component: xsong
+    }, {
+        path: '/db',
+        component: db,
+    }, {
+        path: '/mod/:id',
+        component: mod,
+    }, {
+        // 文章详情路由
+        path: '/passageDetail/:id',
+        component: passageDetail,
+    }, {
+        path: "/song",
+        component: song
+    },
+    //注册登录收藏路由
+    {
+        path: '/register',
+        component: Register
+    }, {
+        path: '/login',
+        component: Login
+    }, {
+        path: '/shoucang',
+        component: Shoucang
+    }, {
+        path: '/',
+        redirect: '/app/newSong'
+    }
+]
 
 // 创建状态管理
 var store = new Vuex.Store({
@@ -117,14 +136,29 @@ var store = new Vuex.Store({
         range_page: 1,
         songsPlay: [],
         scrolly: null,
+        showComment: false,
         // 播放器数据状态管理
         showPlay: false,
         imgUrl: '',
         isshow: false,
         getIndex: null,
         getMusic: null,
+<<<<<<< HEAD
         //唱片
         record:''
+=======
+        //侧边栏初始化
+        direction: 'left',
+        telephone: '',
+        password: '',
+        //收藏
+        singername: [],
+        louti: false,
+        zimu: null,
+        commentNum: null,
+        isShowContainer: true,
+        loginStatus: null
+>>>>>>> 8b7b315728065a8a2a79fce60f4e306d09792194
     },
     getters: {
         getRange(state) {
@@ -258,9 +292,12 @@ var store = new Vuex.Store({
         setMusic(context, data) {
             context.commit("setMusic", data)
         },
+<<<<<<< HEAD
         setRecord(context,data){
             context.commit('setRecord',data)
         }
+=======
+>>>>>>> 8b7b315728065a8a2a79fce60f4e306d09792194
     }
 })
 
