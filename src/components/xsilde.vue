@@ -27,7 +27,7 @@
 			<div class="ask-help">
 				<a class="sildeLeft" href="javascript:void(0)">
 					<i class="material-icons" style="margin-left:2px">&#xE0DD;</i> 
-					<p>联系客服</p>
+					<p><a href="#/connection" style="color:#C0BFC4">联系客服</a></p>
 				</a>
 			</div>
 			<div>

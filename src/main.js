@@ -17,7 +17,7 @@ import db from './views/db'
 import mod from './views/mod'
 import passageDetail from './views/passageDetail'
 import song from './views/song'
-Vue.use(MuseUI)
+import connection from './views/connection'
 
 import Vuex from 'vuex'
 import axios from 'axios'
@@ -49,6 +49,8 @@ import Shoucang from "./views/shoucang.vue";
 Vue.use(VueRouter)
 Vue.use(Vuex)
 Vue.use(VueAwesomeSwiper)
+Vue.use(MuseUI)
+
 
 Vue.prototype.$ajax = axios;
 
@@ -121,6 +123,9 @@ const routes = [{
         path: '/shoucang',
         component: Shoucang
     }, {
+        path: '/connection',
+        component: connection
+    }, {
         path: '/',
         redirect: '/app/newSong'
     }
@@ -153,7 +158,11 @@ var store = new Vuex.Store({
         zimu: null,
         commentNum: null,
         isShowContainer: true,
-        loginStatus: null
+        loginStatus: null,
+        newComment:null,
+        newCommentCount:null,
+        // 存放文章的历史浏览高度
+        arrHight:[]
     },
     getters: {
         getRange(state) {
