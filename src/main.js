@@ -148,6 +148,8 @@ var store = new Vuex.Store({
         isshow: false,
         getIndex: null,
         getMusic: null,
+        //唱片
+        record:'',
         //侧边栏初始化
         direction: 'left',
         telephone: '',
@@ -158,11 +160,12 @@ var store = new Vuex.Store({
         zimu: null,
         commentNum: null,
         isShowContainer: true,
-        loginStatus: null,
         newComment:null,
         newCommentCount:null,
         // 存放文章的历史浏览高度
-        arrHight:[]
+        arrHight:[],
+        getshou:[],
+        loginStatus: null
     },
     getters: {
         getRange(state) {
@@ -189,6 +192,9 @@ var store = new Vuex.Store({
         newMusic(state) {
             return state.getMusic
         },
+        getRecord(state){
+            return state.record
+        }
     },
     mutations: {
         getMusic(state) {
@@ -244,6 +250,26 @@ var store = new Vuex.Store({
                     console.log(error);
                 });
         },
+        setRecord(state,data){//添加音乐详情页面的歌单列表;
+            var arr = [];
+            data.forEach(function(item) {
+            item.hash
+            axios.get('/music/app/i/getSongInfo.php?cmd=playInfo&hash=' +item.hash)
+                .then((response) => {
+                   var temp = {}
+                   temp.name = response.data.songName;
+                   temp.author = response.data.singerName;
+                   temp.src = response.data.url;
+                   temp.cover = response.data.imgUrl.replace('{size}', '400')
+                   arr.push(temp)
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+             })
+            state.record = arr;
+
+        }
     },
     actions: {
         getMusic(context, data) {
@@ -273,6 +299,9 @@ var store = new Vuex.Store({
         setMusic(context, data) {
             context.commit("setMusic", data)
         },
+        setRecord(context,data){
+            context.commit('setRecord',data)
+        }
     }
 })
 

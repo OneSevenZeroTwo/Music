@@ -984,7 +984,6 @@ a {
 }
 
 .mu-list {
-	
 	width: 100%;
 	position: relative;
 	overflow-x: hidden;
@@ -2298,7 +2297,13 @@ html.pixel-ratio-3 .mu-divider {
 	bottom: auto;
 	left: 50%;
 	-webkit-transform: translate3d(-50%, 0, 0);
-	transform: translate3d(-50%, 0, 0)
+	transform: translate3d(-50%, 0, 0);
+	width:150px;
+	text-align: center;
+	height: 50px;
+	line-height: 50px;
+	background-color: rgba(0, 0, 0, 0.2);
+	color: white;
 }
 
 .mu-popup-right {

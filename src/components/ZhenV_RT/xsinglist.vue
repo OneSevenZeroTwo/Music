@@ -336,8 +336,7 @@
 				var salf = this;
 				
 				setTimeout(function(){
-					console.log(123);
-					console.log(salf.$store.state);
+					
 					salf.$store.state.louti = false;
 				},1000)
 				var $top = null;
@@ -380,7 +379,7 @@
 					salf.totlelist = salf.totlelist.concat(mylist);
 
 					//					console.log(salf.totlelist);
-					if(salf.page < 14) {
+					if(salf.page < 10) {
 						salf.getl();
 					} else {
 						salf.getl1();
@@ -591,7 +590,7 @@
 			}
 		},
 		mounted() {
-
+			console.log(this.$store.state.getshou);
 			//重要一步获取id进行对象的逻辑
 			this.getid = this.$route.params.id;
 			this.getlist();
