@@ -37,7 +37,8 @@ export default {
         sildeShow:false,
         loginStatus: null,
         //音乐详情的封面
-        recordCover: ''
+        recordCover: '',
+        sildeShow:false
     },
     getters: {
         getRange(state) {

@@ -138,7 +138,6 @@ export default {
 
                         //传递信息给唱片组件---重要--
                        var record = this.$store.getters.songsPlay;
-                       console.log(record)
                        this.$store.dispatch('setRecord',record);
                        this.$store.dispatch('setrecordCover',record);
                     })
