@@ -116,14 +116,13 @@
 			},
 
 			jiantin: function(hash) {
-				//				console.log(this.getshou,this.$store.state.getshou);
-				//				console.log(111);
+
 				this.$store.state.getshou = this.getshou;
 				this.myhash = hash;
 			}
 		},
 		mounted() {
-			//			console.log(this.$store.state.getshou);
+
 			this.getshou = this.$store.state.getshou;
 
 			this.$store.state.showPlay = true;
@@ -142,21 +141,15 @@
 				}
 
 			};
-			function setCookie(name, value) {
-					var days = 10;
-					var ex = new Date();
-					ex.setTime(ex.getTime() + days * 24 * 60 * 60 * 1000);
-					document.cookie = name + "=" + value + ";expires=" + ex;
-			};
-//			setCookie("tel",1231232);
+		
 			if(getCookie("tel") === undefined) {
-				console.log(666);
+			
 				this.isShow = true;
 
 			} else {
-				console.log(111);
+				
 			}
-			console.log(getCookie("tel"));
+			
 
 			$(".liebiao").on("click", "li", function() {
 
@@ -171,13 +164,11 @@
 
 				var gaodu = $(".play").offset().top - $(this).offset().top;
 
-				//				console.log(window.scrollY);
 				$(this).append(myimg);
 
 				myimg.animate({
 					top: 0
 				}, function() {
-					//					console.log(gaodu-window.scrollY);
 					myimg.animate({
 						top: gaodu
 					}, 1000, function() {
@@ -218,13 +209,7 @@
 				} else {
 					this.$store.state.getshou = this.getshou;
 				}
-				//				if(getCookie("tel") === undefined) {
-				//					
-				//					this.topPopup = true;
-				//
-				//				} else {
-				//					console.log(111);
-				//				}
+
 				return this.getshou
 			}
 		},

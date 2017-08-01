@@ -26,7 +26,7 @@
 		},
 		mounted(){
 			this.mytitle = window.localStorage.getItem("name");
-			console.log(this.mytitle)
+			
 			
 		}
 	}

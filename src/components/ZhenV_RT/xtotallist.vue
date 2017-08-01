@@ -44,7 +44,7 @@
 					});
 			},
 			singerlist(getid,title) {
-				console.log(title);
+				
 				window.location.href = "#/singlist/" + getid;
 				window.localStorage.setItem("name",title)
 			}
