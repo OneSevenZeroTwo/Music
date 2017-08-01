@@ -50,6 +50,9 @@ app.get('/touxiang', function(req, res) {
 	createConnection();
 	var telephone = req.query.telephone;
 	var imgurl = req.query.imgurl;
+	var password = req.query.password;
+	var repassword = req.query.repassword;
+	var nickname = req.query.nickname;
 	console.log(111111111111111,telephone,imgurl)
 	connection.query(`insert into user (telephone,imgurl)  values ('${telephone}','${imgurl}') `, function(error, results, fields) {
 		if(error) throw error;
