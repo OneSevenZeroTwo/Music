@@ -1,8 +1,21 @@
 <template>
     <div :style="'margin-top:'+screenHight+'px'" :show="showComment" class="com_container">
-        <p class="title">最新评论</p>
+        <p class="title">最新评论<span style="margin-left:8px">{{newArr.length}}</span></p>
         <span class="back" @click="hideComment"></span>
         <div class="main">
+            <section class="newData" v-if="newComment" v-for="n in newComment">
+                <div class="top">
+                    <span class="head">
+                        <img :src="n.imgurl" alt="" >
+                    </span>
+                    <p class="author">{{n.author}}</p>
+                    <p class="editetime">{{n.editetime}}</p>
+                    <span class="sendReply"></span>
+                </div>
+                <p class="comment_content">{{n.content}}</p>
+                <div class="reply">
+                </div>
+            </section>
             <section v-for="c in comData" class="comData">
                 <div class="top">
                     <span class="head">
@@ -18,7 +31,7 @@
             </section>
         </div>
         <section class="sendComment" v-show='!screenHight'>
-            <input type="text" placeholder="发表评论">
+            <input type="text" placeholder="发表评论" value=''>
             <button @click="send">发表</button>
         </section>
         <section class="alert">
@@ -46,15 +59,12 @@ export default {
                 isClick: false,
                 comData: null,
                 isShowAlert: false,
-                // 定义 getData
-                getData: {},
                 // 定义自定义指令的绑定值
-                ifUpdate: true
+                ifUpdate: false,
+                newArr:[]
             }
         },
         mounted() {
-            var date = new Date();
-            console.log(Date.parse(date));
             this.screenHight = window.screen.availHeight;
             var self = this;
             axios.get('http://localhost:8008/getcomment', {
@@ -65,6 +75,7 @@ export default {
                 .then(function(response) {
                     self.comData = response.data;
                     console.log(self.comData);
+                    self.ifUpdate = false;
                 })
                 .catch(function(error) {
                     console.log(error);
@@ -78,6 +89,9 @@ export default {
                 } else {
                     this.screenHight = window.screen.availHeight;
                 }
+            },
+            newComment(){
+                return this.$store.state.newComment;
             }
         },
         methods: {
@@ -91,37 +105,35 @@ export default {
             },
             send() {
                 var cookie = com.getCookie('tel');
+                //
                 if (cookie == '') {
                     this.isShowAlert = true;
                 } else {
-
+                    //console.log(this.ifUpdate);
+                    this.ifUpdate = true;
+                    var date = new Date();
+                    var now = com.currentTime(date);
+                    var self = this ;
+                    //var newData = [];
+                    axios.get('http://localhost:8008/savecomment', {
+                            params: {
+                                imgurl: '../../static/images/404.png',
+                                author: com.getCookie('tel'),
+                                editetime: now,
+                                content: document.getElementsByTagName('input')[0].value
+                            }
+                        })
+                        .then(function(response) {
+                            self.newArr.push(response.data[0]);
+                            self.$store.state.newComment = self.newArr ;
+                            self.$store.state.newCommentCount = self.newArr.length;
+                            console.log(self.$store.state.newCommentCount);
+                            document.getElementsByTagName('input')[0].value = '';
+                        })
+                        .catch(function(error) {
+                            console.log(error);
+                        });
                 }
-            }
-        },
-        // 定义自定义指令 自动刷新评论
-        directives: {
-            initData: function(val, oldVal) {
-                if (!val) {
-                    return;
-                }
-                var self = this;
-                axios.get('http://localhost:8008/savecomment', {
-                        params: {
-                            imgurl:'../../static/images/404.png',
-                            author:com.getCookie('tel'),
-                            editetime:'now',
-                            content:document.getElementsByTagName('input')
-                        }
-                    })
-                    .then(function(response) {
-                        self.comData = response.data;
-                        console.log(self.comData);
-                    })
-                    .catch(function(error) {
-                        console.log(error);
-                    });
-                // 下次 ifUpdate 值更新为 true 时就会再次使用上面的 ajax 去获取数据
-                self.vm.ifUpdate = false;
             }
         }
 }
@@ -148,7 +160,7 @@ export default {
     height: 28px;
     background-size: 30px 30px;
     background-position: center;
-    position: fixed;
+    position: absolute;
     top: 20px;
     left: 10px;
     background-color: #fff;
@@ -186,6 +198,7 @@ export default {
 
 .title {
     margin-top: 50px;
+    margin-bottom: 20px;
 }
 
 .top {

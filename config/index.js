@@ -41,6 +41,14 @@ module.exports = {
             pathRewrite:{
                 '^/lyric':''
             }
+        },
+        "/search":{
+            target:'http://mobilecdn.kugou.com',
+            changeOrigin:true,
+            pathRewrite:{
+                '^/search':''
+
+            }
         }
         
     },

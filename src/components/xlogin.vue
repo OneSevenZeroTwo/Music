@@ -53,6 +53,9 @@
 				openCon:''
 			}
 		},
+		mounted(){
+			this.$store.state.sildeShow = false;
+		},
 		methods: {
 			handlechange(val) {
 				console.log(`you choose ${val}`)

@@ -3,7 +3,6 @@
 		<div class="title">
 			<div @click="goBack"></div>
 			<p v-text="xinfo.rankname"></p>
-			<div class="imgright"></div>
 		</div>
 		<img :src=xinfo.banner7url alt="" />
 	</div>
@@ -26,6 +25,7 @@ export default {
 	.title{
 		overflow: hidden;
 		position: fixed;
+		margin-top: 48px;
 		z-index: 10000;
 		width: 100%;
 		background: -webkit-linear-gradient(top,rgba(0,0,0,.6),transparent);
@@ -46,9 +46,6 @@ export default {
 			font-size: 20px;
 			font-family: Microsoft Yahei;
 			color: white;
-		}
-		.imgright{
-			background: url(../../img/search.png) no-repeat center;
 		}
 	}
 </style>

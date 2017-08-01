@@ -1,7 +1,7 @@
 <template>
 	<div id="app">
-		<span class="back"></span>
-		<span class="search"></span>
+		<xheader></xheader>
+		<xsilde></xsilde>
 		<Banner :xinfo=info></Banner>
 		<List :xsongs=songs></List>
 		<xplay></xplay>
@@ -9,7 +9,12 @@
 </template>
 
 <script>
-	import { XHeader } from 'vux'
+	import {
+		Tab,
+		TabItem
+	} from 'vux';
+	import xheader from '../components/xheader.vue';
+	import xsilde from '../components/xsilde.vue';
 	import Banner from '../components/rangeDetails/banner.vue'
 	import List from '../components/rangeDetails/list.vue'
 	import xplay from "../components/xplay.vue"
@@ -19,10 +24,13 @@
 			return {}
 		},
 		components: {
-			XHeader,
+			xheader,
 			Banner,
 			List,
-			xplay
+			xplay,
+			xsilde,
+			Tab,
+			TabItem,
 		},
 		methods: {
 			getDetails() {
@@ -30,8 +38,10 @@
 			}
 		},
 		mounted() {
+			this.$store.dispatch('setPage', 1);
 			this.$store.dispatch('setDetails', this.$route.params.id)
 			this.getDetails();
+			this.$watch("songs", function() {})
 		},
 		computed: {
 			info() {
@@ -53,3 +63,20 @@
 		}
 	}
 </script>
+<style lang="less">
+.tabLink {
+    color: #fc378c;
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+@import '~vux/src/styles/reset.less';
+.vux-tab {
+    margin-top: 48px;
+}
+
+body {
+    background-color: #fbf9fe;
+}
+</style>

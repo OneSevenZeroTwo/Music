@@ -1,5 +1,4 @@
 <template>
-
 	<div>
 		
 		<div class="gridlist-demo-container">

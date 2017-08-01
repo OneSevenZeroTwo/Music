@@ -6,7 +6,7 @@ var app = express();
 
 app.get('/list', function(req, ress) {
 //	console.log(6)
-	http.get('http://m.kugou.com/singer/class&json=true', function(res) {
+	http.get('http://www.kugou.com/yy/index.php?r=play/getdata&hash=CB7EE97F4CC11C4EA7A1FA4B516A5D97', function(res) {
 		var data = '';
 		res.on('data', function(chunk) {
 			data += chunk;

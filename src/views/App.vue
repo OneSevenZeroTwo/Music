@@ -41,7 +41,7 @@ export default {
     computed:{
 		getIndex(){
 			if(this.$store.getters.Index) {
-				return this.$store.getters.Index
+				return parseInt(this.$store.getters.Index)
 			}
 		}
 	}

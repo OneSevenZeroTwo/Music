@@ -180,7 +180,7 @@ define(function(){
 		// 避免第一次出现要等一秒的情况，所以先执行一遍函数
 		// currentTime();
 		// setInterval(currentTime,1000);
-		currentTime:function (box){
+		currentTime:function (){
 			var now = new Date();
 
 			var year = now.getFullYear();
@@ -199,10 +199,10 @@ define(function(){
 			min = min<10 ?  '0'+min : min;
 			sec = sec<10 ?  '0'+sec : sec;
 
-			var res = year +'年'+ month +'月'+ date +'日'+' '+week + ' '+hour +':'+min +':'+sec;
+			var res = year +'-'+ month +'-'+ date +''+' '+week + ' '+hour +':'+min +':'+sec;
 			//将res写入html结构中，box为形参，调用时可更改
-			box.innerHTML = res;
-			//return res;
+			//box.innerHTML = res;
+			return res;
 		},
 
 

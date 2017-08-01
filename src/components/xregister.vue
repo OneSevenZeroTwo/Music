@@ -1,17 +1,22 @@
 <template>
 	<div>
 		<div class="m_wrap">
-			<div class="m_header">
+			<div class="m_header" @click="">
 				<a href="#/app/newSong" class="goback">&lt;返回</a>
 				账号注册
 				<a class="m_header_refresh" href="javascript:;"></a>
 			</div>
 			<form id="register-form" name="pop-form-login" method="post">
-				<input type="hidden" name="deviceinfo" value="">
+				<!--上传头像-->
+				<form id="uploadForm">
+					<input type="file" name="deviceinfo" @change="doUpload()" multiple="multiple">
+				</form>
 				<div>
-					<span class="m_label"><img src="../../static/logo.png"/></span>
+					<span class="m_label"><img @click="uploadImg()" v-model="imgurl" class="headpic" src="../../static/logo.png"/></span>
 				</div>
-				<mu-text-field label="注册帐号" hintText="请输入注册手机号码" labelFloat/><br/>
+
+				<mu-text-field label="注册帐号" hintText="请输入注册手机号码" v-model="telephone" labelFloat/><br/>
+				<mu-text-field label="昵称" hintText="请输入昵称" labelFloat/><br/>
 				<mu-text-field label="输入密码" hintText="请输入6-20位密码" type="password" labelFloat/><br/>
 				<mu-text-field label="确认密码" hintText="再次确认密码" type="password" labelFloat/><br/>
 				<div class="geetest">
@@ -30,15 +35,23 @@
 </template>
 
 <script>
+	import $ from 'jquery';
 	export default {
 		data() {
 			return {
 				telephone: '',
 				password: '',
 				repassword: '',
+				nickname: '',
+				imgurl: '',
 				dialog: false,
-				openCon: ''
+				openCon: '',
+				picImg: false,
+				data:''
 			}
+		},
+		mounted(){
+			this.$store.state.sildeShow = false;
 		},
 		methods: {
 			open() {
@@ -52,6 +65,7 @@
 				this.open();
 				//匹配输入框信息
 				var inputCon = document.getElementsByClassName("mu-text-field-input");
+				var imgurl = document.querySelector('#uploadForm input').files;
 				//获取手机号
 				//console.log(inputCon[0].value);
 				var _telephone = inputCon[0].value;
@@ -62,8 +76,16 @@
 					this.openCon = '您输入的手机号不正确！请重新输入正确的手机号';
 					return false;
 				}
+				//获取昵称
+				var _nickname = inputCon[1].value;
+				//console.log(_nickname)
+				this.nickname = _nickname;
+				if(!/^([\u2E80-\u9FFF]*)|[a-zA-Z]*$/.test(_nickname)) {
+					this.openCon = '您的输入不符合规则，请输入中/英文的昵称';
+					return false;
+				}
 				//获取首次密码值
-				var _password = inputCon[1].value;
+				var _password = inputCon[2].value;
 				//console.log(_password);
 				this.password = _password;
 				//console.log(this.password)
@@ -72,7 +94,7 @@
 					return false;
 				}
 				//确认密码
-				var _repassword = inputCon[2].value;
+				var _repassword = inputCon[3].value;
 				//console.log(_repassword);
 				this.repassword = _repassword;
 				//console.log(this.repassword)
@@ -83,42 +105,74 @@
 				//发送ajax请求
 				this.sendReg();
 			},
-			sendReg: function() {
+			sendReg() {
 				this.$ajax({
 						url: 'http://localhost:12345/register',
 						params: {
 							telephone: this.telephone,
+							nickname: this.nickname,
 							password: this.password,
 							repassword: this.repassword
 						}
 					})
 					.then((res) => {
-						console.log(res);
+						//console.log(res);
 						this.openCon = '注册成功，前往登录';
 						location.href = '#/login';
-						/*
-						if(res.data.user == 1){
-							this.openCon('恭喜你，注册成功了');
-							//location.href = '/app/newSong';
-						}
-						if(res.data.user !== 1){
-							this.openCon('此帐号已被注册，请前往登录');
-							//location.href = '/app/newSong';
-						}
-						*/
-
 					})
 					.catch((error) => {
 						console.log(error);
 						this.openCon = '蓝瘦，注册不幸失败了，请重新注册';
-						//location.href = '/register';
 					});
+			},
+			doUpload(){
+				var dd = new FormData($('#uploadForm')[0]);
+				var _self = this;
+				console.log(dd)
+				console.log(_self)
+				dd.append('headpic',document.querySelector('#uploadForm input').files[0]);
+				console.log(document.querySelector('#uploadForm input').files);
+				$.ajax({
+					url: 'http://localhost:12345/upload-single',
+					type: 'POST',
+					cache: false, //不必须
+					data: dd,
+					processData: false,
+					contentType: false,
+					success: function(data) {
+						console.log(_self.telephone)
+						console.log(data)
+						$(".headpic").attr("src", "../../static/uploads/" + data);
+						//console.log($(".headpic").attr("src", "../../static/uploads/" + data));
+						console.log($(".headpic").attr("src", "../../static/uploads/" + data)[0].src);
+						var imgurl = $(".headpic").attr("src", "../../static/uploads/" + data)[0].src;
+						//console.log(imgurl)
+						//console.log(_self.imgurl)
+						_self.$ajax({
+							url: 'http://localhost:12345/touxiang',
+							params: {
+								telephone: _self.telephone,
+								imgurl: imgurl
+							}
+						})
+						.then((res) => {
+							console.log(res);
+							console.log(6666,res.config.params.imgurl)
+						})
+						.catch((error) => {
+							console.log(error);
+						});
+					}
+				});
+			},
+			uploadImg() {
+				console.log(123);
+				$("#uploadForm input").trigger('click');
 			}
 		}
 
 	}
 </script>
-
 <style scoped>
 	.goback {
 		text-align: center;
@@ -126,13 +180,23 @@
 		position: absolute;
 		left: 10px;
 	}
-	
 	.mu-text-field-focus-line {
 		background-color: #FC378C;
 	}
 	
 	.m_wrap {
 		text-align: center;
+	}
+	#uploadForm{
+		position: absolute;
+		left: 40%;
+		top: 10%;
+	}
+	#uploadForm input{
+		width: 60px;
+		height: 60px;
+		padding: 20px 0;
+		opacity: 0;
 	}
 	
 	.m_label {
