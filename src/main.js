@@ -19,7 +19,7 @@ window.pinyin_dict_notone = pinyin_dict_notone;
 
 
 import routes from "./router/index.js"
-import mainStore from "./store/index.js"
+import mainStore from "./store/index.js";
 
 
 Vue.use(VueRouter)

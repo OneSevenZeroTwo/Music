@@ -1,6 +1,5 @@
 import axios from 'axios'
 export default {
-
 	state: {
 		newSong: null,
 		newClass: null,
@@ -39,6 +38,7 @@ export default {
 		newCommentCount:null,
 		arrHight:[],
         getshou:[],
+        sildeShow:false,
 	},
 	getters: {
 		getRange(state) {
@@ -154,7 +154,6 @@ export default {
 					});
 			})
 			state.record = arr;
-
 		},
 		setrecordCover(state, data) {
 			state.recordCover = data

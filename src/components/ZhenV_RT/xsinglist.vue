@@ -305,7 +305,7 @@
 					url: '/music/singer/list/' + salf.getid + '?json=true'
 
 				}).then((response) => {
-					console.log(response);
+					
 					salf.list = response.data.singers.list.info.map(function(item) {
 						//因为获取到数据里面需要传入宽高所以这边做了一层小处理
 						item.imgurl = item.imgurl.replace('{size}', '400')
@@ -372,12 +372,10 @@
 					url: '/music/singer/list/' + salf.getid + '/' + salf.page + '?json=true'
 
 				}).then((response) => {
-					//					console.log(response);
 					var mylist = response.data.singers.list.info;
 
 					salf.totlelist = salf.totlelist.concat(mylist);
 
-					//					console.log(salf.totlelist);
 					if(salf.page < 10) {
 						salf.getl();
 					} else {
