@@ -25,7 +25,6 @@ export default {
 	.title{
 		overflow: hidden;
 		position: fixed;
-		margin-top: 48px;
 		z-index: 10000;
 		width: 100%;
 		background: -webkit-linear-gradient(top,rgba(0,0,0,.6),transparent);

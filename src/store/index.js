@@ -28,6 +28,13 @@ export default {
         zimu: null,
         commentNum: null,
         isShowContainer: true,
+        newComment:null,
+        newCommentCount:null,
+        // 存放文章的历史浏览高度
+        arrHight:[],
+        getshou:[],
+        loginStatus: null,
+        sildeShow:false,
         loginStatus: null,
         //音乐详情的封面
         recordCover: '',

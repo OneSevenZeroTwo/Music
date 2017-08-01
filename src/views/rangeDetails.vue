@@ -1,6 +1,6 @@
 <template>
 	<div id="app">
-		<xheader></xheader>
+		<!-- <xheader></xheader> -->
 		<xsilde></xsilde>
 		<Banner :xinfo=info></Banner>
 		<List :xsongs=songs></List>
