@@ -153,7 +153,8 @@ var store = new Vuex.Store({
         zimu: null,
         commentNum: null,
         isShowContainer: true,
-        loginStatus: null
+        loginStatus: null,
+        sildeShow:false
     },
     getters: {
         getRange(state) {
@@ -228,12 +229,12 @@ var store = new Vuex.Store({
         },
         setMusic(state, data) {
             axios.get('/music/app/i/getSongInfo.php?cmd=playInfo&hash=' + data)
-                .then((response) => {
-                    state.getMusic = response.data
-                })
-                .catch((error) => {
-                    console.log(error);
-                });
+            .then((response) => {
+                state.getMusic = response.data
+            })
+            .catch((error) => {
+                console.log(error);
+            });
         },
     },
     actions: {

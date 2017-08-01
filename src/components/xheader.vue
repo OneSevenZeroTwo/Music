@@ -21,6 +21,8 @@
 			changeDirection() {
 				this.$store.state.direction = "right";
 				//console.log(this.$store.state.direction)
+				this.$store.state.sildeShow = true
+				console.log(11111111)
 			}
 		}
 	}
