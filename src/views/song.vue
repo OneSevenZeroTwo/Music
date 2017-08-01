@@ -158,7 +158,7 @@ export default {
                     }
                     //2.切换歌词
                     self.i = i
-                    self.afterlyric = self.lyric
+                    self.afterlyric = self.parseLyric(self.lyric)
                 }
             }
 
@@ -196,7 +196,7 @@ export default {
         watch:{
             afterlyric:function(val){
                 this.afterlyric = val
-                // console.log(this.afterlyric)  //待解决的问题;切换歌词的同步;
+                 console.log(this.afterlyric)  //待解决的问题;切换歌词的同步;
             },
             test:function(val){
                 console.log('test',val)
