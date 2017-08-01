@@ -143,10 +143,8 @@ var store = new Vuex.Store({
         isshow: false,
         getIndex: null,
         getMusic: null,
-<<<<<<< HEAD
         //唱片
-        record:''
-=======
+        record:'',
         //侧边栏初始化
         direction: 'left',
         telephone: '',
@@ -157,8 +155,9 @@ var store = new Vuex.Store({
         zimu: null,
         commentNum: null,
         isShowContainer: true,
-        loginStatus: null
->>>>>>> 8b7b315728065a8a2a79fce60f4e306d09792194
+        loginStatus: null,
+        //音乐详情的封面
+        recordCover:'',
     },
     getters: {
         getRange(state) {
@@ -187,6 +186,9 @@ var store = new Vuex.Store({
         },
         getRecord(state){
             return state.record
+        },
+        getrecordCover(state){
+            return state.recordCover
         }
     },
     mutations: {
@@ -247,14 +249,15 @@ var store = new Vuex.Store({
             var arr = [];
             data.forEach(function(item) {
             item.hash
-            axios.get('/music/app/i/getSongInfo.php?cmd=playInfo&hash=' +item.hash)
+            axios.get('/lyric/yy/index.php?r=play/getdata&hash=' +item.hash)
                 .then((response) => {
                    var temp = {}
-                   temp.name = response.data.songName;
-                   temp.author = response.data.singerName;
-                   temp.src = response.data.url;
-                   temp.cover = response.data.imgUrl.replace('{size}', '400')
-                   arr.push(temp)
+                   temp.name = response.data.data.song_name;
+                   temp.author = response.data.data.author_name;
+                   temp.src = response.data.data.play_url;
+                   temp.cover = response.data.data.img.replace('{size}', '400');
+                   temp.lyric = response.data.data.lyrics;
+                   arr.push(temp);
                 })
                 .catch((error) => {
                     console.log(error);
@@ -262,6 +265,10 @@ var store = new Vuex.Store({
              })
             state.record = arr;
 
+
+        },
+        setrecordCover(state,data){
+            state.recordCover = data
         }
     },
     actions: {
@@ -292,12 +299,13 @@ var store = new Vuex.Store({
         setMusic(context, data) {
             context.commit("setMusic", data)
         },
-<<<<<<< HEAD
         setRecord(context,data){
             context.commit('setRecord',data)
+        },
+        setrecordCover(context,data){ //设置音乐详情的封面
+            context.commit('setrecordCover',data)
         }
-=======
->>>>>>> 8b7b315728065a8a2a79fce60f4e306d09792194
+
     }
 })
 
