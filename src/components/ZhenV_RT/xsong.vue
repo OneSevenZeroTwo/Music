@@ -5,17 +5,18 @@
 		</mu-card-media>
 		<div class="liebiao">
 			<ul style="margin-bottom: 50px;">
-				<li v-for="(n,index) in mylist" @click="setImg(n)">
+				<li v-for="(n,index) in mylist" @click="setImg(n,index)" :class="{gaol:gaoll==index}">
 					<p>
 						<b>{{n.name}}</b>
 						<span>{{n.list}}</span>
 						<mu-checkbox class="demo-checkbox" uncheckIcon="favorite_border" :nativeValue="n.hash" :disabled="isShow" checkedIcon="favorite" v-model="getshou" />
 					</p>
+					<i><img src="../../img/jia.png" alt="" /></i>
 				</li>
 
 			</ul>
 		</div>
-		<span class="back" @click="goback"><img src="../../img/goback_1.png" alt="" style="height: 30px;margin:0;padding: 0;"/></span>
+		<span class="back" @click="goback"><img src="../../img/goback_1.png" alt="" style="height: 30px;margin-left: 20px;margin-top: 20px;padding: 0;"/></span>
 		<xstom :list="bigimg" :get="title" :xiang="xiangxi" :outtime="outtime"></xstom>
 		<xtop></xtop>
 		<xplay></xplay>
@@ -51,7 +52,8 @@
 				myhash: null,
 				yandn: false,
 				mtss: null,
-				isShow: false
+				isShow: false,
+				gaoll:null
 			}
 		},
 
@@ -106,9 +108,9 @@
 
 				this.$store.state.isshow = true;
 			},
-			setImg(songsPlay) {
+			setImg(songsPlay,mindex) {
 				var arr = [songsPlay];
-
+				this.gaoll = mindex;
 				this.$store.dispatch('setImg', [this.bigimg, true]);
 				this.$store.dispatch('setSongs', arr);
 			},
@@ -129,7 +131,7 @@
 			this.getid = this.$route.params.id;
 
 			this.sort();
-			//			console.log($.cookie('not_existing'));
+
 			var salf = this;
 
 			function getCookie(name) {
@@ -140,7 +142,13 @@
 				}
 
 			};
-
+			function setCookie(name, value) {
+					var days = 10;
+					var ex = new Date();
+					ex.setTime(ex.getTime() + days * 24 * 60 * 60 * 1000);
+					document.cookie = name + "=" + value + ";expires=" + ex;
+			};
+//			setCookie("tel",1231232);
 			if(getCookie("tel") === undefined) {
 				console.log(666);
 				this.isShow = true;
@@ -190,12 +198,16 @@
 			},
 
 		},
-		updated(){
+		updated() {
 
 			var salf = this;
-			$('.demo-checkbox').on("click",function(){
-//				console.log(112);
-				salf.topPopup = true;
+			$('.demo-checkbox').on("click", function() {
+				if(salf.isShow){
+					salf.topPopup = true;
+				}else{
+						salf.topPopup = false;
+				}
+			
 			})
 		},
 		computed: {
@@ -206,13 +218,13 @@
 				} else {
 					this.$store.state.getshou = this.getshou;
 				}
-//				if(getCookie("tel") === undefined) {
-//					
-//					this.topPopup = true;
-//
-//				} else {
-//					console.log(111);
-//				}
+				//				if(getCookie("tel") === undefined) {
+				//					
+				//					this.topPopup = true;
+				//
+				//				} else {
+				//					console.log(111);
+				//				}
 				return this.getshou
 			}
 		},
@@ -228,8 +240,11 @@
 <style scoped>
 	.back {
 		position: absolute;
-		left: 16px;
-		top: 14px;
+		left: 0px;
+		top: 0px;
+		display: block;
+		width: 100%;
+	 background-color: rgba(0, 0, 0, 0.02);
 	}
 	
 	.back img {
@@ -238,13 +253,29 @@
 	
 	.liebiao li {
 		position: relative;
-		padding: 10px;
+		
 		list-style-type: none;
 	}
-	
+	.liebiao li i{
+		position: absolute;
+		left:9px;
+		top:18px;
+		width: 20px;
+		height:20px;
+		
+	}
+	.liebiao li i img{
+		width: 100%;
+		height:100%;
+	}
+	.gaol{
+		color:#fc378c;
+		border-left:3px solid #fc378c;
+	}
 	.liebiao li p {
 		position: relative;
 		margin-left: 30px;
+		    padding: 10px;
 		border-bottom: 1px solid #ddd;
 	}
 	
@@ -262,8 +293,8 @@
 	
 	.demo-checkbox {
 		position: absolute;
-		right: 5px;
-		top: 4px;
+		right: 15px;
+		top: 19px;
 	}
 	
 	.shouc {
