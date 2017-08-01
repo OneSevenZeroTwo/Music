@@ -1,5 +1,6 @@
 import axios from 'axios'
 export default {
+
     state: {
         newSong: null,
         newClass: null,
@@ -15,16 +16,8 @@ export default {
         isshow: false,
         getIndex: null,
         getMusic: null,
-        louti:false,
-        zimu:null,
-        zxrm:null,
-        newsearch:'',
-        getsearch:null,
-        newId:1,
-        commentNum:null,
-        isShowContainer:true,
         //唱片
-        record:'',
+        record: '',
         //侧边栏初始化
         direction: 'left',
         telephone: '',
@@ -41,7 +34,10 @@ export default {
         arrHight:[],
         getshou:[],
         loginStatus: null,
-        sildeShow:false
+        sildeShow:false,
+        loginStatus: null,
+        //音乐详情的封面
+        recordCover: ''
     },
     getters: {
         getRange(state) {
@@ -68,17 +64,12 @@ export default {
         newMusic(state) {
             return state.getMusic
         },
-        getzxrm(state) {
-            return state.zxrm
-        },
-        getsearch(state) {
-            return state.getsearch
-        },
-        getId(state) {
-            return state.newId
-        },
-        getRecord(state){
+        getRecord(state) {
             return state.record
+        },
+        getrecordCover(state) {
+            state.recordCover = state.record[0].cover
+            return state.recordCover
         }
     },
     mutations: {
@@ -135,52 +126,30 @@ export default {
                     console.log(error);
                 });
         },
-        getzxrm(state, data) {
-            axios.get('/search/api/v3/search/hot?format=json&plat=0&count=30')
-            .then((response) => {
-                state.zxrm = response.data
-            })
-            .catch((error) => {
-                console.log(error);
-            });
-        },
-        setsearch(state, data) {
-			state.newsearch = data
-        },
-        getsearch(state, data) {
-			axios.get('/search/api/v3/search/song?format=json&keyword='+state.newsearch+'&page='+state.newId+'&pagesize=30&showtype=1')
-            .then((response) => {
-                state.getsearch = response.data
-            })
-            .catch((error) => {
-                console.log(error);
-            });
-        },
-        setId(state, data) {
-			state.newId = data
-        },
-        setgq(state, data) {
-			state.newsearch = data
-        },
-        setRecord(state,data){//添加音乐详情页面的歌单列表;
+        setRecord(state, data) { //添加音乐详情页面的歌单列表;
             var arr = [];
             data.forEach(function(item) {
-            item.hash
-            axios.get('/music/app/i/getSongInfo.php?cmd=playInfo&hash=' +item.hash)
-                .then((response) => {
-                   var temp = {}
-                   temp.name = response.data.songName;
-                   temp.author = response.data.singerName;
-                   temp.src = response.data.url;
-                   temp.cover = response.data.imgUrl.replace('{size}', '400')
-                   arr.push(temp)
-                })
-                .catch((error) => {
-                    console.log(error);
-                });
-             })
+                item.hash
+                axios.get('/lyric/yy/index.php?r=play/getdata&hash=' + item.hash)
+                    .then((response) => {
+                        var temp = {}
+                        temp.name = response.data.data.song_name;
+                        temp.author = response.data.data.author_name;
+                        temp.src = response.data.data.play_url;
+                        temp.cover = response.data.data.img.replace('{size}', '400');
+                        temp.lyric = response.data.data.lyrics;
+                        arr.push(temp);
+                    })
+                    .catch((error) => {
+                        console.log(error);
+                    });
+            })
             state.record = arr;
 
+
+        },
+        setrecordCover(state, data) {
+            state.recordCover = data
         }
     },
     actions: {
@@ -211,23 +180,12 @@ export default {
         setMusic(context, data) {
             context.commit("setMusic", data)
         },
-        getzxrm(context, data) {
-            context.commit("getzxrm", data)
+        setRecord(context, data) {
+            context.commit('setRecord', data)
         },
-        setsearch(context, data) {
-            context.commit("setsearch", data)
-        },
-        getsearch(context, data) {
-            context.commit("getsearch", data)
-        },
-        setId(context, data) {
-            context.commit("setId", data)
-        },
-        setgq(context, data) {
-            context.commit("setgq", data)
-        },
-        setRecord(context,data){
-            context.commit('setRecord',data)
+        setrecordCover(context, data) { //设置音乐详情的封面
+            context.commit('setrecordCover', data)
         }
+
     }
 }

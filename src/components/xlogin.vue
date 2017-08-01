@@ -92,39 +92,39 @@
 			},
 			sendLogin: function() {
 				this.$ajax({
-						url: 'http://localhost:12345/login',
-						params: {
-							telephone: this._telephone,
-							password: this._password
+					url: 'http://localhost:12345/login',
+					params: {
+						telephone: this._telephone,
+						password: this._password
+					}
+				})
+				.then((res) => {
+					console.log(res);
+					this.open();
+					if(res.data.user.length == 0) {
+						//alert('登录帐号或登录密码错误');
+						this.openCon = '登录帐号或登录密码错误'
+					}
+					if(res.data.user.length == 1) {
+						console.log(this.$store.state.loginStatus);
+						var cookies = document.cookie;
+						if(cookies) {
+							var arr = cookies.split('; ');
+							arr.forEach(function(item) {
+								var temp = item.split('=');
+								if(temp[0] === 'tel') {
+									this.openCon = 'login success..'
+									//location.href = '/app/newSong/';
+									
+								}
+							})
 						}
-					})
-					.then((res) => {
-						console.log(res);
-						this.open();
-						if(res.data.user.length == 0) {
-							//alert('登录帐号或登录密码错误');
-							this.openCon = '登录帐号或登录密码错误'
-						}
-						else if(res.data.user.length == 1) {
-							//alert('登录成功');
-							console.log(this.$store.state.loginStatus);
-							var cookies = document.cookie;
-							if(cookies) {
-								var arr = cookies.split('; ');
-								arr.forEach(function(item) {
-									var temp = item.split('=');
-									if(temp[0] === 'tel') {
-										location.href = '/app/newSong/';
-										
-									}
-								})
-							}
-						}
-					})
-					.catch((error) => {
-						console.log(error);
-						this.openCon='香菇，登录失败了,请重新输入';
-					});
+					}
+				})
+				.catch((error) => {
+					console.log(error);
+					this.openCon='香菇，登录失败了,请重新输入';
+				});
 			}
 		}
 	}
