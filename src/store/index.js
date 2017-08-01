@@ -1,4 +1,4 @@
-
+import axios from 'axios'
 export default {
     state: {
         newSong: null,
@@ -40,7 +40,8 @@ export default {
         // 存放文章的历史浏览高度
         arrHight:[],
         getshou:[],
-        loginStatus: null
+        loginStatus: null,
+        sildeShow:false
     },
     getters: {
         getRange(state) {
