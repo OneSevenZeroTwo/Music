@@ -6,7 +6,7 @@
 
 **参考请求Demo(node.js请求方式)**  =>复制粘帖即可;
 
-```JS
+```Javascript
 var http = require('http');
 var url = require('url');
 var querystring = require('querystring');
