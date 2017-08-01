@@ -30,7 +30,7 @@
 					<p><a href="#/connection" style="color:#C0BFC4">联系客服</a></p>
 				</a>
 			</div>
-			<div>
+			<div class="center">
 				<a @click="changeDirection()" class="exit_silde" href="javascript:void(0)">
 				<i class="material-icons">&#xE14C;</i></a>
 			</div>
@@ -166,7 +166,8 @@
 		color: #C0BFC4;
 		position: absolute;
 		bottom: 10%;
-		left: 80%;
+		left: 50%;
+		margin-left: -10px;
 	}
 	.list div a{
 		overflow: hidden;
@@ -185,4 +186,5 @@
 		text-align: center;
 		color: #fff;
 	}
+
 </style>
