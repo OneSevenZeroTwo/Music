@@ -2,9 +2,11 @@
 
 [参考网站DEMO](http://m.kugou.com/)
 
+# 接口文档
+
 **参考请求Demo(node.js请求方式)**  =>复制粘帖即可;
 
-```JS
+```Javascript
 var http = require('http');
 var url = require('url');
 var querystring = require('querystring');
@@ -43,7 +45,7 @@ console.log('服务器开启:6787')
 
 ```
 
-## 一 音乐新歌榜(首页)
+## 一 音乐新歌榜(首页)接口
 
 说明:获取新歌曲版单<br>
 
@@ -57,7 +59,7 @@ console.log('服务器开启:6787')
 
 推荐网页:首页:轮播图;新歌首发;<br>
 
-## 二 音乐排行榜分类
+## 二 音乐排行榜分类接口
 
 说明: 获取音乐排行榜<br>
 
@@ -66,7 +68,7 @@ console.log('服务器开启:6787')
 接口地址: http://m.kugou.com/rank/list&json=true<br>
 
 返回数据:{rank:Object}
-```JS
+```Javascript
 banner7url:
 "http://imge.kugou.com/mcommon/{size}/20150818/20150818104301582059.png"
 bannerurl:
@@ -85,7 +87,7 @@ update_frequency:"周一"
 ```
 推荐网页:排行:分类榜单<br>
 
-##排行版分类下的歌曲列表<br>
+### 排行版分类下的歌曲列表<br>
 
 说明: 获取音乐排行榜<br>
 
@@ -94,7 +96,7 @@ update_frequency:"周一"
 接口地址: http://m.kugou.com/rank/info/?rankid=23784&page=1&json=true<br>
 
 返回数据:{songs Object}<br>
-```JS
+```Javascript
 320filesize:5055827
 320hash:"50CB9E7B2C6E35B3D8253541B9E9D1D9"
 addtime:"2017-07-17 14:30:01"
@@ -120,7 +122,7 @@ sqhash:"75D8819CB839CB0478EFE88743172113"
 ```
 推荐网页:榜单内的歌曲列表;
 
-## 三 音乐歌单
+## 三 音乐歌单接口
 说明: 获取音乐歌单
 
 必选参数:无
@@ -129,7 +131,7 @@ sqhash:"75D8819CB839CB0478EFE88743172113"
 
 返回数据{plist:Object; songs:Array}
 
-```JS
+```Javascript
 collectcount:0
 imgurl:
 "http://imge.kugou.com/soft/collection/{size}/20170721/20170721084840758279.jpg"
@@ -149,7 +151,7 @@ verified:0
 ```
 推荐网页:音乐歌单
 
-##音乐歌单下的音乐列表
+### 音乐歌单下的音乐列表
 
 说明: 获取 歌单下的音乐列表
 
@@ -161,7 +163,7 @@ verified:0
 
 推荐网页:音乐歌单下的音乐列表
 
-## 四 歌手分类
+## 四 歌手分类接口
 
 说明: 获取 歌手分类
 
@@ -170,13 +172,13 @@ verified:0
 接口地址: http://m.kugou.com/singer/class&json=true
 
 返回数据:{list:Array}
-```JS
+```Javascript
 classid:88  =>重要id;
 classname:"热门歌手"
 imgurl:"http://mobileimg.kugou.com/billImage/150/26-11.jpg"
 ```
 
-##歌手分类下面的歌手列表
+### 歌手分类下面的歌手列表
 
 说明: 获取歌手分类
 
@@ -185,13 +187,13 @@ imgurl:"http://mobileimg.kugou.com/billImage/150/26-11.jpg"
 接口地址: http://m.kugou.com/singer/list/88?json=true
 
 返回数据:{singer:Object}
-```JS
+```Javascript
 imgurl:"http://singerimg.kugou.com/uploadpic/pass/softhead/{size}/20170713/20170713161536456.jpg"
 singerid:3060  ==>重要id;
 singername:"薛之谦"
 ```
 
-##歌手列表下的歌手信息
+### 歌手列表下的歌手信息
 
 说明: 获取 歌手分类
 
@@ -201,7 +203,7 @@ singerid : 歌手id 3060
 
 接口地址: http://m.kugou.com/singer/info/3060&json=true  
 <!-- 模拟手机端的请求即可 -->
-```JS
+```Javascript
 albumcount:20
 has_long_intro:1
 imgurl:"http://singerimg.kugou.com/uploadpic/softhead/{size}/20170713/20170713161536456.jpg"
@@ -227,7 +229,7 @@ ver:"v3"
 接口地址: http://m.kugou.com/app/i/getSongInfo.php?cmd=playInfo&hash=04EBD2291E4B8AE042731752ECBEFF13
 
 返回数据
-```JS
+```Javascript
 bitRate:128
 choricSinger:"LINKIN PARK"
 ctype:1009
@@ -253,7 +255,7 @@ url: =>音乐地址;
 ```
 推荐网页:需要播放歌曲的地方;
 
-##歌曲音乐详情-带歌词版本
+### 歌曲音乐详情-带歌词版本
 
 说明: 获取音乐详情-带歌词版本
 
@@ -263,7 +265,7 @@ hash : 音乐列表下的 音乐id
 
 接口地址: http://www.kugou.com/yy/index.php?r=play/getdata&hash=CB7EE97F4CC11C4EA7A1FA4B516A5D97
 
-```JS
+```Javascript
 album_id:0
 album_name:"未知专辑"
 audio_name:"LINKIN PARK - New Divide"
@@ -335,7 +337,7 @@ video_id:"596720"
 接口地址: http://mobilecdn.kugou.com/api/v3/search/hot?format=json&plat=0&count=30
 
 返回数据
-```JS
+```Javascript
 Object
 jumpurl:""
 keyword:"中国新歌声第二季"
@@ -347,7 +349,7 @@ keyword:"抖腿周刊"
 sort:2
 ```
 
-##音乐搜索(关键字搜索)
+### 音乐搜索(关键字搜索)
 
 说明: 获取 音乐搜索结果
 
@@ -357,7 +359,7 @@ sort:2
 接口地址: http://mobilecdn.kugou.com/api/v3/search/song?format=json&keyword=关键字&page=1&pagesize=20&showtype=1
 
 返回数据
-```JS
+```Javascript
 320filesize:12274416
 320hash:"4dc9da16dff397ed2695e164b612cab1"
 320privilege:0

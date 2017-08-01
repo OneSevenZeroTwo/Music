@@ -6,6 +6,9 @@ import FastClick from 'fastclick';
 import VueRouter from 'vue-router'
 import App from './views/App'
 import rangeDetails from './views/rangeDetails'
+import search from './views/search'
+import hotSearch from "./components/search/hotSearch.vue"
+import keywordSearch from "./components/search/keywordSearch.vue"
 import newSong from './views/newSong'
 import range from './views/range'
 import songSheet from './views/songSheet'
@@ -17,7 +20,7 @@ import db from './views/db'
 import mod from './views/mod'
 import passageDetail from './views/passageDetail'
 import song from './views/song'
-Vue.use(MuseUI)
+import connection from './views/connection'
 
 import Vuex from 'vuex'
 import axios from 'axios'
@@ -49,6 +52,8 @@ import Shoucang from "./views/shoucang.vue";
 Vue.use(VueRouter)
 Vue.use(Vuex)
 Vue.use(VueAwesomeSwiper)
+Vue.use(MuseUI)
+
 
 Vue.prototype.$ajax = axios;
 
@@ -87,44 +92,64 @@ const routes = [{
                 redirect: '/app/singer/tolist'
             }]
         }]
-    }, {
-        path: '/rangeDetails/:id',
-        component: rangeDetails,
-    }, {
-        path: '/singlist/:id',
-        component: singlist
-    }, {
-        path: '/xsong/:id',
-        component: xsong
-    }, {
-        path: '/db',
-        component: db,
-    }, {
-        path: '/mod/:id',
-        component: mod,
-    }, {
-        // 文章详情路由
-        path: '/passageDetail/:id',
-        component: passageDetail,
-    }, {
-        path: "/song",
-        component: song
-    },
-    //注册登录收藏路由
-    {
-        path: '/register',
-        component: Register
-    }, {
-        path: '/login',
-        component: Login
-    }, {
-        path: '/shoucang',
-        component: Shoucang
-    }, {
-        path: '/',
-        redirect: '/app/newSong'
-    }
-]
+}, {
+    path: '/rangeDetails/:id',
+    component: rangeDetails,
+}, {
+    path: '/singlist/:id',
+    component: singlist
+}, {
+    path: '/xsong/:id',
+    component: xsong
+}, {
+    path: '/db',
+    component: db,
+}, {
+    path: '/mod/:id',
+    component: mod,
+}, {
+    // 文章详情路由
+    path: '/passageDetail/:id',
+    component: passageDetail,
+},{
+  path:"/song",
+  component:song
+},
+//注册登录路由
+{
+    path: '/register',
+    component: Register
+},
+{
+    path: '/login',
+    component: Login
+}, 
+{
+	path: '/search',
+    component: search,
+    children:[{
+    	path: 'hotSearch',
+        component: hotSearch
+    },{
+    	path: 'keywordSearch',
+        component: keywordSearch
+    },{
+    	path: '/search',
+		redirect: '/search/hotSearch'
+    }]
+},
+{
+	path: '/shoucang',
+    component: Shoucang
+},
+{
+	path: '/connection',
+    component: connection
+},
+{
+	path: '/',
+	redirect: '/app/newSong'
+}]
 
 // 创建状态管理
 var store = new Vuex.Store({
@@ -143,6 +168,16 @@ var store = new Vuex.Store({
         isshow: false,
         getIndex: null,
         getMusic: null,
+        louti:false,
+        zimu:null,
+        zxrm:null,
+        newsearch:'',
+        getsearch:null,
+        newId:1,
+        commentNum:null,
+        isShowContainer:true,
+        //唱片
+        record:'',
         //侧边栏初始化
         direction: 'left',
         telephone: '',
@@ -154,7 +189,12 @@ var store = new Vuex.Store({
         commentNum: null,
         isShowContainer: true,
         loginStatus: null,
-        sildeShow:false
+        sildeShow:false,
+        newComment:null,
+        newCommentCount:null,
+        // 存放文章的历史浏览高度
+        arrHight:[],
+        getshou:[]
     },
     getters: {
         getRange(state) {
@@ -181,6 +221,18 @@ var store = new Vuex.Store({
         newMusic(state) {
             return state.getMusic
         },
+        getzxrm(state) {
+            return state.zxrm
+        },
+        getsearch(state) {
+            return state.getsearch
+        },
+        getId(state) {
+            return state.newId
+        },
+        getRecord(state){
+            return state.record
+        }
     },
     mutations: {
         getMusic(state) {
@@ -236,6 +288,53 @@ var store = new Vuex.Store({
                 console.log(error);
             });
         },
+        getzxrm(state, data) {
+            axios.get('/search/api/v3/search/hot?format=json&plat=0&count=30')
+            .then((response) => {
+                state.zxrm = response.data
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+        },
+        setsearch(state, data) {
+			state.newsearch = data
+        },
+        getsearch(state, data) {
+			axios.get('/search/api/v3/search/song?format=json&keyword='+state.newsearch+'&page='+state.newId+'&pagesize=30&showtype=1')
+            .then((response) => {
+                state.getsearch = response.data
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+        },
+        setId(state, data) {
+			state.newId = data
+        },
+        setgq(state, data) {
+			state.newsearch = data
+        },
+        setRecord(state,data){//添加音乐详情页面的歌单列表;
+            var arr = [];
+            data.forEach(function(item) {
+            item.hash
+            axios.get('/music/app/i/getSongInfo.php?cmd=playInfo&hash=' +item.hash)
+                .then((response) => {
+                   var temp = {}
+                   temp.name = response.data.songName;
+                   temp.author = response.data.singerName;
+                   temp.src = response.data.url;
+                   temp.cover = response.data.imgUrl.replace('{size}', '400')
+                   arr.push(temp)
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+             })
+            state.record = arr;
+
+        }
     },
     actions: {
         getMusic(context, data) {
@@ -265,6 +364,24 @@ var store = new Vuex.Store({
         setMusic(context, data) {
             context.commit("setMusic", data)
         },
+        getzxrm(context, data) {
+            context.commit("getzxrm", data)
+        },
+        setsearch(context, data) {
+            context.commit("setsearch", data)
+        },
+        getsearch(context, data) {
+            context.commit("getsearch", data)
+        },
+        setId(context, data) {
+            context.commit("setId", data)
+        },
+        setgq(context, data) {
+            context.commit("setgq", data)
+        },
+        setRecord(context,data){
+            context.commit('setRecord',data)
+        }
     }
 })
 

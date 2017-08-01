@@ -334,10 +334,8 @@
 				this.$store.state.louti = true;
 				this.$store.state.zimu = ele;
 				var salf = this;
-				
 				setTimeout(function(){
-					console.log(123);
-					console.log(salf.$store.state);
+					
 					salf.$store.state.louti = false;
 				},1000)
 				var $top = null;
@@ -380,7 +378,7 @@
 					salf.totlelist = salf.totlelist.concat(mylist);
 
 					//					console.log(salf.totlelist);
-					if(salf.page < 14) {
+					if(salf.page < 10) {
 						salf.getl();
 					} else {
 						salf.getl1();
@@ -391,7 +389,7 @@
 			},
 			getl1: function() {
 				var salf = this;
-
+				
 				this.page++;
 				axios({
 					method: 'get',
@@ -501,7 +499,7 @@
 							}
 							if(pinyinUtil.getFirstLetter(this.totlelist[c].singername.charAt(0)) == "S") {
 								salf.myS = salf.myS.concat(this.totlelist[c]);
-
+								salf.xianS = true;
 							}
 							if(pinyinUtil.getFirstLetter(this.totlelist[c].singername.charAt(0)) == "T") {
 								salf.myT = salf.myT.concat(this.totlelist[c]);
@@ -573,7 +571,7 @@
 					}
 					var bbb;
 					for(var f = 0; f < bcc.length; f++) {
-						if(bcc[f] !== "A" && bcc[f] !== "B" && bcc[f] !== "C" && bcc[f] !== "D" && bcc[f] !== "E" && bcc[f] !== "F" && bcc[f] !== "G" && bcc[f] !== "H" && bcc[f] !== "I" && bcc[f] !== "G" && bcc[f] !== "K" && bcc[f] !== "L" && bcc[f] !== "M" && bcc[f] !== "N" && bcc[f] !== "O" && bcc[f] !== "P" && bcc[f] !== "Q" && bcc[f] !== "R" && bcc[f] !== "S" && bcc[f] !== "U" && bcc[f] !== "V" && bcc[f] !== "W" && bcc[f] !== "X" && bcc[f] !== "Y" && bcc[f] !== "Z" && bcc[f] !== "T" && bcc[f] !== "J") {
+						if(bcc[f] !== "A" && bcc[f] !== "B" && bcc[f] !== "C" && bcc[f] !== "D" && bcc[f] !== "E" && bcc[f] !== "F" && bcc[f] !== "G"&& bcc[f] !== "S" && bcc[f] !== "H" && bcc[f] !== "I" && bcc[f] !== "G" && bcc[f] !== "K" && bcc[f] !== "L" && bcc[f] !== "M" && bcc[f] !== "N" && bcc[f] !== "O" && bcc[f] !== "P" && bcc[f] !== "Q" && bcc[f] !== "R" && bcc[f] !== "S" && bcc[f] !== "U" && bcc[f] !== "V" && bcc[f] !== "W" && bcc[f] !== "X" && bcc[f] !== "Y" && bcc[f] !== "Z" && bcc[f] !== "T" && bcc[f] !== "J") {
 							//										console.log(bcc[f]);									
 						} else {
 							bbb += bcc[f] + ",";
@@ -591,7 +589,7 @@
 			}
 		},
 		mounted() {
-
+			
 			//重要一步获取id进行对象的逻辑
 			this.getid = this.$route.params.id;
 			this.getlist();

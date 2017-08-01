@@ -1,16 +1,15 @@
 <template>
-
-	<div>
-		<router-view></router-view>
-	</div>
+    <div>
+        <router-view></router-view>
+    </div>
 </template>
 <script>
-
-	
-	export default {
-		
+export default {
+	mounted(){
+		this.$store.dispatch('setIndex',3);
 	}
+}
 </script>
 <style scoped>
-	@import url("../css/muse-ui.css");
+@import url("../css/muse-ui.css");
 </style>

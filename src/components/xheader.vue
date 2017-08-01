@@ -1,11 +1,10 @@
 <template>
-
 	<div>
 		<div class="topbar">
 			<span>bilibili音悦台</span>
 		</div>
 		<span class="back" @click="changeDirection()"><i class="material-icons contentList">&#xE241;</i></span>
-		<span class="search"><i class="material-icons contentList">&#xE8B6;</i></span>
+		<span class="search" @click="search"><i class="material-icons contentList">&#xE8B6;</i></span>
 	</div>
 </template>
 <script type="text/javascript">
@@ -22,7 +21,9 @@
 				this.$store.state.direction = "right";
 				//console.log(this.$store.state.direction)
 				this.$store.state.sildeShow = true
-				console.log(11111111)
+			},
+			search(){
+				window.location.href = '#/search'
 			}
 		}
 	}
