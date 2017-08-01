@@ -29,7 +29,7 @@
 		</div>
 		<mu-dialog :open="dialog" title="小提示" @close="close">
 			{{openCon}}
-			<mu-flat-button slot="actions" primary @click="close" label="确定" />
+			<a href="#/login"><mu-flat-button slot="actions" primary @click="close" label="确定" /></a>
 		</mu-dialog>
 	</div>
 </template>
@@ -118,7 +118,7 @@
 					.then((res) => {
 						//console.log(res);
 						this.openCon = '注册成功，前往登录';
-						location.href = '#/login';
+						//location.href = '#/login';
 					})
 					.catch((error) => {
 						console.log(error);

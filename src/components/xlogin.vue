@@ -112,11 +112,8 @@
 							var arr = cookies.split('; ');
 							arr.forEach(function(item) {
 								var temp = item.split('=');
-								if(temp[0] === 'tel') {
-									this.openCon = 'login success..'
-									//location.href = '/app/newSong/';
-									
-								}
+								location.href = '#/app/newSong/';
+								
 							})
 						}
 					}
