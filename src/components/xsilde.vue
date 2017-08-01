@@ -169,7 +169,8 @@
 		color: #C0BFC4;
 		position: absolute;
 		bottom: 10%;
-		left: 80%;
+		left: 50%;
+		margin-left: -10px;
 	}
 	.list div a{
 		overflow: hidden;
@@ -188,4 +189,5 @@
 		text-align: center;
 		color: #fff;
 	}
+
 </style>
