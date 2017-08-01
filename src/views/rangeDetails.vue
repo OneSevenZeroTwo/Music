@@ -1,7 +1,5 @@
 <template>
 	<div id="app">
-		<xheader></xheader>
-		<xsilde></xsilde>
 		<Banner :xinfo=info></Banner>
 		<List :xsongs=songs></List>
 		<xplay></xplay>
@@ -9,12 +7,6 @@
 </template>
 
 <script>
-	import {
-		Tab,
-		TabItem
-	} from 'vux';
-	import xheader from '../components/xheader.vue';
-	import xsilde from '../components/xsilde.vue';
 	import Banner from '../components/rangeDetails/banner.vue'
 	import List from '../components/rangeDetails/list.vue'
 	import xplay from "../components/xplay.vue"
@@ -24,13 +16,9 @@
 			return {}
 		},
 		components: {
-			xheader,
 			Banner,
 			List,
 			xplay,
-			xsilde,
-			Tab,
-			TabItem,
 		},
 		methods: {
 			getDetails() {
