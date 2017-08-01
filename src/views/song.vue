@@ -70,13 +70,7 @@ export default {
                 return this.$store.getters.getRecord[0].cover 
             },
             recordCover() {
-                if (this.$store.getters.getrecordCover === '') {
-                    this.$store.state.recordCover = this.test
-                    return this.$store.getters.getrecordCover
-                } else {
-                    return this.$store.getters.getrecordCover[0]
-                }
-
+                return this.$store.getters.getrecordCover
             },
             lyric() {
                 let i = this.i
@@ -153,7 +147,7 @@ export default {
                     //1.切换封面
                     setTimeout(function() {
                             var imgHead = document.querySelector('.skPlayer-cover');
-                            self.$store.dispatch('setrecordCover', [imgHead.src]);
+                            self.$store.dispatch('setrecordCover', imgHead.src);
 
                         }, 300)
                         //补上转动的封面

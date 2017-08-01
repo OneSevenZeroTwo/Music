@@ -61,6 +61,7 @@ export default {
             return state.record
         },
         getrecordCover(state) {
+            state.recordCover = state.record[0].cover
             return state.recordCover
         }
     },
