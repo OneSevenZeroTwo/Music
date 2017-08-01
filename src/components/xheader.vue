@@ -20,6 +20,7 @@
 			changeDirection() {
 				this.$store.state.direction = "right";
 				//console.log(this.$store.state.direction)
+				this.$store.state.sildeShow = true
 			},
 			search(){
 				window.location.href = '#/search'

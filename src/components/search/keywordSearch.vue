@@ -112,6 +112,9 @@
 							xthis.fh = false
 						}
 					}
+				}else{
+					this.xlsx = false;
+					this.lbwx = true;
 				}
 			});
 			//音乐播放

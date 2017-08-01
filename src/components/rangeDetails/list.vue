@@ -57,9 +57,11 @@
 						var title = document.querySelector("body .title");
 						if(title){
 							if(top > 250){
-								title.style.background = '#fc378c'
+								title.style.background = '#fc378c';
+								title.style.borderTop = '1px solid white'
 							}else{
-								title.style.background = '-webkit-linear-gradient(top,rgba(0,0,0,.6),transparent)'
+								title.style.background = '-webkit-linear-gradient(top,rgba(0,0,0,.6),transparent)';
+								title.style.borderTop = 'none'
 							}					
 						}
 						//数据加载
@@ -80,6 +82,9 @@
 							xthis.fh = false
 						}
 					}
+				}else{
+					this.xlsx = false;
+					this.lbwx = true;
 				}
 			})
 			//音乐播放

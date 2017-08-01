@@ -1,5 +1,5 @@
 <template>
-	<div class="leftContent" :class="{'silde-right':direction=='right','silde-left':direction=='left'}">
+	<div class="leftContent" v-show="sildeShow" :class="{'silde-right':direction=='right','silde-left':direction=='left'}">
 		<form id="uploadForm">
 			<input style="display: none;" type="file" name="logo" multiple="multiple" />
 			<div class="headcon">
@@ -30,7 +30,7 @@
 					<p><a href="#/connection" style="color:#C0BFC4">联系客服</a></p>
 				</a>
 			</div>
-			<div class="center">
+			<div class="exit_silde_page">
 				<a @click="changeDirection()" class="exit_silde" href="javascript:void(0)">
 				<i class="material-icons">&#xE14C;</i></a>
 			</div>
@@ -51,15 +51,18 @@
 		computed: {
 			direction() {
 				return this.$store.state.direction;
+			},
+			sildeShow(){
+				return this.$store.state.sildeShow;
 			}
+		},
+		mounted(){
+			this.$store.state.sildeShow = false;
 		},
 		methods: {
 			changeDirection() {
 				this.$store.state.direction = "left";
 				//console.log(this.$store.state.direction)
-			},
-			uploadPic(){
-				
 			},
 			clearCookie(){
 				this.logReg = false;
