@@ -63,7 +63,7 @@
 
 				var salf = this
 				axios({
-						url: "/music/singer/info/" + salf.getid + "&json=true",
+						url: "https://bird.ioliu.cn/v1?url=http://m.kugou.com/singer/info/" + salf.getid + "&json=true",
 						method: 'get'
 					})
 					.then((response) => {

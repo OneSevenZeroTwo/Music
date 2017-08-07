@@ -40,10 +40,10 @@
                 <button onclick="player.switchMode()">player.switchMode()</button> -->
             </div>
         </div>
-        <!-- 广告 -->
+        <!-- 
         <div class="ad" v-show="appear">
             <img src="http://business.cdn.qianqian.com/qianqian/pic/bos_client_14976036646c41b35e918e1c10d11fe38669ec2061.jpg" alt="">
-        </div>
+        </div> -->
     </div>
 </template>
 <script>

@@ -76,7 +76,7 @@ export default {
             icondiyPlay(index, hash) { //切换歌曲
                 this.page = index;
                 //切换歌单下不同的歌曲=>请求MP3;
-                axios.get('/music/app/i/getSongInfo.php?cmd=playInfo&hash=' + hash)
+                axios.get('https://bird.ioliu.cn/v1?url=http://m.kugou.com/app/i/getSongInfo.php?cmd=playInfo&hash=' + hash)
                     .then((response) => {
                         this.music_src = response.data.url;
                         //歌手信息与歌曲信息更新
@@ -97,7 +97,7 @@ export default {
                 var src = audio.src
             },
             record_msg(){
-                window.location.href = "/#/song"
+                window.location.href = "#/song"
             }
 
         },
@@ -125,7 +125,7 @@ export default {
                 }
                 // 切换不同的歌单=>请求MP3;
                 var hash = this.$store.getters.songsPlay[0].hash
-                axios.get('/music/app/i/getSongInfo.php?cmd=playInfo&hash=' + hash)
+                axios.get('https://bird.ioliu.cn/v1?url=http://m.kugou.com/app/i/getSongInfo.php?cmd=playInfo&hash=' + hash)
                     .then((response) => {
                         this.music_src = response.data.url;
                         //信息更改
@@ -153,7 +153,7 @@ export default {
             var audio = document.getElementById('audio');
             audio.onended = function(e) {
                     var hash = self.$store.getters.songsPlay[index].hash;
-                    axios.get('/music/app/i/getSongInfo.php?cmd=playInfo&hash=' + hash)
+                    axios.get('https://bird.ioliu.cn/v1?url=http://m.kugou.com/app/i/getSongInfo.php?cmd=playInfo&hash=' + hash)
                         .then((response) => {
                             this.music_src = response.data.url;
                             console.log(this.music_src)
