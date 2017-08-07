@@ -31,7 +31,7 @@
 			sort: function() {
 
 				var salf = this
-				axios.get("/music/singer/class&json=true")
+				axios.get("https://bird.ioliu.cn/v1?url=http://m.kugou.com/singer/class&json=true")
 					.then((response) => {
 						var sing = response.data.list;
 						

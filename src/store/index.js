@@ -69,7 +69,7 @@ export default {
             return state.record
         },
         getrecordCover(state) {
-            state.recordCover = state.record[0].cover
+            state.recordCover = state.record[0].cover;
             return state.recordCover
         }
     },
@@ -85,7 +85,7 @@ export default {
                 });
         },
         getRange(state) {
-            axios.get('/music/rank/list&json=true')
+            axios.get('https://bird.ioliu.cn/v1?url=http://m.kugou.com/rank/list&json=true')
                 .then((response) => {
                     state.newClass = response.data
                 })
@@ -94,7 +94,7 @@ export default {
                 });
         },
         rangeDetails(state) {
-            axios.get('/music/rank/info/?rankid=' + state.range_id + '&page=' + state.range_page + '&json=true', {})
+            axios.get('https://bird.ioliu.cn/v1?url=http://m.kugou.com/rank/info/?rankid=' + state.range_id + '&page=' + state.range_page + '&json=true', {})
                 .then((response) => {
                     state.newDetails = response.data
                 })
@@ -119,7 +119,7 @@ export default {
             state.getIndex = data
         },
         setMusic(state, data) {
-            axios.get('/music/app/i/getSongInfo.php?cmd=playInfo&hash=' + data)
+            axios.get('https://bird.ioliu.cn/v1?url=http://m.kugou.com/app/i/getSongInfo.php?cmd=playInfo&hash=' + data)
                 .then((response) => {
                     state.getMusic = response.data
                 })
@@ -131,7 +131,7 @@ export default {
             var arr = [];
             data.forEach(function(item) {
                 item.hash
-                axios.get('/lyric/yy/index.php?r=play/getdata&hash=' + item.hash)
+                axios.get('https://bird.ioliu.cn/v1?url=http://www.kugou.com/yy/index.php?r=play/getdata&hash=' + item.hash)
                     .then((response) => {
                         var temp = {}
                         temp.name = response.data.data.song_name;
