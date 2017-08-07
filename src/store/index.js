@@ -1,39 +1,43 @@
 import axios from 'axios'
 export default {
-
-    state: {
-        newSong: null,
-        newClass: null,
-        newDetails: null,
-        range_id: null,
-        range_page: 1,
-        songsPlay: [],
-        scrolly: null,
-        showComment: false,
-        // 播放器数据状态管理
-        showPlay: false,
-        imgUrl: '',
-        isshow: false,
-        getIndex: null,
-        getMusic: null,
-        //唱片
-        record: '',
-        //侧边栏初始化
-        direction: 'left',
-        telephone: '',
-        password: '',
-        //收藏
-        singername: [],
-        louti: false,
-        zimu: null,
-        commentNum: null,
-        isShowContainer: true,
-        newComment:null,
-        newCommentCount:null,
-        // 存放文章的历史浏览高度
-        arrHight:[],
+	state: {
+		newSong: null,
+		newClass: null,
+		newDetails: null,
+		range_id: null,
+		range_page: 1,
+		songsPlay: [],
+		scrolly: null,
+		showComment: false,
+		// 播放器数据状态管理
+		showPlay: false,
+		imgUrl: '',
+		isshow: false,
+		getIndex: null,
+		getMusic: null,
+		//唱片
+		record: '',
+		//侧边栏初始化
+		direction: 'left',
+		telephone: '',
+		password: '',
+		//收藏
+		singername: [],
+		louti: false,
+		zimu: null,
+		commentNum: null,
+		isShowContainer: true,
+		loginStatus: null,
+		//音乐详情的封面
+		recordCover: '',
+		zxrm:null,
+		newsearch:'',
+		getsearch:null,
+		newId:1,
+		newComment:null,
+		newCommentCount:null,
+		arrHight:[],
         getshou:[],
-        loginStatus: null,
         sildeShow:false,
         loginStatus: null,
         //音乐详情的封面
@@ -183,10 +187,8 @@ export default {
         },
         setRecord(context, data) {
             context.commit('setRecord', data)
-        },
-        setrecordCover(context, data) { //设置音乐详情的封面
-            context.commit('setrecordCover', data)
-        }
 
-    }
+        },
+
+	}
 }

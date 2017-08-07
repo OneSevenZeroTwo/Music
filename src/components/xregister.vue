@@ -29,7 +29,7 @@
 		</div>
 		<mu-dialog :open="dialog" title="小提示" @close="close">
 			{{openCon}}
-			<mu-flat-button slot="actions" primary @click="close" label="确定" />
+			<a href="#/login"><mu-flat-button slot="actions" primary @click="close" label="确定" /></a>
 		</mu-dialog>
 	</div>
 </template>
@@ -116,9 +116,24 @@
 						}
 					})
 					.then((res) => {
+						var inputCon = document.getElementsByClassName("mu-text-field-input");
+						this._telephone = inputCon[0].value;
+						this._password = inputCon[1].value;
+						console.log(this._telephone, this._password);
+						//将用户名存入cookie
+						document.cookie = 'tel=' + this._telephone;
 						//console.log(res);
-						this.openCon = '注册成功，前往登录';
-						location.href = '#/login';
+						//this.openCon = '注册成功，前往登录';
+						//location.href = '#/login';
+						var cookies = document.cookie;
+						if(cookies) {
+							console.log(666,cookies)
+							var arr = cookies.split('; ');
+							arr.forEach(function(item) {
+								var temp = item.split('=');	
+								location.href = '/';		
+							})
+						}
 					})
 					.catch((error) => {
 						console.log(error);

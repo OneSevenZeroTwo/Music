@@ -99,24 +99,23 @@
 					}
 				})
 				.then((res) => {
+				
 					console.log(res);
 					this.open();
 					if(res.data.user.length == 0) {
-						//alert('登录帐号或登录密码错误');
+						console.log(123);
 						this.openCon = '登录帐号或登录密码错误'
 					}
 					if(res.data.user.length == 1) {
+						console.log(222);
 						console.log(this.$store.state.loginStatus);
 						var cookies = document.cookie;
 						if(cookies) {
+							console.log(666)
 							var arr = cookies.split('; ');
 							arr.forEach(function(item) {
-								var temp = item.split('=');
-								if(temp[0] === 'tel') {
-									this.openCon = 'login success..'
-									//location.href = '/app/newSong/';
-									
-								}
+								var temp = item.split('=');	
+								location.href = '/app/newSong/';		
 							})
 						}
 					}

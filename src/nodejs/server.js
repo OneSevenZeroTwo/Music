@@ -93,6 +93,7 @@ app.get('/register', function(req, res) {
 app.get('/login', function(req, res) {
 	createConnection();
 	console.log(3333);
+//	console.log(req.query);
 	var telephone = req.query.telephone;
 	var password = req.query.password;
 	connection.query(`SELECT * FROM user WHERE telephone = '${telephone}' and password = '${password}'`, function(error, results, fields) {

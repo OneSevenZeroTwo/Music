@@ -662,15 +662,17 @@
 		position: fixed;
 		right: 7px;
 		top: 38%;
-		margin-top: -50%;
+		margin-top: -36%;
 		background: #FFFDEF;
 		opacity: 0.5;
-		width: 1.4rem;
+		width: 40px;
+		height: 100%;
 	}
 	
 	.word_sort ul li {
 		text-align: center;
 		border-bottom: 0.013333rem solid #ddd;
+		height:20px;
 	}
 	
 	.word_sort ul li .gaoliang {
