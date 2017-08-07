@@ -302,7 +302,7 @@
 
 				axios({
 					method: 'get',
-					url: '/music/singer/list/' + salf.getid + '?json=true'
+					url: 'https://bird.ioliu.cn/v1?url=http://m.kugou.com/singer/list/' + salf.getid + '?json=true'
 
 				}).then((response) => {
 					
@@ -369,7 +369,7 @@
 
 				axios({
 					method: 'get',
-					url: '/music/singer/list/' + salf.getid + '/' + salf.page + '?json=true'
+					url: 'https://bird.ioliu.cn/v1?url=http://m.kugou.com/singer/list/' + salf.getid + '/' + salf.page + '?json=true'
 
 				}).then((response) => {
 					var mylist = response.data.singers.list.info;
@@ -391,7 +391,7 @@
 				this.page++;
 				axios({
 					method: 'get',
-					url: '/music/singer/list/' + salf.getid + '/' + salf.page + '?json=true'
+					url: 'https://bird.ioliu.cn/v1?url=http://m.kugou.com/singer/list/' + salf.getid + '/' + salf.page + '?json=true'
 
 				}).then((response) => {
 					var mylist = response.data.singers.list.info;
