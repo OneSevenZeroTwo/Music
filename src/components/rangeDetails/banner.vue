@@ -2,7 +2,7 @@
 	<div class="r_banner">
 		<div class="title">
 			<div @click="goBack"></div>
-			<p v-text="xinfo.rankname"></p>
+			<p v-text="xinfo.rankname.slice(0,2)"></p>
 		</div>
 		<img :src=xinfo.banner7url alt="" />
 	</div>

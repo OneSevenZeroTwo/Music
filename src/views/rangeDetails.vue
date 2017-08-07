@@ -38,6 +38,11 @@
 					str.banner7url = str.banner7url.replace(/{size}/g, '400');
 					str.bannerurl = str.bannerurl.replace(/{size}/g, '400');
 					str.imgurl = str.imgurl.replace(/{size}/g, '400');
+					for(var i = 0;i<str.length;i++){
+						if(str[i].rankname.slice(0,2) == '酷狗' ){
+							str[i].rankname = '爱乐'+str[i].rankname.slice(2,);
+						}
+					}
 					return str;
 				} else {
 					return ' '

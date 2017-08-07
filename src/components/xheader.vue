@@ -14,7 +14,13 @@
 				//暴力获取状态
 				//this.$store.state.title
 				return this.$store.getters.getCount
+			},
+			sildeShow(){
+				return this.$store.state.sildeShow;
 			}
+		},
+		mouted(){
+			this.$store.state.sildeShow = false;
 		},
 		methods: {
 			changeDirection() {
