@@ -228,7 +228,7 @@ img {
 }
 
 .playButton {
-    background-image: url('../assets/auto.png');
+    background-image: url('../../static/images/auto.png');
     background-size: 30px 60px;
     display: block;
     background-position: 0 0px;
