@@ -19,7 +19,7 @@
 				return this.$store.state.sildeShow;
 			}
 		},
-		mounted(){
+		mouted(){
 			this.$store.state.sildeShow = false;
 		},
 		methods: {

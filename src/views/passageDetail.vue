@@ -20,7 +20,7 @@
                         <input type="text" v-show="">
                         <span @click="">评论</span>
                         <i class="commentIcon" @click="watchComment"></i>
-                        <i class="commentNum">{{data.id+newCommentCount}}</i>
+                        <i class="commentNum">{{data.id}}</i>
                     </div>
                     <span class="share"></span>
                 </div>
@@ -43,7 +43,7 @@ export default {
             data: null,
             word: ['关注', '已关注'],
             num: 0,
-            newCommentCount: null,
+            newCommentCount: [],
             height:''
         }
     },
@@ -62,14 +62,11 @@ export default {
         var id = this.$route.params.id * 1;
         console.log(this.isShowContainer);
         var self = this;
-        axios.get('http://localhost:8008/passage', {
-                params: {
-                    id: id
-                }
-            })
+        axios.get('../../static/data/passage.json')
             .then(function(response) {
-                self.data = response.data[0];
+                self.data = response.data.RECORDS[9-id];
                 self.$store.state.commentNum = self.data.id;
+                console.log(self.data);
             })
             .catch(function(error) {
                 console.log(error);
@@ -101,9 +98,9 @@ export default {
         isShowContainer() {
             return this.$store.state.isShowContainer
         },
-        newCommentCount() {
+        /*newCommentCount() {
             return this.$store.state.newCommentCount
-        }
+        }*/
     }
 }
 </script>
@@ -201,6 +198,7 @@ a {
     position: relative;
     margin-top: 12px;
     margin-left: 20px;
+    box-shadow: 0 0 0 0 #fff;
 }
 
 .sendComment span {

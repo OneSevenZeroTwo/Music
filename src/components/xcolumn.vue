@@ -5,7 +5,7 @@
             <span class="more"></span>
         </div>
         <div class="container" v-if="column">
-            <section>
+            <section class="first">
                 <img src="//shp.qpic.cn/qqvideo_ori/0/c0024iakzyd_360_204/0" alt="">
                 <p>{{column[0].filename}}</p>
             </section>
@@ -13,7 +13,7 @@
                 <img src="//shp.qpic.cn/qqvideo_ori/0/g00243r2wk7_360_204/0" alt="">
                 <p>{{column[1].filename}}</p>
             </section>
-            <section>
+            <section class="three">
                 <img src="//shp.qpic.cn/qqvideo_ori/0/a0024l5a58w_360_204/0" alt="">
                 <p>{{column[2].filename}}</p>
             </section>
@@ -76,8 +76,11 @@ div{
 }
 
 section {
-    width: 49.6%;
+    width: 48.6%;
     float: left;
+}
+.first,.three{
+    margin-left: 3px;
 }
 section p{
     display: block;

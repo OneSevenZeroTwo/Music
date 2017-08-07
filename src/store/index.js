@@ -35,7 +35,7 @@ export default {
 		getsearch:null,
 		newId:1,
 		newComment:null,
-		newCommentCount:null,
+		newCommentCount:[],
 		arrHight:[],
         getshou:[],
         sildeShow:false,
