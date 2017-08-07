@@ -35,21 +35,21 @@
 
 <style scoped lang="less">
 	.header {
-		margin-top: 102px;
+		margin-top: 54px;
 		.top {
 			width: 100%;
 			overflow: hidden;
 			position:fixed;
 			z-index: 200;
-			top: 48px;
+			top: 0;
 			left: 0;
-			background: white;
+			background: #ff4081;
 			border-bottom: 1px solid #e5e5e5; 
 			div {
 				float: left;
 				width: 10%;
 				height: 54px;
-				background: url(../../img/goback.png) no-repeat center;
+				background: url(../../img/goback_1.png) no-repeat center;
 				background-size: 16px 26px;
 			}
 			p {
@@ -59,6 +59,8 @@
 				font-family: Microsoft Yahei;
 				font-size: 18px;
 				text-align: center;
+				background-color: #ff4081;
+				color:#fff;
 			}
 		}
 		.bottom {
@@ -78,6 +80,7 @@
 					margin-right: 2%;
 					text-indent: 25px;
 					font-size: 18px;
+					outline:none;
 				}
 				a {
 					float: left;

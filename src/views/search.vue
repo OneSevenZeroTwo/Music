@@ -1,6 +1,6 @@
 <template>
     <div id="app">
-        <xheader></xheader>
+        <!-- <xheader></xheader> -->
         <xsilde></xsilde>
         <sheader></sheader>
         <router-view></router-view>
