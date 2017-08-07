@@ -3677,7 +3677,21 @@ html.pixel-ratio-3 .mu-dropDown-menu-line {
 	height: 80%;
 	border-radius: 50%;
 }
-
+@media screen  and (min-width:320px){
+			.mu-grid-tile-titlebar{
+				height: 70%;
+			}
+		}
+	@media screen  and (min-width:410px){
+			.mu-grid-tile-titlebar{
+				height: 80%;
+			}
+		}
+	@media screen  and (min-width: 768px){
+			.mu-grid-tile-titlebar{
+				height: 100%;
+			}
+		}
 .mu-grid-tile.multiline .mu-grid-tile-titlebar {
 	height: 68px;
 }
