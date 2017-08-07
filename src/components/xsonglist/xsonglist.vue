@@ -48,7 +48,6 @@ export default {
                         item.imgurl = item.imgurl.replace('{size}', '400')
                         return item
                     });
-                    console.log(this.info)
                 })
                 .catch((error) => {
                     console.log(error);

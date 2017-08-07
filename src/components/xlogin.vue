@@ -114,10 +114,8 @@
 							console.log(666)
 							var arr = cookies.split('; ');
 							arr.forEach(function(item) {
-								var temp = item.split('=');
-								
-								location.href = '/app/newSong/';
-								
+								var temp = item.split('=');	
+								location.href = '/app/newSong/';		
 							})
 						}
 					}

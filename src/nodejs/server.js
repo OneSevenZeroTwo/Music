@@ -53,11 +53,9 @@ app.get('/touxiang', function(req, res) {
 	var password = req.query.password;
 	var repassword = req.query.repassword;
 	var nickname = req.query.nickname;
-	console.log(111111111111111,telephone,imgurl)
 	connection.query(`insert into user (telephone,imgurl)  values ('${telephone}','${imgurl}') `, function(error, results, fields) {
 		if(error) throw error;
 		//results =>array类型
-		console.log(111);
 		console.log('The solution is: ', results);
 		var obj = {
 			my: results
@@ -71,17 +69,16 @@ app.get('/touxiang', function(req, res) {
 
 //注册---向数据库插入数据
 app.get('/register', function(req, res) {
-	console.log(111222);
 	createConnection();
 	var telephone = req.query.telephone;
 	var password = req.query.password;
 	var repassword = req.query.repassword;
 	var nickname = req.query.nickname;
-	console.log(telephone, nickname, password, repassword);
 	connection.query(`update user set nickname='${nickname}',password='${password}' where telephone='${telephone}'`,
 		function(error, results, fields) {
 			if(error) throw error;
 			//results =>array类型
+			
 			console.log('The solution is: ', results);
 			var obj = {
 				user: results

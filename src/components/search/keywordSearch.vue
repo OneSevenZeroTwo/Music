@@ -77,7 +77,6 @@
 			}
 		},
 		mounted(){
-			console.log(123)
 			this.$store.dispatch('setId',1);
 			this.getzxrm()
 			this.setsearch()
