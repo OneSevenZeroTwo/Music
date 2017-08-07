@@ -14,13 +14,19 @@
 				//暴力获取状态
 				//this.$store.state.title
 				return this.$store.getters.getCount
+			},
+			sildeShow(){
+				return this.$store.state.sildeShow;
 			}
+		},
+		mounted(){
+			this.$store.state.sildeShow = false;
 		},
 		methods: {
 			changeDirection() {
 				this.$store.state.direction = "right";
 				//console.log(this.$store.state.direction)
-				this.$store.state.sildeShow = true
+				this.$store.state.sildeShow = true;
 			},
 			search(){
 				window.location.href = '#/search'
