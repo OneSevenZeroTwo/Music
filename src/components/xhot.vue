@@ -4,7 +4,7 @@
             <p class="title">热门推荐</p>
             <span class="more"></span>
         </div>
-        <section>
+        <section class="first">
             <span class="firstErji" ></span>
             <span class="firstBofang"></span>
             <i class="firstI">{{ hotList[0].duration}}</i>
@@ -26,7 +26,7 @@
             <img src="//y.gtimg.cn/music/photo_new/T002R300x300M000002glrSP3MSICO.jpg?max_age=2592000" alt="">
             <p>{{ hotList[2].filename | shortTitle }}</p>
         </section>
-        <section>
+        <section class="four">
             <span class="erji"></span>
             <span class="bofang"></span>
             <i>{{hotList[3].duration}}</i>
@@ -62,7 +62,7 @@ export default {
             }
         },
         mounted() {
-            axios.get('/music/?json=true')
+            axios.get('https://bird.ioliu.cn/v1?url=http://m.kugou.com?json=true')
                 .then((response) => {
                     this.hotList = response.data.data.splice(0, 6);
                     console.log(this.hotList);
@@ -125,9 +125,7 @@ section span{
     left:0;
     background-size: 18px 18px;
 }
-.firstErji,.firstBofang{
-    top:88px;
-}
+
 .firstBofang,.bofang{
     background-image: url('../assets/start.png');
     right:0;
@@ -139,9 +137,6 @@ section span{
     font-size: 16px;
     margin-bottom: 4px;
 }
-.firstI{
-    top:99px;
-}
 i{
     font-style: normal;
     position: absolute;
@@ -152,10 +147,12 @@ i{
 }
 section {
     position: relative;
-    width: 32.6%;
+    width: 31.6%;
     float: left;
 }
-
+.first,.four{
+    margin-left: 4px;
+}
 section p {
     display: block;
     height: 40px;

@@ -5,7 +5,7 @@
             <span class="more"></span>
         </div>
         <section class="type">
-            <span>
+            <span class="first">
                 <img src="https://p.qpic.cn/music_cover/KWul6PEBRTRXtxIIqGZBSdyWapkicmbusJPHZcrIfhqfiacbTnEGfltw/300?n=1" alt="">
                 <p>90后</p>
             </span>
@@ -102,7 +102,7 @@ export default {
 .type span{
     text-align: center;
     display: block;
-    width: 32.6%;
+    width: 31.6%;
     float: left;
 }
 .middle{
@@ -135,5 +135,8 @@ export default {
 .content p,.content span{
     font-size: 12px;
     color: #444;
+}
+.first{
+    margin-left: 4px;
 }
 </style>

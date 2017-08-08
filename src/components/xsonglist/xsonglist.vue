@@ -42,7 +42,7 @@ export default {
             }
         },
         mounted() {
-            axios.get('/music/plist/index&json=true')
+            axios.get('https://bird.ioliu.cn/v1?url=http://m.kugou.com/plist/index&json=true')
                 .then((response) => {
                     this.info = response.data.plist.list.info.map(function(item) {
                         item.imgurl = item.imgurl.replace('{size}', '400')
@@ -59,7 +59,6 @@ export default {
 .songlists-hot {
     background: #fff;
     margin-top: 10px;
-    padding: 0 1px 0 10px;
     display: flex;
     flex-flow: wrap;
     justify-content: space-between;
@@ -70,9 +69,12 @@ export default {
     height: 38px;
     line-height: 38px;
 }
-
+h2{
+    margin-left: 8px;
+}
 .ul {
     flex: 1;
+    margin-left: 10px;
 }
 
 .li {
@@ -146,5 +148,8 @@ export default {
     z-index: 1;
     left: 7px;
     top: -1px
+}
+.title{
+    background-color: rgba(0,0,0,0)
 }
 </style>

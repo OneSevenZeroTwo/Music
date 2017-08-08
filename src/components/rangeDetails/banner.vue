@@ -1,9 +1,10 @@
 <template>
 	<div class="r_banner">
 		<div class="title">
-			<div @click="goBack"></div>
-			<p v-text="xinfo.rankname"></p>
+			<div @click="goBack" class="back"></div>
+			<p v-text="">爱乐</p>
 		</div>
+		<span class="bigtitle">爱乐</span>
 		<img :src=xinfo.banner7url alt="" />
 	</div>
 </template>
@@ -28,12 +29,13 @@ export default {
 		z-index: 10000;
 		width: 100%;
 		background: -webkit-linear-gradient(top,rgba(0,0,0,.6),transparent);
-		div{
+		.back{
 			float: left;
 			width: 15%;
-			height: 48px;
-			background-size: 100px 200px;
-			background: url(../../img/goback_1.png) no-repeat center;
+			height: 44px;
+			background-size: 80px 80px;
+			background: url(../../assets/back.png) no-repeat center;
+			backgroud-position:center;
 		}
 		p{
 			display: inline-block;
@@ -46,5 +48,17 @@ export default {
 			font-family: Microsoft Yahei;
 			color: white;
 		}
+	}
+	.bigtitle{
+		display: block;
+		width: 80px;
+		position: absolute;
+		top: 54px;
+		left: 144px;
+		background-color: #fff;
+		text-align: center;
+		font-size: 24px;
+		border-radius:10px;
+		color:#ff4081;
 	}
 </style>

@@ -142,7 +142,7 @@ export default {
             }
         },
         mounted() {
-            axios.get('/music/?json=true')
+            axios.get('https://bird.ioliu.cn/v1?url=http://m.kugou.com?json=true')
                 .then((response) => {
                     this.commend = response.data.data.splice(6, 5);
                     console.log(this.commend);

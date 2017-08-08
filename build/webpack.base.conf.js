@@ -1,4 +1,5 @@
 "use strict"
+
 var path = require('path')
 var utils = require('./utils')
 
@@ -20,12 +21,13 @@ let webpackConfig = {
   output: {
     path: config.build.assetsRoot,
     filename: '[name].js',
-    publicPath: process.env.NODE_ENV === 'production'
+    publicPath:
+     process.env.NODE_ENV === 'production'
       ? config.build.assetsPublicPath
       : config.dev.assetsPublicPath
   },
   resolve: {
-    extensions: ['.js', '.vue', '.json'],
+    extensions: ['.js', '.vue', '.json','.css'],
     alias: {
       'vue$': 'vue/dist/vue.esm.js',
       '@': resolve('src')
@@ -60,8 +62,10 @@ let webpackConfig = {
           name: utils.assetsPath('fonts/[name].[hash:7].[ext]')
         }
       }
+    
     ]
   }
+
 }
 
 

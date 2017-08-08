@@ -302,7 +302,7 @@
 
 				axios({
 					method: 'get',
-					url: '/music/singer/list/' + salf.getid + '?json=true'
+					url: 'https://bird.ioliu.cn/v1?url=http://m.kugou.com/singer/list/' + salf.getid + '?json=true'
 
 				}).then((response) => {
 					
@@ -369,7 +369,7 @@
 
 				axios({
 					method: 'get',
-					url: '/music/singer/list/' + salf.getid + '/' + salf.page + '?json=true'
+					url: 'https://bird.ioliu.cn/v1?url=http://m.kugou.com/singer/list/' + salf.getid + '/' + salf.page + '?json=true'
 
 				}).then((response) => {
 					var mylist = response.data.singers.list.info;
@@ -391,7 +391,7 @@
 				this.page++;
 				axios({
 					method: 'get',
-					url: '/music/singer/list/' + salf.getid + '/' + salf.page + '?json=true'
+					url: 'https://bird.ioliu.cn/v1?url=http://m.kugou.com/singer/list/' + salf.getid + '/' + salf.page + '?json=true'
 
 				}).then((response) => {
 					var mylist = response.data.singers.list.info;
@@ -662,15 +662,19 @@
 		position: fixed;
 		right: 7px;
 		top: 38%;
-		margin-top: -50%;
-		background: #FFFDEF;
+		margin-top: -36%;
+		
 		opacity: 0.5;
-		width: 1.4rem;
+		width: 40px;
+		height: 100%;
 	}
 	
 	.word_sort ul li {
+		line-height:20px;
+		font-size: 16px;
 		text-align: center;
-		border-bottom: 0.013333rem solid #ddd;
+	
+		height:20px;
 	}
 	
 	.word_sort ul li .gaoliang {

@@ -13,7 +13,6 @@ import pinyin_dict_notone from "./lib/pinyin_dict_notone.js";
 import "./lib/pinyinUtil.js";
 import com from "./lib/common(模块化).js"
 
-
 window.com = com;
 window.pinyin_dict_notone = pinyin_dict_notone;
 

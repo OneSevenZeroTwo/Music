@@ -36,7 +36,7 @@
         </section>
         <section class="alert">
             <div class="js_dialog" id="iosDialog2" v-show="isShowAlert">
-                <div class="weui-mask"></div>
+                <div class="weui-mask" @click="hideAlert"></div>
                 <div class="weui-dialog">
                     <div class="weui-dialog__bd">发表评论前请先登录</div>
                     <div class="weui-dialog__ft">
@@ -61,19 +61,16 @@ export default {
                 isShowAlert: false,
                 // 定义自定义指令的绑定值
                 ifUpdate: false,
-                newArr:[]
+                newArr: []
             }
         },
         mounted() {
             this.screenHight = window.screen.availHeight;
             var self = this;
-            axios.get('http://localhost:8008/getcomment', {
-                    params: {
-                        com: this.$store.state.commentNum
-                    }
-                })
+            axios.get('../../static/data/comment.json')
                 .then(function(response) {
-                    self.comData = response.data;
+                    var commentCount = self.$route.params.id * 1
+                    self.comData = response.data.RECORDS.splice(commentCount, 10);
                     console.log(self.comData);
                     self.ifUpdate = false;
                 })
@@ -90,7 +87,7 @@ export default {
                     this.screenHight = window.screen.availHeight;
                 }
             },
-            newComment(){
+            newComment() {
                 return this.$store.state.newComment;
             }
         },
@@ -113,7 +110,7 @@ export default {
                     this.ifUpdate = true;
                     var date = new Date();
                     var now = com.currentTime(date);
-                    var self = this ;
+                    var self = this;
                     //var newData = [];
                     axios.get('http://localhost:8008/savecomment', {
                             params: {
@@ -125,7 +122,7 @@ export default {
                         })
                         .then(function(response) {
                             self.newArr.push(response.data[0]);
-                            self.$store.state.newComment = self.newArr ;
+                            self.$store.state.newComment = self.newArr;
                             self.$store.state.newCommentCount = self.newArr.length;
                             console.log(self.$store.state.newCommentCount);
                             document.getElementsByTagName('input')[0].value = '';
@@ -134,6 +131,9 @@ export default {
                             console.log(error);
                         });
                 }
+            },
+            hideAlert() {
+                this.isShowAlert = false;
             }
         }
 }

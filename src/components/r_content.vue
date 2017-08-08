@@ -3,8 +3,9 @@
 		<ul>
 			<li v-for="i in list">
 				<a :href="'#/rangeDetails/'+i.rankid">
-					<div style>
+					<div style class="imgcontainer">
 						<img :src="i.imgurl" alt="" />
+						<span class="title">爱乐</span>
 					</div>
 					<div>
 						<h5 v-text="i.rankname"></h5>
@@ -44,6 +45,11 @@
 						str[i].bannerurl =  str[i].bannerurl.replace(/{size}/g,'400');
 						str[i].imgurl =  str[i].imgurl.replace(/{size}/g,'400');
 					}
+					for(var i = 0;i<str.length;i++){
+						if(str[i].rankname.slice(0,2) == '酷狗' ){
+							str[i].rankname = '爱乐'+str[i].rankname.slice(2,);
+						}
+					}
 					return 	str;
 				}
 			}
@@ -59,4 +65,18 @@
 	a .tb img{width: 12px;height: 20px;}
 	h5{font-size: 20px;padding-left: 20px;line-height: 108px;color: #333; font-weight: normal;}
 	img{width: 108px;display: block;}
+	.title{
+		display: block;
+		width: 80px;
+		position: absolute;
+		top: 8px;
+		left: 13px;
+		background-color: #fff;
+		text-align: center;
+		font-size: 24px;
+		border-radius: 10px;
+	}
+	.imgcontainer{
+		position: relative;
+	}
 </style>
