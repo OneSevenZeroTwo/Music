@@ -22,7 +22,7 @@ export default {
 
 <style lang="less" scoped>
 	.r_banner {width: 100%;height: 250px;overflow: hidden;}
-	.r_banner img{width: 100%;margin-top: -82px;}
+	.r_banner img{width: 100%;margin-top: -20%;}
 	.title{
 		overflow: hidden;
 		position: fixed;
@@ -52,9 +52,11 @@ export default {
 	.bigtitle{
 		display: block;
 		width: 80px;
+		line-height: 40px;
 		position: absolute;
-		top: 54px;
-		left: 144px;
+		transform:translate(-50%,-50%);
+		top:12%;
+		left:50%;
 		background-color: #fff;
 		text-align: center;
 		font-size: 24px;

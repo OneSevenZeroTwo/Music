@@ -44,7 +44,6 @@
 			top: 0;
 			left: 0;
 			background: #ff4081;
-			border-bottom: 1px solid #e5e5e5; 
 			div {
 				float: left;
 				width: 10%;

@@ -48,7 +48,6 @@
 		}
 		ul{
 			padding-left: 5%;
-			border-bottom: 1px solid #ccc;
 			border-top: 1px solid #ccc;
 			li{
 				border-bottom: 1px solid #e5e5e5;
