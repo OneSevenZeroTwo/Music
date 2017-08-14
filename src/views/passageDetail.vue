@@ -62,7 +62,7 @@ export default {
         var id = this.$route.params.id * 1;
         console.log(this.isShowContainer);
         var self = this;
-        axios.get('../../static/data/passage.json')
+        axios.get('../static/data/passage.json')
             .then(function(response) {
                 self.data = response.data.RECORDS[9-id];
                 self.$store.state.commentNum = self.data.id;
