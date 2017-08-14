@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<div class="topbar">
-			<span>bilibili音悦台</span>
+			<span>爱乐音悦台</span>
 		</div>
 		<span class="back" @click="changeDirection()"><i class="material-icons contentList">&#xE241;</i></span>
 		<span class="search" @click="search"><i class="material-icons contentList">&#xE8B6;</i></span>

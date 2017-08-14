@@ -67,7 +67,7 @@ export default {
         mounted() {
             this.screenHight = window.screen.availHeight;
             var self = this;
-            axios.get('../../static/data/comment.json')
+            axios.get('../static/data/comment.json')
                 .then(function(response) {
                     var commentCount = self.$route.params.id * 1
                     self.comData = response.data.RECORDS.splice(commentCount, 10);
