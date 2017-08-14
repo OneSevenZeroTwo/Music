@@ -74,7 +74,7 @@
 		background-color: #fff;
 		text-align: center;
 		font-size: 24px;
-
+		border-radius: 10px;
 	}
 	.imgcontainer{
 		position: relative;

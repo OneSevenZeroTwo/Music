@@ -69,7 +69,9 @@ export default {
     height: 38px;
     line-height: 38px;
 }
-
+h2{
+    margin-left: 8px;
+}
 .ul {
     flex: 1;
     margin-left: 10px;
@@ -146,5 +148,8 @@ export default {
     z-index: 1;
     left: 7px;
     top: -1px
+}
+.title{
+    background-color: rgba(0,0,0,0)
 }
 </style>

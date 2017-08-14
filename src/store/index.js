@@ -1,48 +1,47 @@
 import axios from 'axios'
 export default {
-	state: {
-		newSong: null,
-		newClass: null,
-		newDetails: null,
-		range_id: null,
-		range_page: 1,
-		songsPlay: [],
-		scrolly: null,
-		showComment: false,
-		// 播放器数据状态管理
-		showPlay: false,
-		imgUrl: '',
-		isshow: false,
-		getIndex: null,
-		getMusic: null,
-		//唱片
-		record: '',
-		//侧边栏初始化
-		direction: 'left',
-		telephone: '',
-		password: '',
-		//收藏
-		singername: [],
-		louti: false,
-		zimu: null,
-		commentNum: null,
-		isShowContainer: true,
-		loginStatus: null,
-		//音乐详情的封面
-		recordCover: '',
-		zxrm:null,
-		newsearch:'',
-		getsearch:null,
-		newId:1,
-		newComment:null,
-		newCommentCount:[],
-		arrHight:[],
-        getshou:[],
-        sildeShow:false,
+    state: {
+        newSong: null,
+        newClass: null,
+        newDetails: null,
+        range_id: null,
+        range_page: 1,
+        songsPlay: [],
+        scrolly: null,
+        showComment: false,
+        // 播放器数据状态管理
+        showPlay: false,
+        imgUrl: '',
+        isshow: false,
+        getIndex: null,
+        getMusic: null,
+        //唱片
+        record: '',
+        //侧边栏初始化
+        direction: 'left',
+        telephone: '',
+        password: '',
+        //收藏
+        singername: [],
+        louti: false,
+        zimu: null,
+        commentNum: null,
+        isShowContainer: true,
         loginStatus: null,
         //音乐详情的封面
         recordCover: '',
-        sildeShow:false
+        zxrm:null,
+        newsearch:'',
+        getsearch:null,
+        newId:1,
+        newComment:null,
+        newCommentCount:null,
+        arrHight:[],
+        getshou:[],
+        sildeShow:false,
+        baseUrl:'https://bird.ioliu.cn/v1?url=http://mobilecdn.kugou.com',
+        baseUrlsetRecord:'https://bird.ioliu.cn/v1?url=http://www.kugou.com',
+        baseUrlMusic:'https://bird.ioliu.cn/v1?url=http://m.kugou.com'
     },
     getters: {
         getRange(state) {
@@ -73,9 +72,17 @@ export default {
             return state.record
         },
         getrecordCover(state) {
-            state.recordCover = state.record[0].cover;
-            return state.recordCover
-        }
+            return state.recordCover =state.record[0].cover
+        },
+        getzxrm(state) {
+            return state.zxrm
+        },
+        getsearch(state) {
+            return state.getsearch
+        },
+        getId(state) {
+            return state.newId
+        },
     },
     mutations: {
         getMusic(state) {
@@ -89,7 +96,7 @@ export default {
                 });
         },
         getRange(state) {
-            axios.get('https://bird.ioliu.cn/v1?url=http://m.kugou.com/rank/list&json=true')
+            axios.get(state.baseUrlMusic+'/rank/list&json=true')
                 .then((response) => {
                     state.newClass = response.data
                 })
@@ -98,7 +105,7 @@ export default {
                 });
         },
         rangeDetails(state) {
-            axios.get('https://bird.ioliu.cn/v1?url=http://m.kugou.com/rank/info/?rankid=' + state.range_id + '&page=' + state.range_page + '&json=true', {})
+            axios.get(state.baseUrlMusic+'/rank/info/?rankid=' + state.range_id + '&page=' + state.range_page + '&json=true', {})
                 .then((response) => {
                     state.newDetails = response.data
                 })
@@ -123,7 +130,7 @@ export default {
             state.getIndex = data
         },
         setMusic(state, data) {
-            axios.get('https://bird.ioliu.cn/v1?url=http://m.kugou.com/app/i/getSongInfo.php?cmd=playInfo&hash=' + data)
+            axios.get(state.baseUrlMusic+'/app/i/getSongInfo.php?cmd=playInfo&hash=' + data)
                 .then((response) => {
                     state.getMusic = response.data
                 })
@@ -135,7 +142,7 @@ export default {
             var arr = [];
             data.forEach(function(item) {
                 item.hash
-                axios.get('https://bird.ioliu.cn/v1?url=http://www.kugou.com/yy/index.php?r=play/getdata&hash=' + item.hash)
+                axios.get(state.baseUrlsetRecord+'/yy/index.php?r=play/getdata&hash=' + item.hash)
                     .then((response) => {
                         var temp = {}
                         temp.name = response.data.data.song_name;
@@ -150,12 +157,37 @@ export default {
                     });
             })
             state.record = arr;
-
-
         },
         setrecordCover(state, data) {
             state.recordCover = data
-        }
+        },
+        getzxrm(state, data) {
+            axios.get(state.baseUrl+'/api/v3/search/hot?format=json&plat=0&count=30')
+                .then((response) => {
+                    state.zxrm = response.data
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+        },
+        setsearch(state, data) {
+            state.newsearch = data
+        },
+        getsearch(state, data) {
+            axios.get(state.baseUrl+'/api/v3/search/song?format=json&keyword=' + state.newsearch + '&page=' + state.newId + '&pagesize=30&showtype=1')
+                .then((response) => {
+                    state.getsearch = response.data
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+        },
+        setId(state, data) {
+            state.newId = data
+        },
+        setgq(state, data) {
+            state.newsearch = data
+        },
     },
     actions: {
         getMusic(context, data) {
@@ -187,8 +219,25 @@ export default {
         },
         setRecord(context, data) {
             context.commit('setRecord', data)
-
+        },
+        setrecordCover(context, data) { //设置音乐详情的封面
+            context.commit('setrecordCover', data)
+        },
+        getzxrm(context, data) {
+            context.commit("getzxrm", data)
+        },
+        setsearch(context, data) {
+            context.commit("setsearch", data)
+        },
+        getsearch(context, data) {
+            context.commit("getsearch", data)
+        },
+        setId(context, data) {
+            context.commit("setId", data)
+        },
+        setgq(context, data) {
+            context.commit("setgq", data)
         },
 
-	}
+    }
 }

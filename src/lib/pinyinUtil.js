@@ -5,9 +5,9 @@
  * @last 2016-09-29
  */
 import pinyin_dict_notone from "./pinyin_dict_notone.js";
-import pinyin_dict_withtone from  "./pinyin_dict_withtone.js";
+
 window.pinyin_dict_notone = pinyin_dict_notone;
-window.pinyin_dict_withtone = pinyin_dict_withtone;
+
 //console.log(pinyin_dict_notone,pinyin_dict_withtone)
 ;(function()
 {

@@ -89,11 +89,16 @@
 				height: 70%;
 			}
 		}
-	@media screen  and (min-width:410px){
+	@media screen  and (min-width:375px){
 			.setimg{
 				height: 80%;
 			}
 		}
+		@media screen  and (min-width:414px){
+			.setimg{
+				height: 90%;
+			}
+		}	
 	@media screen  and (min-width: 768px){
 			.setimg{
 				height: 100%;

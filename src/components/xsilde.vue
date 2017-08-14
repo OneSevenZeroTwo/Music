@@ -63,6 +63,7 @@
 			changeDirection() {
 				this.$store.state.direction = "left";
 				//console.log(this.$store.state.direction)
+				this.$store.state.sildeShow = false;
 			},
 			clearCookie(){
 				this.logReg = false;
@@ -103,7 +104,6 @@
 		width: 180px;
 		height: 100%;
 		margin-top: 48px;
-		box-shadow: 1px 0 10px rgba(0, 0, 0, .8);
 		position: fixed;
 		background-color: black;
 		z-index: 2000;
